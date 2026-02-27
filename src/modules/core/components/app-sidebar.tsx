@@ -39,7 +39,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <a href="#" className="flex justify-center w-full pt-3">
                 <img
-                  src="/src/assets/illustrations/logo-atrevia.webp"
+                  src="/promo-concierto/assets/illustrations/logo-atrevia.webp"
                   alt="Atrevia logo"
                   className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
                 />

@@ -11,6 +11,7 @@ import { initializeTheme } from './hooks/use-appearance'
 
 const router = createRouter({
   routeTree,
+  basepath: '/promo-concierto',
   scrollRestoration: true,
 })
 

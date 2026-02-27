@@ -10,7 +10,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Link } from "@tanstack/react-router"
 import { type TypeRecoverPasswordSchema, recoverPasswordSchema } from "../schemas/recovery-password.schema"
 import { AuthService } from "../services/auth.service"
 import { setRHFError } from "@/modules/core/components/hook-form/set-error"
@@ -50,7 +49,7 @@ export function RecoverPasswordForm({
           <div className="flex flex-col items-center gap-2 text-center">
             <Link to="/" className="flex items-center gap-2 font-medium">
             <img
-              src="/src/assets/illustrations/logo-atrevia.webp"
+              src="/promo-concierto/assets/illustrations/logo-atrevia.webp"
               alt="Atrevia logo"
               className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
             />

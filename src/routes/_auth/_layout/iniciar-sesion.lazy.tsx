@@ -11,7 +11,7 @@ function SigninPage() {
         <div className="flex justify-center gap-2 md:justify-start">
           <Link to="/" className="flex items-center gap-2 font-medium">
             <img
-              src="/src/assets/illustrations/logo-atrevia.webp"
+              src="/promo-concierto/assets/illustrations/logo-atrevia.webp"
               alt="Atrevia logo"
               className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
             />
@@ -25,7 +25,7 @@ function SigninPage() {
       </div>
       <div className="bg-muted relative hidden lg:block">
         <img
-          src="/src/assets/illustrations/Registro_1200x1200px.webp"
+          src="/promo-concierto/assets/illustrations/Registro_1200x1200px.webp"
           alt="Campaña Chayanne"
           className="absolute inset-0 h-full w-full object-cover"
         />

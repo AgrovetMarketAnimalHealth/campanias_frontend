@@ -196,7 +196,7 @@ export function NavMain({
           <CardContent className="flex flex-col gap-4 p-5">
             <div className="flex justify-center mt-2">
               <img
-                src="/src/assets/illustrations/logo-atrevia.webp"
+                src="/promo-concierto/assets/illustrations/logo-atrevia.webp"
                 alt="Logo Atrevia"
                 className="h-10 object-contain brightness-0 invert"
               />
