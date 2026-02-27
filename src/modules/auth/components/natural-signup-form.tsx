@@ -40,8 +40,6 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
       dni: '',
       departamento: '',
       email: '',
-      password: '',
-      password_confirmation: '',
       telefono: '',
       acepta_politicas: false,
       acepta_terminos: false,
@@ -77,6 +75,7 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
       return
     }
   }
+
   return (
     <form className={cn('flex flex-col gap-6', className)} onSubmit={handleSubmit(onSubmit)} {...props}>
       <FieldGroup>
@@ -100,7 +99,11 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
           <Field>
             <FieldLabel htmlFor="apellidos">Apellidos</FieldLabel>
             <Input id="apellidos" type="text" placeholder="Pérez" {...register('apellidos')} />
-            {errors.apellidos && <p className="text-destructive text-xs">{errors.apellidos.message}</p>}
+            {errors.apellidos && (
+              <p className="text-destructive text-xs">
+                {'apellidos' in errors ? errors.apellidos?.message : ''}
+              </p>
+            )}
           </Field>
         </div>
 
@@ -108,7 +111,11 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
           <Field>
             <FieldLabel htmlFor="dni">DNI</FieldLabel>
             <Input id="dni" type="text" placeholder="12345678" maxLength={8} {...register('dni')} />
-            {errors.dni && <p className="text-destructive text-xs">{errors.dni.message}</p>}
+            {errors.dni && (
+              <p className="text-destructive text-xs">
+                {'dni' in errors ? errors.dni?.message : ''}
+              </p>
+            )}
           </Field>
           <Field>
             <FieldLabel htmlFor="celular">Celular</FieldLabel>
@@ -141,18 +148,6 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
         </Field>
 
         <Field>
-          <FieldLabel htmlFor="password">Contraseña</FieldLabel>
-          <Input id="password" type="password" placeholder="········" {...register('password')} />
-          {errors.password && <p className="text-destructive text-xs">{errors.password.message}</p>}
-        </Field>
-
-        <Field>
-          <FieldLabel htmlFor="password_confirmation">Confirmar contraseña</FieldLabel>
-          <Input id="password_confirmation" type="password" placeholder="········" {...register('password_confirmation')} />
-          {errors.password_confirmation && <p className="text-destructive text-xs">{errors.password_confirmation.message}</p>}
-        </Field>
-
-        <Field>
           <FieldLabel>Comprobante de pago</FieldLabel>
           <label
             htmlFor="comprobante"
@@ -170,7 +165,9 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
             <input ref={inputRef} id="comprobante" type="file" accept="image/*,.pdf" className="hidden" onChange={onFileChange} />
           </label>
           <FieldDescription>Formatos aceptados: JPG, PNG o PDF. Máximo 5 MB.</FieldDescription>
-          {errors.archivo_comprobante && <p className="text-destructive text-xs">{errors.archivo_comprobante.message as string}</p>}
+          {errors.archivo_comprobante && (
+            <p className="text-destructive text-xs">{errors.archivo_comprobante.message as string}</p>
+          )}
         </Field>
 
         <Field>
@@ -186,7 +183,7 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
             />
             <label htmlFor="terminos" className="text-sm leading-snug cursor-pointer">
               Acepto los{' '}
-              <Link to="/terminos-condiciones" className="underline underline-offset-4 hover:text-primary">
+              <Link to="/portal/terminos-condiciones" className="underline underline-offset-4 hover:text-primary">
                 Términos y Condiciones
               </Link>
               {' '}y la{' '}
@@ -195,7 +192,9 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
               </Link>.
             </label>
           </div>
-          {errors.acepta_terminos && <p className="text-destructive text-xs">{errors.acepta_terminos.message as string}</p>}
+          {errors.acepta_terminos && (
+            <p className="text-destructive text-xs">{errors.acepta_terminos.message as string}</p>
+          )}
         </Field>
 
         <Button type="submit" className="w-full" disabled={isSubmitting}>

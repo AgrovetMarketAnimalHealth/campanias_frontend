@@ -40,8 +40,6 @@ export function LegalSignupForm({ className, ...props }: React.ComponentProps<'f
       ruc: '',
       departamento: '',
       email: '',
-      password: '',
-      password_confirmation: '',
       telefono: '',
       acepta_politicas: false,
       acepta_terminos: false,
@@ -77,6 +75,7 @@ export function LegalSignupForm({ className, ...props }: React.ComponentProps<'f
       return
     }
   }
+
   return (
     <form className={cn('flex flex-col gap-6', className)} onSubmit={handleSubmit(onSubmit)} {...props}>
       <FieldGroup>
@@ -100,14 +99,22 @@ export function LegalSignupForm({ className, ...props }: React.ComponentProps<'f
           <Field>
             <FieldLabel htmlFor="apellidos-j">Apellidos</FieldLabel>
             <Input id="apellidos-j" type="text" placeholder="Pérez" {...register('apellidos')} />
-            {errors.apellidos && <p className="text-destructive text-xs">{errors.apellidos.message}</p>}
+            {errors.apellidos && (
+              <p className="text-destructive text-xs">
+                {'apellidos' in errors ? errors.apellidos?.message : ''}
+              </p>
+            )}
           </Field>
         </div>
 
         <Field>
           <FieldLabel htmlFor="ruc">RUC</FieldLabel>
           <Input id="ruc" type="text" placeholder="20123456789" maxLength={11} {...register('ruc')} />
-          {errors.ruc && <p className="text-destructive text-xs">{errors.ruc.message}</p>}
+          {errors.ruc && (
+            <p className="text-destructive text-xs">
+              {'ruc' in errors ? errors.ruc?.message : ''}
+            </p>
+          )}
         </Field>
 
         <div className="grid grid-cols-2 gap-4">
@@ -141,18 +148,6 @@ export function LegalSignupForm({ className, ...props }: React.ComponentProps<'f
         </Field>
 
         <Field>
-          <FieldLabel htmlFor="password-j">Contraseña</FieldLabel>
-          <Input id="password-j" type="password" placeholder="········" {...register('password')} />
-          {errors.password && <p className="text-destructive text-xs">{errors.password.message}</p>}
-        </Field>
-
-        <Field>
-          <FieldLabel htmlFor="password_confirmation-j">Confirmar contraseña</FieldLabel>
-          <Input id="password_confirmation-j" type="password" placeholder="········" {...register('password_confirmation')} />
-          {errors.password_confirmation && <p className="text-destructive text-xs">{errors.password_confirmation.message}</p>}
-        </Field>
-
-        <Field>
           <FieldLabel>Comprobante de pago</FieldLabel>
           <label
             htmlFor="comprobante-j"
@@ -170,7 +165,9 @@ export function LegalSignupForm({ className, ...props }: React.ComponentProps<'f
             <input ref={inputRef} id="comprobante-j" type="file" accept="image/*,.pdf" className="hidden" onChange={onFileChange} />
           </label>
           <FieldDescription>Formatos aceptados: JPG, PNG o PDF. Máximo 5 MB.</FieldDescription>
-          {errors.archivo_comprobante && <p className="text-destructive text-xs">{errors.archivo_comprobante.message as string}</p>}
+          {errors.archivo_comprobante && (
+            <p className="text-destructive text-xs">{errors.archivo_comprobante.message as string}</p>
+          )}
         </Field>
 
         <Field>
@@ -195,7 +192,9 @@ export function LegalSignupForm({ className, ...props }: React.ComponentProps<'f
               </Link>.
             </label>
           </div>
-          {errors.acepta_terminos && <p className="text-destructive text-xs">{errors.acepta_terminos.message as string}</p>}
+          {errors.acepta_terminos && (
+            <p className="text-destructive text-xs">{errors.acepta_terminos.message as string}</p>
+          )}
         </Field>
 
         <Button type="submit" className="w-full" disabled={isSubmitting}>

@@ -15,8 +15,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PortalTerminosCondicionesRouteImport } from './routes/portal/terminos-condiciones'
 import { Route as AuthenticatedLayoutRouteImport } from './routes/_authenticated/_layout'
 import { Route as AuthenticatedLayoutMisDatosIndexRouteImport } from './routes/_authenticated/_layout/mis-datos/index'
+import { Route as AuthenticatedLayoutPortalNotificacionesIndexRouteImport } from './routes/_authenticated/_layout/portal/notificaciones/index'
 import { Route as AuthenticatedLayoutPortalDashboardIndexRouteImport } from './routes/_authenticated/_layout/portal/dashboard/index'
 
 const AuthLayoutLazyRouteImport = createFileRoute('/_auth/_layout')()
@@ -61,6 +63,12 @@ const AuthLayoutLazyRoute = AuthLayoutLazyRouteImport.update({
   id: '/_layout',
   getParentRoute: () => AuthRoute,
 } as any).lazy(() => import('./routes/_auth/_layout.lazy').then((d) => d.Route))
+const PortalTerminosCondicionesRoute =
+  PortalTerminosCondicionesRouteImport.update({
+    id: '/portal/terminos-condiciones',
+    path: '/portal/terminos-condiciones',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedLayoutRoute = AuthenticatedLayoutRouteImport.update({
   id: '/_layout',
   getParentRoute: () => AuthenticatedRoute,
@@ -141,6 +149,12 @@ const _emailEmailVerifyTokenLazyRoute = _emailEmailVerifyTokenLazyRouteImport
   .lazy(() =>
     import('./routes/__email/email.verify.$token.lazy').then((d) => d.Route),
   )
+const AuthenticatedLayoutPortalNotificacionesIndexRoute =
+  AuthenticatedLayoutPortalNotificacionesIndexRouteImport.update({
+    id: '/portal/notificaciones/',
+    path: '/portal/notificaciones/',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
 const AuthenticatedLayoutPortalDashboardIndexRoute =
   AuthenticatedLayoutPortalDashboardIndexRouteImport.update({
     id: '/portal/dashboard/',
@@ -150,6 +164,7 @@ const AuthenticatedLayoutPortalDashboardIndexRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/portal/terminos-condiciones': typeof PortalTerminosCondicionesRoute
   '/email/resend': typeof _emailEmailResendLazyRoute
   '/iniciar-sesion': typeof AuthLayoutIniciarSesionLazyRoute
   '/recuperar-contrasena': typeof AuthLayoutRecuperarContrasenaLazyRouteWithChildren
@@ -160,9 +175,11 @@ export interface FileRoutesByFullPath {
   '/mis-datos/': typeof AuthenticatedLayoutMisDatosIndexRoute
   '/recuperar-contrasena/': typeof AuthLayoutRecuperarContrasenaIndexLazyRoute
   '/portal/dashboard/': typeof AuthenticatedLayoutPortalDashboardIndexRoute
+  '/portal/notificaciones/': typeof AuthenticatedLayoutPortalNotificacionesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/portal/terminos-condiciones': typeof PortalTerminosCondicionesRoute
   '/email/resend': typeof _emailEmailResendLazyRoute
   '/iniciar-sesion': typeof AuthLayoutIniciarSesionLazyRoute
   '/registrarme': typeof AuthLayoutRegistrarmeLazyRoute
@@ -172,6 +189,7 @@ export interface FileRoutesByTo {
   '/mis-datos': typeof AuthenticatedLayoutMisDatosIndexRoute
   '/recuperar-contrasena': typeof AuthLayoutRecuperarContrasenaIndexLazyRoute
   '/portal/dashboard': typeof AuthenticatedLayoutPortalDashboardIndexRoute
+  '/portal/notificaciones': typeof AuthenticatedLayoutPortalNotificacionesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -179,6 +197,7 @@ export interface FileRoutesById {
   '/_auth': typeof AuthRouteWithChildren
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/_authenticated/_layout': typeof AuthenticatedLayoutRouteWithChildren
+  '/portal/terminos-condiciones': typeof PortalTerminosCondicionesRoute
   '/_auth/_layout': typeof AuthLayoutLazyRouteWithChildren
   '/__email/email/resend': typeof _emailEmailResendLazyRoute
   '/_auth/_layout/iniciar-sesion': typeof AuthLayoutIniciarSesionLazyRoute
@@ -190,11 +209,13 @@ export interface FileRoutesById {
   '/_authenticated/_layout/mis-datos/': typeof AuthenticatedLayoutMisDatosIndexRoute
   '/_auth/_layout/recuperar-contrasena/': typeof AuthLayoutRecuperarContrasenaIndexLazyRoute
   '/_authenticated/_layout/portal/dashboard/': typeof AuthenticatedLayoutPortalDashboardIndexRoute
+  '/_authenticated/_layout/portal/notificaciones/': typeof AuthenticatedLayoutPortalNotificacionesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/portal/terminos-condiciones'
     | '/email/resend'
     | '/iniciar-sesion'
     | '/recuperar-contrasena'
@@ -205,9 +226,11 @@ export interface FileRouteTypes {
     | '/mis-datos/'
     | '/recuperar-contrasena/'
     | '/portal/dashboard/'
+    | '/portal/notificaciones/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/portal/terminos-condiciones'
     | '/email/resend'
     | '/iniciar-sesion'
     | '/registrarme'
@@ -217,12 +240,14 @@ export interface FileRouteTypes {
     | '/mis-datos'
     | '/recuperar-contrasena'
     | '/portal/dashboard'
+    | '/portal/notificaciones'
   id:
     | '__root__'
     | '/'
     | '/_auth'
     | '/_authenticated'
     | '/_authenticated/_layout'
+    | '/portal/terminos-condiciones'
     | '/_auth/_layout'
     | '/__email/email/resend'
     | '/_auth/_layout/iniciar-sesion'
@@ -234,12 +259,14 @@ export interface FileRouteTypes {
     | '/_authenticated/_layout/mis-datos/'
     | '/_auth/_layout/recuperar-contrasena/'
     | '/_authenticated/_layout/portal/dashboard/'
+    | '/_authenticated/_layout/portal/notificaciones/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  PortalTerminosCondicionesRoute: typeof PortalTerminosCondicionesRoute
   _emailEmailResendLazyRoute: typeof _emailEmailResendLazyRoute
   _emailEmailVerifyTokenLazyRoute: typeof _emailEmailVerifyTokenLazyRoute
 }
@@ -273,6 +300,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AuthLayoutLazyRouteImport
       parentRoute: typeof AuthRoute
+    }
+    '/portal/terminos-condiciones': {
+      id: '/portal/terminos-condiciones'
+      path: '/portal/terminos-condiciones'
+      fullPath: '/portal/terminos-condiciones'
+      preLoaderRoute: typeof PortalTerminosCondicionesRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/_layout': {
       id: '/_authenticated/_layout'
@@ -344,6 +378,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _emailEmailVerifyTokenLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/_layout/portal/notificaciones/': {
+      id: '/_authenticated/_layout/portal/notificaciones/'
+      path: '/portal/notificaciones'
+      fullPath: '/portal/notificaciones/'
+      preLoaderRoute: typeof AuthenticatedLayoutPortalNotificacionesIndexRouteImport
+      parentRoute: typeof AuthenticatedLayoutRoute
+    }
     '/_authenticated/_layout/portal/dashboard/': {
       id: '/_authenticated/_layout/portal/dashboard/'
       path: '/portal/dashboard'
@@ -388,6 +429,15 @@ declare module './routes/_authenticated/_layout' {
     FileRoutesByPath['/_authenticated/_layout']['id'],
     FileRoutesByPath['/_authenticated/_layout']['path'],
     FileRoutesByPath['/_authenticated/_layout']['fullPath']
+  >
+}
+declare module './routes/portal/terminos-condiciones' {
+  const createFileRoute: CreateFileRoute<
+    '/portal/terminos-condiciones',
+    FileRoutesByPath['/portal/terminos-condiciones']['parentRoute'],
+    FileRoutesByPath['/portal/terminos-condiciones']['id'],
+    FileRoutesByPath['/portal/terminos-condiciones']['path'],
+    FileRoutesByPath['/portal/terminos-condiciones']['fullPath']
   >
 }
 declare module './routes/_auth/_layout.lazy' {
@@ -453,6 +503,15 @@ declare module './routes/_authenticated/_layout/portal/dashboard/index' {
     FileRoutesByPath['/_authenticated/_layout/portal/dashboard/']['fullPath']
   >
 }
+declare module './routes/_authenticated/_layout/portal/notificaciones/index' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/_layout/portal/notificaciones/',
+    FileRoutesByPath['/_authenticated/_layout/portal/notificaciones/']['parentRoute'],
+    FileRoutesByPath['/_authenticated/_layout/portal/notificaciones/']['id'],
+    FileRoutesByPath['/_authenticated/_layout/portal/notificaciones/']['path'],
+    FileRoutesByPath['/_authenticated/_layout/portal/notificaciones/']['fullPath']
+  >
+}
 
 interface AuthLayoutRecuperarContrasenaLazyRouteChildren {
   AuthLayoutRecuperarContrasenaNuevaContrasenaLazyRoute: typeof AuthLayoutRecuperarContrasenaNuevaContrasenaLazyRoute
@@ -504,12 +563,15 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 interface AuthenticatedLayoutRouteChildren {
   AuthenticatedLayoutMisDatosIndexRoute: typeof AuthenticatedLayoutMisDatosIndexRoute
   AuthenticatedLayoutPortalDashboardIndexRoute: typeof AuthenticatedLayoutPortalDashboardIndexRoute
+  AuthenticatedLayoutPortalNotificacionesIndexRoute: typeof AuthenticatedLayoutPortalNotificacionesIndexRoute
 }
 
 const AuthenticatedLayoutRouteChildren: AuthenticatedLayoutRouteChildren = {
   AuthenticatedLayoutMisDatosIndexRoute: AuthenticatedLayoutMisDatosIndexRoute,
   AuthenticatedLayoutPortalDashboardIndexRoute:
     AuthenticatedLayoutPortalDashboardIndexRoute,
+  AuthenticatedLayoutPortalNotificacionesIndexRoute:
+    AuthenticatedLayoutPortalNotificacionesIndexRoute,
 }
 
 const AuthenticatedLayoutRouteWithChildren =
@@ -531,6 +593,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  PortalTerminosCondicionesRoute: PortalTerminosCondicionesRoute,
   _emailEmailResendLazyRoute: _emailEmailResendLazyRoute,
   _emailEmailVerifyTokenLazyRoute: _emailEmailVerifyTokenLazyRoute,
 }

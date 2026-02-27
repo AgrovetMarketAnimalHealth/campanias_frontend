@@ -22,42 +22,6 @@ export interface Cliente {
 export interface TypeAPIAuth {
   success: boolean
   message: string
-  token?: string
-  email_verified?: boolean
-  cliente_id?: string
-  status: number
-  errors?: Record<string, string[]>
-}
-export interface TypeAPIRegister {
-  success: boolean
-  message: string
-  errors?: { [key: string]: string[] }
-  status?: number
-}
-
-export interface TypeAPIRecoverPassword {
-  success: boolean
-  message: string
-  errors?: { [key: string]: string }
-  status?: number
-}
-
-export interface TypeAPIRecoverUpdatePassword {
-  success: boolean
-  message: string
-  errors?: { [key: string]: string }
-  status?: number
-}
-
-export interface TypeAPIReenviarVerificacion {
-  success: boolean
-  message: string
-  status?: number
-}
-
-export interface TypeAPIAuth {
-  success: boolean
-  message: string
   accion?: 'verificar_email'
   token?: string
   email_verified?: boolean
@@ -69,4 +33,18 @@ export interface TypeAPIAuth {
   }
   status: number
   errors?: Record<string, string[]>
+}
+
+export interface TypeAPIRegister {
+  success: boolean
+  message: string
+  accion?: 'verificar_email'
+  errors?: { [key: string]: string[] }
+  status?: number
+}
+
+export interface TypeAPIReenviarVerificacion {
+  success: boolean
+  message: string
+  status?: number
 }

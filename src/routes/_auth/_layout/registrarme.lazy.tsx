@@ -67,9 +67,9 @@ function RegisterPage() {
       {/* Right side - Image */}
       <div className="bg-muted relative hidden lg:block">
         <img
-          src="/src/assets/illustrations/1-Landing_Principal.webp"
+          src="/src/assets/illustrations/Registro_1200x1200px.webp"
           alt="Campaña Chayanne"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+          className="absolute inset-0 h-full w-full object-cover"
         />
       </div>
     </div>

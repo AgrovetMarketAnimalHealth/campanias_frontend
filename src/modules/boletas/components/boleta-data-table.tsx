@@ -26,7 +26,6 @@ import {
   IconChevronsLeft,
   IconChevronsRight,
   IconCircleCheckFilled,
-  IconClock,
   IconCircleX,
   IconGripVertical,
   IconLoader,
@@ -66,6 +65,11 @@ import { BoletaDrawerShow } from "./boleta-drawer-show"
 import { BoletaDrawerStore } from "./boleta-drawer-store"
 import { BoletaService } from "../services/boleta.service"
 import type { Boleta } from "../types/boleta.types"
+
+// ─── Props ─────────────────────────────────────────────────
+interface BoletaDataTableProps {
+  onSuccess?: () => void
+}
 
 // ─── Estado badge ──────────────────────────────────────────
 function EstadoBadge({ estado }: { estado: Boleta['estado'] }) {
@@ -168,7 +172,7 @@ const columns: ColumnDef<Boleta>[] = [
   {
     accessorKey: "codigo",
     header: "Código",
-    cell: ({ row }) => ( 
+    cell: ({ row }) => (
       <span className="font-mono text-sm font-medium">{row.original.codigo}</span>
     ),
     enableHiding: false,
@@ -220,7 +224,7 @@ const TABS = [
 ]
 
 // ─── Componente principal ──────────────────────────────────
-export function BoletaDataTable() {
+export function BoletaDataTable({ onSuccess }: BoletaDataTableProps) {
   const [data, setData] = React.useState<Boleta[]>([])
   const [tabActivo, setTabActivo] = React.useState("todos")
   const [rowSelection, setRowSelection] = React.useState({})
@@ -257,6 +261,12 @@ export function BoletaDataTable() {
     setRowSelection({})
   }
 
+  // Al subir boleta: recarga tabla Y notifica al padre para refrescar cards
+  const handleSuccess = () => {
+    cargarBoletas(tabActivo, pagination.pageIndex)
+    onSuccess?.()
+  }
+
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event
     if (active && over && active.id !== over.id) {
@@ -287,7 +297,6 @@ export function BoletaDataTable() {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Header: tabs + botón separados */}
       <div className="flex items-center justify-between px-4 lg:px-6">
         <Tabs value={tabActivo} onValueChange={handleTabChange}>
           <TabsList className="hidden @4xl/main:flex">
@@ -299,7 +308,6 @@ export function BoletaDataTable() {
           </TabsList>
         </Tabs>
 
-        {/* Mobile select */}
         <Select value={tabActivo} onValueChange={handleTabChange}>
           <SelectTrigger className="flex w-fit @4xl/main:hidden" size="sm">
             <SelectValue />
@@ -313,10 +321,9 @@ export function BoletaDataTable() {
           </SelectContent>
         </Select>
 
-        <BoletaDrawerStore onSuccess={() => cargarBoletas(tabActivo, pagination.pageIndex)} />
+        <BoletaDrawerStore onSuccess={handleSuccess} />
       </div>
 
-      {/* Tabla */}
       <div className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6">
         <div className="overflow-hidden rounded-lg border">
           <DndContext
@@ -359,7 +366,6 @@ export function BoletaDataTable() {
           </DndContext>
         </div>
 
-        {/* Paginación */}
         <div className="flex items-center justify-between px-4">
           <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
             {table.getFilteredSelectedRowModel().rows.length} de {data.length} fila(s) seleccionadas.

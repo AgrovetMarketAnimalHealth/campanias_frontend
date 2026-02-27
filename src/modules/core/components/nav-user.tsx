@@ -21,7 +21,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { useNavigate } from "@tanstack/react-router"
+import { Link, useNavigate } from "@tanstack/react-router"
 import { handleLogout } from "@/modules/perfil/utils/logout.utils"
 
 export function NavUser({
@@ -86,13 +86,11 @@ export function NavUser({
             <DropdownMenuSeparator />
 
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <IconUserCircle />
-                Mi perfil
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconNotification />
-                Notificaciones
+              <DropdownMenuItem asChild>
+                <Link to="/portal/notificaciones" className="flex items-center gap-2 cursor-pointer">
+                  <IconNotification className="size-4" />
+                  Notificaciones
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
 

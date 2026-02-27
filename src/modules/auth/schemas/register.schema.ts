@@ -5,15 +5,13 @@ const baseSchema = z.object({
   nombre: z.string().min(1, 'El nombre es obligatorio').max(100),
   departamento: z.string().min(1, 'El departamento es obligatorio'),
   email: z.string().email('Ingresa un correo válido'),
-  password: z.string().min(8, 'Mínimo 8 caracteres').max(255),
-  password_confirmation: z.string().min(8, 'Mínimo 8 caracteres'),
   telefono: z.string().min(1, 'El teléfono es obligatorio').max(20),
   archivo_comprobante: z.instanceof(File, { message: 'Debes subir un comprobante' }),
   acepta_politicas: z.literal<boolean>(true, {
-    errorMap: () => ({ message: 'Debes aceptar las políticas de privacidad' })
+    errorMap: () => ({ message: 'Debes aceptar las políticas de privacidad' }),
   }),
   acepta_terminos: z.literal<boolean>(true, {
-    errorMap: () => ({ message: 'Debes aceptar los términos y condiciones' })
+    errorMap: () => ({ message: 'Debes aceptar los términos y condiciones' }),
   }),
 })
 
@@ -34,13 +32,7 @@ const juridicaSchema = baseSchema.extend({
 export const registerSchema = z.discriminatedUnion('tipo_persona', [
   naturalSchema,
   juridicaSchema,
-]).refine(
-  (data) => data.password === data.password_confirmation,
-  {
-    message: 'Las contraseñas no coinciden',
-    path: ['password_confirmation']
-  }
-)
+])
 
 export type TypeRegisterSchema = z.infer<typeof registerSchema>
 export type TypeNaturalSchema = z.infer<typeof naturalSchema>
