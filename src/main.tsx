@@ -7,7 +7,6 @@ import { BProgress } from '@bprogress/core'
 import '@bprogress/core/css'
 import { routeTree } from './routeTree.gen'
 import './index.css'
-import { initializeTheme } from './hooks/use-appearance'
 
 const router = createRouter({
   routeTree,
@@ -44,5 +43,3 @@ if (!rootElement.innerHTML) {
     </StrictMode>
   )
 }
-
-initializeTheme()

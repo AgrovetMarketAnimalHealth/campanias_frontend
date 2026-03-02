@@ -126,19 +126,19 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
 
         <Field>
           <FieldLabel>Departamento</FieldLabel>
-          <Select onValueChange={(val) => setValue('departamento', val)}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Selecciona tu departamento" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {DEPARTAMENTOS.map(({ label, value }) => (
-                  <SelectItem key={value} value={value}>{label}</SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          {errors.departamento && <p className="text-destructive text-xs">{errors.departamento.message}</p>}
+          <select
+            onChange={(e) => setValue('departamento', e.target.value)}
+            className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            defaultValue=""
+          >
+            <option value="" disabled>Selecciona tu departamento</option>
+            {DEPARTAMENTOS.map(({ label, value }) => (
+              <option key={value} value={value}>{label}</option>
+            ))}
+          </select>
+          {errors.departamento && (
+            <p className="text-destructive text-xs">{errors.departamento.message}</p>
+          )}
         </Field>
 
         <Field>

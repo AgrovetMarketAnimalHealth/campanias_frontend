@@ -4,7 +4,7 @@ import landingDesktop  from "@/assets/mobile/Landing Page_Campaña Chayanne_Bann
 import landingMobile   from "@/assets/mobile/1-Landing_Principal.webp";
 import premiosMobile   from "@/assets/mobile/2-Landing_Premios.webp";
 import productosMobile from "@/assets/mobile/3-Landing_Productos.webp";
-import packProductos   from "@/assets/mobile/Pack Productos.webp";
+import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
 import chayanneBrand   from "@/assets/mobile/4-Landing_Chayanne & Atrevia.webp";
 import preparaMaleta   from "@/assets/mobile/prepara tu maleta.webp";
 import fotoChayanne    from "@/assets/mobile/Landing Page_participa.webp";
