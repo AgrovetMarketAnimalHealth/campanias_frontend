@@ -30,7 +30,7 @@ function ResendEmailPage() {
   const [segundosEspera, setSegundosEspera] = useState(0)
 
   const whatsappUrl =
-    'https://wa.me/51999999999?text=Hola,%20tengo%20problemas%20con%20la%20verificaci%C3%B3n%20de%20mi%20cuenta.'
+    'https://wa.me/51903069021?text=Hola,%20tengo%20problemas%20con%20la%20verificaci%C3%B3n%20de%20mi%20cuenta.'
 
   async function reenviarEmail() {
     if (!email) {
