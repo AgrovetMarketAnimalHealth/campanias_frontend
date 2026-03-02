@@ -4,7 +4,7 @@ import type {
   TypeAPIContador,
   TypeAPIMarcarLeida,
   FiltroNotificacion,
-} from '../types/notificacion.types'
+} from '../type/notificacion.types'
 
 const API_URL = import.meta.env.VITE_API_URL
 

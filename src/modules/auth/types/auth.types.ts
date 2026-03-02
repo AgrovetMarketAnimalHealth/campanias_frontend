@@ -1,4 +1,4 @@
-export type TipoPersona = 'natural' | 'juridica'
+export type TipoPersona = "natural" | "juridica"
 
 export interface Cliente {
   id: string
@@ -22,7 +22,7 @@ export interface Cliente {
 export interface TypeAPIAuth {
   success: boolean
   message: string
-  accion?: 'verificar_email'
+  accion?: "verificar_email"
   token?: string
   email_verified?: boolean
   cliente_id?: string
@@ -35,10 +35,17 @@ export interface TypeAPIAuth {
   errors?: Record<string, string[]>
 }
 
+export interface TypeAPIRecoverPassword {
+  success: boolean
+  message: string
+  errors?: Record<string, string[]>
+  status?: number
+}
+
 export interface TypeAPIRegister {
   success: boolean
   message: string
-  accion?: 'verificar_email'
+  accion?: "verificar_email"
   errors?: { [key: string]: string[] }
   status?: number
 }

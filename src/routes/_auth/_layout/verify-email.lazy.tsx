@@ -19,7 +19,7 @@ function VerifyEmailPage() {
     if (!search.email) return
     setReenviando(true)
     try {
-      await AuthService.reenviarVerificacion()
+      await AuthService.reenviarVerificacion(search.email)
       setReenviado(true)
       toast.success('Correo reenviado exitosamente')
     } catch {

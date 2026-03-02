@@ -3,7 +3,6 @@ import {
   IconDotsVertical,
   IconLogout,
   IconNotification,
-  IconUserCircle,
 } from "@tabler/icons-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {

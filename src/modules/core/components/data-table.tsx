@@ -21,14 +21,12 @@ import {
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import {
-  IconChevronDown,
   IconChevronLeft,
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
   IconCircleCheckFilled,
   IconGripVertical,
-  IconLayoutColumns,
   IconLoader,
   IconPlus,
   IconTrendingUp,
@@ -76,7 +74,6 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -316,7 +313,6 @@ export function DataTable({
         <Select defaultValue="outline">
           <SelectTrigger
             className="flex w-fit @4xl/main:hidden"
-            size="sm"
             id="view-selector"
           >
             <SelectValue placeholder="Select a view" />
@@ -441,7 +437,7 @@ export function DataTable({
                   table.setPageSize(Number(value))
                 }}
               >
-                <SelectTrigger size="sm" className="w-20" id="rows-per-page">
+                <SelectTrigger className="w-20" id="rows-per-page">
                   <SelectValue
                     placeholder={table.getState().pagination.pageSize}
                   />

@@ -8,7 +8,6 @@ import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
 import chayanneBrand   from "@/assets/mobile/4-Landing_Chayanne & Atrevia.webp";
 import preparaMaleta   from "@/assets/mobile/prepara tu maleta.webp";
 import fotoChayanne    from "@/assets/mobile/Landing Page_participa.webp";
-import participa       from "@/assets/mobile/Participa.webp";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Nunito:wght@400;600;700;800;900&display=swap');

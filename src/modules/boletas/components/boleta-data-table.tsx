@@ -64,7 +64,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BoletaDrawerShow } from "./boleta-drawer-show"
 import { BoletaDrawerStore } from "./boleta-drawer-store"
 import { BoletaService } from "../services/boleta.service"
-import type { Boleta } from "../types/boleta.types"
+import type { Boleta } from "../tyoes/boleta.types"
 
 // ─── Props ─────────────────────────────────────────────────
 interface BoletaDataTableProps {
@@ -309,7 +309,7 @@ export function BoletaDataTable({ onSuccess }: BoletaDataTableProps) {
         </Tabs>
 
         <Select value={tabActivo} onValueChange={handleTabChange}>
-          <SelectTrigger className="flex w-fit @4xl/main:hidden" size="sm">
+          <SelectTrigger className="flex w-fit @4xl/main:hidden">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -379,7 +379,7 @@ export function BoletaDataTable({ onSuccess }: BoletaDataTableProps) {
                 value={`${table.getState().pagination.pageSize}`}
                 onValueChange={(value) => table.setPageSize(Number(value))}
               >
-                <SelectTrigger size="sm" className="w-20" id="rows-per-page">
+                <SelectTrigger className="w-20" id="rows-per-page">
                   <SelectValue placeholder={table.getState().pagination.pageSize} />
                 </SelectTrigger>
                 <SelectContent side="top">

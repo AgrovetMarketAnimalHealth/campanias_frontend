@@ -10,7 +10,7 @@ import { Switch } from "@/components/ui/switch"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { NotificacionService } from "../services/notificacion.service"
-import type { Notificacion, FiltroNotificacion } from "../types/notificacion.types"
+import type { Notificacion, FiltroNotificacion } from "../type/notificacion.types"
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 

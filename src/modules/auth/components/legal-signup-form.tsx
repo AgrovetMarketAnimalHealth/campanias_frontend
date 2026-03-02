@@ -175,11 +175,11 @@ export function LegalSignupForm({ className, ...props }: React.ComponentProps<'f
             />
             <label htmlFor="terminos-j" className="text-sm leading-snug cursor-pointer">
               Acepto los{' '}
-              <Link to="/terminos-condiciones" className="underline underline-offset-4 hover:text-primary">
+              <Link to="/portal/terminos-condiciones" className="underline underline-offset-4 hover:text-primary">
                 Términos y Condiciones
               </Link>
               {' '}y la{' '}
-              <Link to="/politicas-privacidad" className="underline underline-offset-4 hover:text-primary">
+              <Link to="/portal/terminos-condiciones" className="underline underline-offset-4 hover:text-primary">
                 Política de Privacidad
               </Link>
             </label>
