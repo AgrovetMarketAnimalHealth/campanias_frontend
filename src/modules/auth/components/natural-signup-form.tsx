@@ -5,14 +5,6 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 import { DEPARTAMENTOS } from '../types/departamentos'
