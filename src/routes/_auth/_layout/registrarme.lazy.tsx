@@ -3,6 +3,8 @@ import { cn } from '@/lib/utils'
 import { NaturalSignupForm } from '@/modules/auth/components/natural-signup-form'
 import { LegalSignupForm } from '@/modules/auth/components/legal-signup-form'
 import { Link } from "@tanstack/react-router"
+import logoAtrevia from '@/assets/illustrations/logo-atrevia.webp'
+import registroImg from '@/assets/illustrations/Registro_1200x1200px.webp'
 
 type Tab = 'natural' | 'juridica'
 
@@ -21,7 +23,7 @@ function RegisterPage() {
         <div className="flex justify-center gap-2 md:justify-start">
           <Link to="/" className="flex items-center gap-2 font-medium">
             <img
-              src="/promo-concierto/assets/illustrations/logo-atrevia.webp"
+              src={logoAtrevia} 
               alt="Atrevia logo"
               className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
             />
@@ -67,7 +69,7 @@ function RegisterPage() {
       {/* Right side - Image */}
       <div className="bg-muted relative hidden lg:block">
         <img
-          src="/promo-concierto/assets/illustrations/Registro_1200x1200px.webp"
+          src={registroImg}
           alt="Campaña Chayanne"
           className="absolute inset-0 h-full w-full object-cover"
         />

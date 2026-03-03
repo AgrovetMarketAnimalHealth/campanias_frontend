@@ -1,0 +1,9 @@
+import { TerminosCondicionesPage } from '@/modules/privacidad/politicas-privacidad'
+
+export const Route = createFileRoute({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return <TerminosCondicionesPage />
+}

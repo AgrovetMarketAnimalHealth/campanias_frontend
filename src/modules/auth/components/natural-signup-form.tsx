@@ -179,7 +179,7 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
                 Términos y Condiciones
               </Link>
               {' '}y la{' '}
-              <Link to="/portal/terminos-condiciones" className="underline underline-offset-4 hover:text-primary">
+              <Link to="/portal/politicas-de-privacidad" className="underline underline-offset-4 hover:text-primary">
                 Política de Privacidad
               </Link>.
             </label>

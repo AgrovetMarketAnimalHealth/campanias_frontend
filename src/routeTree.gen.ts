@@ -16,6 +16,7 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PortalTerminosCondicionesRouteImport } from './routes/portal/terminos-condiciones'
+import { Route as PortalPoliticasDePrivacidadRouteImport } from './routes/portal/politicas-de-privacidad'
 import { Route as AuthenticatedLayoutRouteImport } from './routes/_authenticated/_layout'
 import { Route as AuthenticatedLayoutMisDatosIndexRouteImport } from './routes/_authenticated/_layout/mis-datos/index'
 import { Route as AuthenticatedLayoutPortalNotificacionesIndexRouteImport } from './routes/_authenticated/_layout/portal/notificaciones/index'
@@ -67,6 +68,12 @@ const PortalTerminosCondicionesRoute =
   PortalTerminosCondicionesRouteImport.update({
     id: '/portal/terminos-condiciones',
     path: '/portal/terminos-condiciones',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PortalPoliticasDePrivacidadRoute =
+  PortalPoliticasDePrivacidadRouteImport.update({
+    id: '/portal/politicas-de-privacidad',
+    path: '/portal/politicas-de-privacidad',
     getParentRoute: () => rootRouteImport,
   } as any)
 const AuthenticatedLayoutRoute = AuthenticatedLayoutRouteImport.update({
@@ -164,6 +171,7 @@ const AuthenticatedLayoutPortalDashboardIndexRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/portal/politicas-de-privacidad': typeof PortalPoliticasDePrivacidadRoute
   '/portal/terminos-condiciones': typeof PortalTerminosCondicionesRoute
   '/email/resend': typeof _emailEmailResendLazyRoute
   '/iniciar-sesion': typeof AuthLayoutIniciarSesionLazyRoute
@@ -179,6 +187,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/portal/politicas-de-privacidad': typeof PortalPoliticasDePrivacidadRoute
   '/portal/terminos-condiciones': typeof PortalTerminosCondicionesRoute
   '/email/resend': typeof _emailEmailResendLazyRoute
   '/iniciar-sesion': typeof AuthLayoutIniciarSesionLazyRoute
@@ -197,6 +206,7 @@ export interface FileRoutesById {
   '/_auth': typeof AuthRouteWithChildren
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/_authenticated/_layout': typeof AuthenticatedLayoutRouteWithChildren
+  '/portal/politicas-de-privacidad': typeof PortalPoliticasDePrivacidadRoute
   '/portal/terminos-condiciones': typeof PortalTerminosCondicionesRoute
   '/_auth/_layout': typeof AuthLayoutLazyRouteWithChildren
   '/__email/email/resend': typeof _emailEmailResendLazyRoute
@@ -215,6 +225,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/portal/politicas-de-privacidad'
     | '/portal/terminos-condiciones'
     | '/email/resend'
     | '/iniciar-sesion'
@@ -230,6 +241,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/portal/politicas-de-privacidad'
     | '/portal/terminos-condiciones'
     | '/email/resend'
     | '/iniciar-sesion'
@@ -247,6 +259,7 @@ export interface FileRouteTypes {
     | '/_auth'
     | '/_authenticated'
     | '/_authenticated/_layout'
+    | '/portal/politicas-de-privacidad'
     | '/portal/terminos-condiciones'
     | '/_auth/_layout'
     | '/__email/email/resend'
@@ -266,6 +279,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  PortalPoliticasDePrivacidadRoute: typeof PortalPoliticasDePrivacidadRoute
   PortalTerminosCondicionesRoute: typeof PortalTerminosCondicionesRoute
   _emailEmailResendLazyRoute: typeof _emailEmailResendLazyRoute
   _emailEmailVerifyTokenLazyRoute: typeof _emailEmailVerifyTokenLazyRoute
@@ -306,6 +320,13 @@ declare module '@tanstack/react-router' {
       path: '/portal/terminos-condiciones'
       fullPath: '/portal/terminos-condiciones'
       preLoaderRoute: typeof PortalTerminosCondicionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal/politicas-de-privacidad': {
+      id: '/portal/politicas-de-privacidad'
+      path: '/portal/politicas-de-privacidad'
+      fullPath: '/portal/politicas-de-privacidad'
+      preLoaderRoute: typeof PortalPoliticasDePrivacidadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/_layout': {
@@ -429,6 +450,15 @@ declare module './routes/_authenticated/_layout' {
     FileRoutesByPath['/_authenticated/_layout']['id'],
     FileRoutesByPath['/_authenticated/_layout']['path'],
     FileRoutesByPath['/_authenticated/_layout']['fullPath']
+  >
+}
+declare module './routes/portal/politicas-de-privacidad' {
+  const createFileRoute: CreateFileRoute<
+    '/portal/politicas-de-privacidad',
+    FileRoutesByPath['/portal/politicas-de-privacidad']['parentRoute'],
+    FileRoutesByPath['/portal/politicas-de-privacidad']['id'],
+    FileRoutesByPath['/portal/politicas-de-privacidad']['path'],
+    FileRoutesByPath['/portal/politicas-de-privacidad']['fullPath']
   >
 }
 declare module './routes/portal/terminos-condiciones' {
@@ -593,6 +623,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  PortalPoliticasDePrivacidadRoute: PortalPoliticasDePrivacidadRoute,
   PortalTerminosCondicionesRoute: PortalTerminosCondicionesRoute,
   _emailEmailResendLazyRoute: _emailEmailResendLazyRoute,
   _emailEmailVerifyTokenLazyRoute: _emailEmailVerifyTokenLazyRoute,
