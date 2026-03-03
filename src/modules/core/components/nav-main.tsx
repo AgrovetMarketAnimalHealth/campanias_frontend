@@ -14,6 +14,7 @@ import {
 import { Link, useRouterState } from "@tanstack/react-router"
 import { cn } from "@/lib/utils"
 import { NotificacionService } from "@/modules/notificaciones/services/notificacion.service"
+import logoAtrevia from '@/assets/illustrations/logo-atrevia.webp'
 
 export function NavMain({
   items,
@@ -196,7 +197,7 @@ export function NavMain({
           <CardContent className="flex flex-col gap-4 p-5">
             <div className="flex justify-center mt-2">
               <img
-                src="/promo-concierto/assets/illustrations/logo-atrevia.webp"
+                src={logoAtrevia} 
                 alt="Logo Atrevia"
                 className="h-10 object-contain brightness-0 invert"
               />

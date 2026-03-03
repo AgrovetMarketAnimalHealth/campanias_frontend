@@ -13,6 +13,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import logoAtrevia from '@/assets/illustrations/logo-atrevia.webp'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [cliente, setCliente] = React.useState<Cliente | null>(null)
@@ -39,7 +40,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <a href="#" className="flex justify-center w-full pt-3">
                 <img
-                  src="/promo-concierto/assets/illustrations/logo-atrevia.webp"
+                  src={logoAtrevia} 
                   alt="Atrevia logo"
                   className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
                 />
