@@ -1,13 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import landingDesktop  from "@/assets/mobile/Landing Page_Campaña Chayanne_Banner principal.webp";
-import landingMobile   from "@/assets/mobile/1-Landing_Principal.webp";
-import premiosMobile   from "@/assets/mobile/2-Landing_Premios.webp";
+import landingDesktop  from "@/assets/illustrations/landing_s1.webp";
+import landingMobile   from "@/assets/mobile/landiing_s1_mobil.webp";
+import premiosMobile   from "@/assets/mobile/landigns2_mobil.webp";
 import productosMobile from "@/assets/mobile/3-Landing_Productos.webp";
 import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
 import chayanneBrand   from "@/assets/mobile/4-Landing_Chayanne & Atrevia.webp";
 import preparaMaleta   from "@/assets/mobile/prepara tu maleta.webp";
-import fotoChayanne    from "@/assets/mobile/Landing Page_participa.webp";
+import fotoChayanne    from "@/assets/illustrations/landings2 (2).webp";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Nunito:wght@400;600;700;800;900&display=swap');
@@ -100,7 +100,7 @@ const styles = `
   /* ══ S2 — PREMIOS ══ */
   .s2 {
     width: 100%;
-    background: linear-gradient(135deg, var(--purple-d) 0%, var(--purple-m) 100%);
+    background: linear-gradient(135deg, #583FA0 0%, #8D6BD9 100%);
     overflow: hidden;
   }
   .s2-img-mobile { display: block; }
@@ -158,7 +158,6 @@ const styles = `
      DESKTOP ≥ 768px
   ══════════════════════════ */
   @media (min-width: 768px) {
-    .s2 { background: #7B3FA0; }
     .s2-img-mobile { display: none !important; }
     .s2-inner {
       display: flex;
