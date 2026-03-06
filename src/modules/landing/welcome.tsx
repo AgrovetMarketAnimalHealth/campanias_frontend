@@ -212,7 +212,7 @@ const styles = `
 `;
 
 function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState<boolean>(
+  const [isDesktop] = useState<boolean>(
     () => typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches
   );
 
