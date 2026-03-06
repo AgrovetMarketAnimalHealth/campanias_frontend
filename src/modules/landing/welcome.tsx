@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import landingDesktop  from "@/assets/illustrations/landing_s1.webp";
-import landingMobile   from "@/assets/mobile/landiing_s1_mobil.webp";
+import landingMobile   from "@/assets/mobile/1-Landing_Principal (1).webp";
 import premiosMobile   from "@/assets/mobile/landigns2_mobil.webp";
 import productosMobile from "@/assets/mobile/3-Landing_Productos.webp";
 import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
