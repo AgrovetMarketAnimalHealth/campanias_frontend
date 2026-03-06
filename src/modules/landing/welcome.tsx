@@ -7,7 +7,8 @@ import productosMobile from "@/assets/mobile/3-Landing_Productos.webp";
 import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
 import chayanneBrand   from "@/assets/mobile/4-Landing_Chayanne & Atrevia.webp";
 import preparaMaleta   from "@/assets/mobile/prepara tu maleta.webp";
-import fotoChayanne    from "@/assets/illustrations/landings2 (2).webp";
+import fotoChayanne    from "@/assets/mobile/Landing Page_participa (4).webp";
+import { useAuthDestino } from "@/modules/perfil/hooks/useAuthDestino";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Nunito:wght@400;600;700;800;900&display=swap');
@@ -139,7 +140,7 @@ const styles = `
     padding: 13px 0; border-radius: 999px; text-decoration: none;
     width: 100%; max-width: 240px;
     box-shadow: 0 4px 18px rgba(0,0,0,0.15);
-    transition: background 0.22s, transform 0.15s, box-shadow 0.22s;
+    transition: background 0.22s, transform 0.15s, box-shadow 0.22s, opacity 0.3s;
     animation: btnPulse 2.8s ease-in-out infinite;
   }
   @keyframes btnPulse {
@@ -153,6 +154,11 @@ const styles = `
     animation: none;
   }
   .s5-btn:active { transform: scale(0.97); }
+  .s5-btn--loading {
+    pointer-events: none;
+    opacity: 0.6;
+    animation: none;
+  }
 
   /* ══════════════════════════
      DESKTOP ≥ 768px
@@ -205,23 +211,47 @@ const styles = `
   }
 `;
 
-/**
- * Hook que detecta si el viewport es desktop (≥768px).
- * Al usar matchMedia en el estado inicial evitamos un flash de imagen incorrecta.
- */
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState<boolean>(
     () => typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches
   );
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
 
-  return isDesktop;
+    const targets = document.querySelectorAll(
+      ".reveal, .reveal-left, .reveal-right, .reveal-scale"
+    );
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []); // <- se ejecuta solo al montar
+
+    return isDesktop;
+  }
+
+// ── Botón CTA con redirección inteligente ──
+function CtaBtn() {
+  const { estado, destino } = useAuthDestino();
+  const cargando = estado === "cargando";
+
+  return (
+    <Link
+      to={destino}
+      // ← sin "reveal delay-1" — evita el problema de opacity: 0
+      className={`s5-btn${cargando ? " s5-btn--loading" : ""}`}
+      aria-busy={cargando}
+      tabIndex={cargando ? -1 : 0}
+    >
+      {cargando ? "Cargando..." : "Inscríbete aquí"}
+    </Link>
+  );
 }
 
 export function WelcomePage() {
@@ -254,11 +284,6 @@ export function WelcomePage() {
         {/* ── 1. HERO ── */}
         <section className="s1">
           <div className="s1-inner">
-            {/*
-              Renderizado condicional: solo se monta (y descarga) la imagen
-              que corresponde al viewport actual. Nunca se carga la imagen
-              desktop en móvil ni viceversa.
-            */}
             {isDesktop ? (
               <div className="s1-img-desktop img-hover">
                 <img
@@ -331,9 +356,7 @@ export function WelcomePage() {
 
         {/* ── 5. CTA ── */}
         <section className="s5">
-          <Link to="/registrarme" className="s5-btn reveal delay-1">
-            Inscríbete aquí
-          </Link>
+          <CtaBtn />
         </section>
 
       </div>
