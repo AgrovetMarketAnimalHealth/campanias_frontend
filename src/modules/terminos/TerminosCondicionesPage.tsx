@@ -128,7 +128,7 @@ export function TerminosCondicionesPage() {
                 "Artista: Chayanne",
                 "22 mayo 2026 — 7pm",
                 "San José, Costa Rica",
-                "Vigencia: 23 feb – 06 may 2026",
+                "Vigencia: 02 ene – 06 may 2026", // Actualizado
               ].map((item) => (
                 <span
                   key={item}
@@ -154,7 +154,7 @@ export function TerminosCondicionesPage() {
                 <div><span className="font-semibold text-gray-900">Nombre:</span> "Atrevia, Destino Chayanne"</div>
                 <div><span className="font-semibold text-gray-900">Ámbito:</span> A nivel nacional (Perú)</div>
                 <div><span className="font-semibold text-gray-900">Concierto:</span> 22 de mayo 2026, 7pm — San José, Costa Rica</div>
-                <div><span className="font-semibold text-gray-900">Vigencia:</span> 23 de febrero al 06 de mayo de 2026</div>
+                <div><span className="font-semibold text-gray-900">Vigencia:</span> 02 de enero al 06 de mayo de 2026</div> {/* Actualizado */}
               </div>
             </AlertDescription>
           </Alert>
@@ -228,7 +228,7 @@ export function TerminosCondicionesPage() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   {[
                     { label: "1er Sorteo", date: "20 de marzo del 2026", prizes: "2 (DOS) premios" },
-                    { label: "2do Sorteo", date: "07 de mayo del 2026", prizes: "3 (TRES) premios" },
+                    { label: "2do Sorteo", date: "07 de mayo del 2026", prizes: "3 (TRES) premios" }, // Año actualizado a 2026
                   ].map((s) => (
                     <div
                       key={s.label}
@@ -339,12 +339,12 @@ export function TerminosCondicionesPage() {
               <div>
                 <p className="text-sm font-semibold text-gray-800 mb-3">3.4 Condiciones y Restricciones Generales</p>
                 <BulletList items={[
-                  "La promoción del concierto en Costa Rica estará vigente desde el 23 de febrero de 2026 al 07 de mayo de 2026 hasta las 23:59 horas, fecha en la cual se realizará el corte de inscripciones para la segunda fecha del sorteo.",
-                  "El corte de inscripciones para la primera fecha del sorteo (18 de marzo de 2026) se realizará el día 17 de marzo de 2026 a las 12:00 del mediodía.",
+                  "La promoción del concierto en Costa Rica estará vigente desde 02 de enero de 2026 al 06 de mayo de 2026 hasta las 12 del mediodía, fecha en la cual se realizará el corte de inscripciones para la segunda fecha del sorteo. El sorteo de la segunda fecha se realizará el 07 de mayo del 2026.", // Actualizado
+                  "El corte de inscripciones para la primera fecha del sorteo (20 de marzo de 2026) se realizará el día 19 de marzo de 2026 a las 12:00 del mediodía.", // Actualizado
                   "Los sorteos se realizarán bajo la presencia de un Notario Público y la lista de ganadores será publicada en las redes institucionales de PETMEDICA al día siguiente de realizado cada sorteo. Sin perjuicio de ello, se tomará contacto con cada uno de los ganadores mediante el correo electrónico y/o teléfono consignado.",
                   "Al validar el comprobante de pago, se consideran los valores exactos: cada S/ 1,000.00 (UN MIL con 00/100 SOLES) de compra en productos participantes equivaldrá a 1 (UNA) opción de sorteo. No se efectuarán redondeos a favor del participante.",
                   "No podrán participar distribuidores, ni ningún otro cliente que no califique como médico veterinario, clínica/consultorio veterinario o pet shop. Tampoco podrán participar trabajadores y/o parientes de trabajadores de AGROVET MARKET hasta cuarto grado de consanguinidad o segundo de afinidad, ni convivientes.",
-                  "Se aceptarán y serán válidas para la acumulación de opciones todas aquellas facturas y/o comprobantes de pago emitidos a partir del 01 de enero de 2026, siempre que cumplan con los montos mínimos y las categorías de productos participantes detalladas en la cláusula anterior.",
+                  "Se aceptarán y serán válidas para la acumulación de opciones todas aquellas facturas y/o comprobantes de pago emitidos a partir del 02 de enero de 2026, siempre que cumplan con los montos mínimos y las categorías de productos participantes detalladas en la cláusula anterior.", // Actualizado
                   "La presente promoción es válida exclusivamente dentro del territorio de la República del Perú (Nivel Nacional). No podrán participar personas naturales o jurídicas domiciliadas en el extranjero, ni compras realizadas fuera del territorio peruano.",
                   "Los datos personales serán recopilados mediante WhatsApp (903069021) o en la página web https://atrevia.vet/promo-concierto/. El tratamiento de estos datos se realizará en estricto respeto de la Ley N° 29733.",
                   "Los datos recepcionados serán verificados por el equipo de AGROVET MARKET, quienes consignarán los mismos en una base de datos especificando el número exacto de opciones generadas por cada registro.",
@@ -401,20 +401,6 @@ export function TerminosCondicionesPage() {
               </p>
             </CardContent>
           </Card>
-
-          {/* Firma - sin bordes */}
-          <div className="flex justify-center pb-10">
-            <div
-              className="rounded-2xl px-10 py-6 text-center shadow-sm"
-              style={{ backgroundColor: "white" }}
-            >
-              <div className="w-16 border-t-2 mx-auto mb-4" style={{ borderColor: BRAND_HEX }} />
-              <p className="font-bold text-gray-800 text-sm">AGROVET MARKET SA</p>
-              <p className="text-sm text-gray-700 mt-0.5">JORGE UMBERTO CALDERÓN OJEDA</p>
-              <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider">Gerente General</p>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
