@@ -1,11 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import landingDesktop  from "@/assets/illustrations/1-Landing Page_Campaña Chayanne_Banner principal_Perú.webp";
 import landingMobile   from "@/assets/mobile/1-Landing Page_Campaña Chayanne-Perú_Mobile.webp";
 import premiosMobile   from "@/assets/mobile/landigns2_mobil.webp";
 import productosMobile from "@/assets/mobile/3-Landing_Productos.webp";
 import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
-import chayanneBrand   from "@/assets/mobile/4-Landing_Chayanne & Atrevia.webp";
 import preparaMaleta   from "@/assets/mobile/5-Landing Page_prepara tu maleta.webp";
 import fotoChayanne    from "@/assets/mobile/2-Landing Page_participa.webp";
 import pasosImg        from "@/assets/illustrations/4-Pasos.webp";
@@ -260,7 +259,7 @@ const styles = `
   }
 `;
 
-function useScrollReveal(rootRef: React.RefObject<HTMLDivElement>) {
+function useScrollReveal(rootRef: React.RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
@@ -320,7 +319,7 @@ function CtaBtn() {
 }
 
 export function WelcomePage() {
-  const revealRef = useRef<HTMLDivElement>(null);
+  const revealRef = useRef<HTMLDivElement | null>(null);
 
   // Detección de desktop estable (solo lectura inicial, no necesita re-render)
   const isDesktop =
