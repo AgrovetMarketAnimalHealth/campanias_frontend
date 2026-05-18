@@ -1,13 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import landingDesktop  from "@/assets/illustrations/landing_s1.jpg";
-import landingMobile   from "@/assets/mobile/xd.webp";
+import landingDesktop  from "@/assets/illustrations/1-Landing Page_Campaña Chayanne_Banner principal_Perú.webp";
+import landingMobile   from "@/assets/mobile/1-Landing Page_Campaña Chayanne-Perú_Mobile.webp";
 import premiosMobile   from "@/assets/mobile/landigns2_mobil.webp";
-import productosMobile from "@/assets/mobile/3-Landing_Productos.jpg";
-import packProductos   from "@/assets/mobile/3-Landing_Productos.jpg";
+import productosMobile from "@/assets/mobile/3-Landing_Productos.webp";
+import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
 import chayanneBrand   from "@/assets/mobile/4-Landing_Chayanne & Atrevia.webp";
-import preparaMaleta   from "@/assets/mobile/prepara tu maleta.webp";
-import fotoChayanne    from "@/assets/mobile/Landing Page_participa (4).jpg";
+import preparaMaleta   from "@/assets/mobile/5-Landing Page_prepara tu maleta.webp";
+import fotoChayanne    from "@/assets/mobile/2-Landing Page_participa.webp";
+import pasosImg        from "@/assets/illustrations/4-Pasos.webp";
+import pasosMobile     from "@/assets/mobile/4-Pasos-mobile.webp";
 import { useAuthDestino } from "@/modules/perfil/hooks/useAuthDestino";
 
 const styles = `
@@ -99,7 +101,7 @@ const styles = `
   /* ══ S2 — PREMIOS ══ */
   .s2 {
     width: 100%;
-    background: linear-gradient(135deg, #583FA0 0%, #8D6BD9 100%);
+    background: linear-gradient(135deg, rgb(88,63,160) 0%, rgb(108,80,181) 50%, rgb(138,105,212) 100%);
     overflow: hidden;
   }
   .s2-img-mobile { display: block; }
@@ -116,8 +118,22 @@ const styles = `
   .s3-disclaimer { font-size: 13px; color: #555; line-height: 1.6; text-align: left; font-weight: 700; }
   .s3-link { color: #7B3FA0; font-weight: 700; text-decoration: underline; }
 
+  /* ══ S4B — PASOS ══ */
+  .s4b {
+    width: 100%;
+    background: linear-gradient(135deg, #a2cff0 0%, #c8e8f8 100%);
+    overflow: hidden;
+  }
+  .s4b-img-mobile { display: flex; justify-content: center; }
+  .s4b-img-mobile img { display: block; max-width: 100%; height: auto; }
+  .s4b-img-desktop { display: none; }
+
   /* ══ S4 — BRAND CIERRE ══ */
-  .s4 { width: 100%; background: #9669d8; overflow: hidden; }
+  .s4 {
+    width: 100%;
+    background: linear-gradient(135deg, rgb(97,62,165) 0%, rgb(151,105,216) 100%);
+    overflow: hidden;
+  }
   .s4-img-mobile { display: flex; justify-content: center; }
   .s4-img-mobile img { display: block; max-width: 100%; height: auto; }
   .s4-img-desktop { display: none; }
@@ -188,7 +204,24 @@ const styles = `
     .s3-inner { max-width: 1100px; margin: 0 auto; padding: 8px 64px 24px; }
     .s3-disclaimer { font-size: 14px; }
 
-    .s4 { background: rgb(150, 105, 216); }
+    /* s4b desktop */
+    .s4b-img-mobile  { display: none !important; }
+    .s4b-img-desktop {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 64px;
+    }
+    .s4b-img-desktop .s4b-img-wrap {
+      display: flex; justify-content: center; align-items: center;
+      max-width: 1000px; width: 100%;
+    }
+    .s4b-img-desktop img {
+      display: block; width: 100%; max-width: 900px; height: auto; object-fit: contain;
+    }
+
+    /* s4 desktop */
+    .s4 { background: linear-gradient(135deg, rgb(97,62,165) 0%, rgb(151,105,216) 100%); }
     .s4-img-mobile  { display: none !important; }
     .s4-img-desktop {
       display: flex;
@@ -229,10 +262,10 @@ function useIsDesktop() {
     );
     targets.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []); // <- se ejecuta solo al montar
+  }, []);
 
-    return isDesktop;
-  }
+  return isDesktop;
+}
 
 // ── Botón CTA con redirección inteligente ──
 function CtaBtn() {
@@ -242,7 +275,6 @@ function CtaBtn() {
   return (
     <Link
       to={destino}
-      // ← sin "reveal delay-1" — evita el problema de opacity: 0
       className={`s5-btn${cargando ? " s5-btn--loading" : ""}`}
       aria-busy={cargando}
       tabIndex={cargando ? -1 : 0}
@@ -334,17 +366,32 @@ export function WelcomePage() {
               </Link>
               .
               <br />
-              Las entradas se sortearán en 2 fechas: Primer sorteo 20 de marzo
-              y segundo sorteo 07 de mayo del 2026.
+              Las entradas se sortearán en 2 fechas: Primer sorteo (1 Ganador) 03 de setiembre y segundo sorteo (2 Ganadores) 12 de noviembre del 2026.
             </p>
+          </div>
+        </section>
+
+        {/* ── 4B. PASOS ── */}
+        <section className="s4b">
+          {/* Mobile → 4-Pasos-mobile.webp */}
+          <div className="s4b-img-mobile reveal img-hover">
+            <img src={pasosMobile} alt="Pasos para participar" loading="lazy" decoding="async" />
+          </div>
+          {/* Desktop → 4-Pasos.webp */}
+          <div className="s4b-img-desktop reveal-scale">
+            <div className="s4b-img-wrap img-hover">
+              <img src={pasosImg} alt="Pasos para participar" loading="lazy" decoding="async" />
+            </div>
           </div>
         </section>
 
         {/* ── 4. BRAND CIERRE ── */}
         <section className="s4">
+          {/* Mobile → 5-Landing Page_prepara tu maleta.webp */}
           <div className="s4-img-mobile reveal img-hover">
-            <img src={chayanneBrand} alt="Chayanne y Atrevia" loading="lazy" decoding="async" />
+            <img src={preparaMaleta} alt="Prepara tu maleta" loading="lazy" decoding="async" />
           </div>
+          {/* Desktop → 5-Landing Page_prepara tu maleta.webp */}
           <div className="s4-img-desktop reveal-scale">
             <div className="s4-img-wrap img-hover">
               <img src={preparaMaleta} alt="Prepara tu maleta" loading="lazy" decoding="async" />
