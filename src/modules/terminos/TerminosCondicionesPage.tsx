@@ -227,7 +227,7 @@ export function TerminosCondicionesPage() {
                 </p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {[
-                    { label: "1er Sorteo", date: "03 de agosto del 2026", prizes: "1 (UN) premio" },
+                    { label: "1er Sorteo", date: "03 de setiembre del 2026", prizes: "1 (UN) premio" },
                     { label: "2do Sorteo", date: "12 de noviembre del 2026", prizes: "2 (DOS) premios" },
                   ].map((s) => (
                     <div
@@ -340,7 +340,7 @@ export function TerminosCondicionesPage() {
                 <p className="text-sm font-semibold text-gray-800 mb-3">3.4 Condiciones y Restricciones Generales</p>
                 <BulletList items={[
                   "La promoción del concierto en Lima, Perú estará vigente desde 19 de mayo de 2026 al 12 de noviembre de 2026 hasta las 12 del mediodía, fecha en la cual se realizará el corte de inscripciones para la segunda fecha del sorteo. El sorteo de la segunda fecha se realizará el 12 de noviembre del 2026.",
-                  "El corte de inscripciones para la primera fecha del sorteo (03 de agosto de 2026) se realizará el día 02 de agosto de 2026 a las 12:00 del mediodía.",
+                  "El corte de inscripciones para la primera fecha del sorteo (03 de setiembre de 2026) se realizará el día 02 de setiembre de 2026 a las 12:00 del mediodía.",
                   "Se establece un límite de 01 premio por ganador. En ese sentido, quien resulte ganador en el primer sorteo no podrá participar ni ser considerado en el segundo sorteo, independientemente de las veces que haya sido seleccionado.",
                   "No podrán participar los ganadores de cualquier sorteo organizado por AGROVET MARKET S.A. durante el año 2026, independientemente del producto o marca promocionada.",
                   "Los sorteos se realizarán bajo la presencia de un Notario Público y la lista de ganadores será publicada en las redes institucionales de PETMEDICA al día siguiente de realizado cada sorteo. Sin perjuicio de ello, se tomará contacto con cada uno de los ganadores mediante el correo electrónico y/o teléfono consignado.",
