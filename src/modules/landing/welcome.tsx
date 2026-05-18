@@ -92,7 +92,7 @@ const styles = `
   .delay-4 { transition-delay: 0.46s; }
 
   /* ══ S1 — HERO ══ */
-  .s1 { width: 100%; overflow: hidden; }
+  .s1 { width: 100%; overflow: hidden; margin-bottom: 12px; }
   .s1-inner { position: relative; }
 
   .s1-img-desktop img,
