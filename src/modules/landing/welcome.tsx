@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import landingDesktop  from "@/assets/illustrations/1-Landing Page_Campaña Chayanne_Banner principal_Perú.webp";
 import landingMobile   from "@/assets/mobile/1-Landing Page_Campaña Chayanne-Perú_Mobile.webp";
-import premiosMobile   from "@/assets/mobile/landigns2_mobil.webp";
+import premiosMobile   from "@/assets/mobile/2-Participa_sin Fondo.webp";
 import productosMobile from "@/assets/mobile/3-Landing_Productos.webp";
 import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
 import preparaMaleta   from "@/assets/mobile/5-Landing Page_prepara tu maleta.webp";
