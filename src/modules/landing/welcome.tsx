@@ -36,38 +36,56 @@ const styles = `
     overflow-x: hidden;
   }
 
-  /* ══ SCROLL REVEAL ══ */
-  .reveal {
+  /* ══ SCROLL REVEAL ══
+     Las clases reveal solo ocultan cuando el root tiene .js-ready
+     De esta forma, antes de que el JS monte, todo es visible (sin flash de contenido invisible)
+  ══ */
+  .wp-root.js-ready .reveal {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
                 transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  .reveal-left {
+  .wp-root.js-ready .reveal-left {
     opacity: 0;
     transform: translateX(-48px);
     transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
                 transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .reveal-left.visible { opacity: 1; transform: translateX(0); }
-
-  .reveal-right {
+  .wp-root.js-ready .reveal-right {
     opacity: 0;
     transform: translateX(48px);
     transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
                 transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .reveal-right.visible { opacity: 1; transform: translateX(0); }
-
-  .reveal-scale {
+  .wp-root.js-ready .reveal-scale {
     opacity: 0;
     transform: scale(0.92);
     transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
                 transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+  /* Una vez visible, siempre visible — con o sin js-ready */
+  .reveal.visible,
+  .wp-root.js-ready .reveal.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  .reveal-left.visible,
+  .wp-root.js-ready .reveal-left.visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+  .reveal-right.visible,
+  .wp-root.js-ready .reveal-right.visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+  .reveal-scale.visible,
+  .wp-root.js-ready .reveal-scale.visible {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
 
   .delay-1 { transition-delay: 0.1s; }
   .delay-2 { transition-delay: 0.22s; }
@@ -242,29 +260,46 @@ const styles = `
   }
 `;
 
-function useIsDesktop() {
-  const [isDesktop] = useState<boolean>(
-    () => typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches
-  );
-
+function useScrollReveal(rootRef: React.RefObject<HTMLDivElement>) {
   useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    // 1️⃣ Marcar el root como listo → activa los estilos reveal
+    root.classList.add("js-ready");
+
+    // 2️⃣ Marcar como visible todo lo que ya está en el viewport inicial
+    //    (sin esperar al scroll) para evitar contenido invisible arriba del fold
+    const markVisible = (el: Element) => el.classList.add("visible");
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
+          if (entry.isIntersecting) {
+            markVisible(entry.target);
+            observer.unobserve(entry.target); // deja de observar una vez visible
+          }
         });
       },
       { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
     );
 
-    const targets = document.querySelectorAll(
+    const targets = root.querySelectorAll(
       ".reveal, .reveal-left, .reveal-right, .reveal-scale"
     );
-    targets.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
 
-  return isDesktop;
+    targets.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      // Si ya está visible al cargar → mostrar inmediatamente sin animación
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        markVisible(el);
+      } else {
+        observer.observe(el);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [rootRef]);
 }
 
 // ── Botón CTA con redirección inteligente ──
@@ -286,24 +321,14 @@ function CtaBtn() {
 
 export function WelcomePage() {
   const revealRef = useRef<HTMLDivElement>(null);
-  const isDesktop = useIsDesktop();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    );
+  // Detección de desktop estable (solo lectura inicial, no necesita re-render)
+  const isDesktop =
+    typeof window !== "undefined" &&
+    window.matchMedia("(min-width: 768px)").matches;
 
-    const targets = document.querySelectorAll(
-      ".reveal, .reveal-left, .reveal-right, .reveal-scale"
-    );
-    targets.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  // Hook centralizado de scroll reveal (incluye fix de elementos en viewport)
+  useScrollReveal(revealRef);
 
   return (
     <>
@@ -373,11 +398,9 @@ export function WelcomePage() {
 
         {/* ── 4B. PASOS ── */}
         <section className="s4b">
-          {/* Mobile → 4-Pasos-mobile.webp */}
           <div className="s4b-img-mobile reveal img-hover">
             <img src={pasosMobile} alt="Pasos para participar" loading="lazy" decoding="async" />
           </div>
-          {/* Desktop → 4-Pasos.webp */}
           <div className="s4b-img-desktop reveal-scale">
             <div className="s4b-img-wrap img-hover">
               <img src={pasosImg} alt="Pasos para participar" loading="lazy" decoding="async" />
@@ -387,11 +410,9 @@ export function WelcomePage() {
 
         {/* ── 4. BRAND CIERRE ── */}
         <section className="s4">
-          {/* Mobile → 5-Landing Page_prepara tu maleta.webp */}
           <div className="s4-img-mobile reveal img-hover">
             <img src={preparaMaleta} alt="Prepara tu maleta" loading="lazy" decoding="async" />
           </div>
-          {/* Desktop → 5-Landing Page_prepara tu maleta.webp */}
           <div className="s4-img-desktop reveal-scale">
             <div className="s4-img-wrap img-hover">
               <img src={preparaMaleta} alt="Prepara tu maleta" loading="lazy" decoding="async" />
