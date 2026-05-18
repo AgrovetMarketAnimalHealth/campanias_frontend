@@ -1,18 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import landingDesktop  from "@/assets/illustrations/landing_s1.webp";
+import landingDesktop  from "@/assets/illustrations/landing_s1.jpg";
 import landingMobile   from "@/assets/mobile/xd.webp";
 import premiosMobile   from "@/assets/mobile/landigns2_mobil.webp";
-import productosMobile from "@/assets/mobile/3-Landing_Productos.webp";
-import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
+import productosMobile from "@/assets/mobile/3-Landing_Productos.jpg";
+import packProductos   from "@/assets/mobile/3-Landing_Productos.jpg";
 import chayanneBrand   from "@/assets/mobile/4-Landing_Chayanne & Atrevia.webp";
 import preparaMaleta   from "@/assets/mobile/prepara tu maleta.webp";
-import fotoChayanne    from "@/assets/mobile/Landing Page_participa (4).webp";
+import fotoChayanne    from "@/assets/mobile/Landing Page_participa (4).jpg";
 import { useAuthDestino } from "@/modules/perfil/hooks/useAuthDestino";
 
 const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Nunito:wght@400;600;700;800;900&display=swap');
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body { background: #ffffff; }

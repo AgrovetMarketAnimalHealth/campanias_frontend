@@ -115,7 +115,7 @@ export function TerminosCondicionesPage() {
 
           <div className="relative z-10 max-w-4xl mx-auto px-6 py-14 text-white">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-70 mb-3">
-              San Luis, 20 de febrero 2026
+              Lima, 19 de mayo 2026
             </p>
             <p className="text-sm font-semibold uppercase tracking-widest opacity-80 mb-1">
               Campaña
@@ -126,9 +126,9 @@ export function TerminosCondicionesPage() {
             <div className="flex flex-wrap gap-2">
               {[
                 "Artista: Chayanne",
-                "22 mayo 2026 — 7pm",
-                "San José, Costa Rica",
-                "Vigencia: 02 ene – 06 may 2026",
+                "2 de diciembre 2026",
+                "Lima, Perú",
+                "Vigencia: 19 may – 12 nov 2026",
               ].map((item) => (
                 <span
                   key={item}
@@ -153,8 +153,8 @@ export function TerminosCondicionesPage() {
               <div className="grid sm:grid-cols-2 gap-3 text-sm text-gray-700">
                 <div><span className="font-semibold text-gray-900">Nombre:</span> "Atrevia, Destino Chayanne"</div>
                 <div><span className="font-semibold text-gray-900">Ámbito:</span> A nivel nacional (Perú)</div>
-                <div><span className="font-semibold text-gray-900">Concierto:</span> 22 de mayo 2026, 7pm — San José, Costa Rica</div>
-                <div><span className="font-semibold text-gray-900">Vigencia:</span> 02 de enero al 06 de mayo de 2026</div>
+                <div><span className="font-semibold text-gray-900">Concierto:</span> 2 de diciembre 2026 — Lima, Perú</div>
+                <div><span className="font-semibold text-gray-900">Vigencia:</span> 19 de mayo al 12 de noviembre de 2026</div>
               </div>
             </AlertDescription>
           </Alert>
@@ -167,7 +167,7 @@ export function TerminosCondicionesPage() {
             >
               <SectionTitle>a) Detalle de los Premios de la Campaña</SectionTitle>
               <p className="text-sm text-gray-700 leading-relaxed">
-                Se sortearán 5 (CINCO) premios, consistentes cada uno en 1 (UNA) entrada individual al concierto del cantante Chayanne en Costa Rica. Cada entrada incluye la experiencia denominada Meet &amp; Greet, conforme a los términos y condiciones que establezcan los organizadores de dicho evento (concierto + Meet &amp; Greet) en Costa Rica. Cada premio incluirá adicionalmente 1 (UN) pasaje aéreo Lima - San José - Lima y hospedaje por 2 (DOS) noches, conforme se detalla a continuación.
+                Se sortearán 3 (TRES) premios, consistentes cada uno en 1 (UNA) entrada individual al concierto del cantante Chayanne en Lima, Perú. El concierto se realizará el día 2 de diciembre del 2026. Cada premio incluirá adicionalmente, para los ganadores que residan en provincia, 1 (UN) pasaje terrestre o aéreo (según corresponda) hacia la ciudad de Lima y hospedaje por 1 (UNA) noche, conforme se detalla a continuación.
               </p>
             </div>
             <CardContent className="p-0">
@@ -175,23 +175,23 @@ export function TerminosCondicionesPage() {
                 {[
                   {
                     value: "p1",
-                    title: "1. Entrada + Meet & Greet",
-                    content: "Cada premio consiste en 01 (una) entrada individual al concierto del cantante Chayanne + experiencia Meet & Greet, concierto a realizarse el día 22 de mayo del 2026 en la República de Costa Rica.",
+                    title: "1. Entrada al concierto",
+                    content: "Cada premio consiste en 01 (una) entrada individual al concierto del cantante Chayanne, concierto a realizarse el día 2 de diciembre del 2026 en la ciudad de Lima, República del Perú.",
                   },
                   {
                     value: "p2",
-                    title: "2. Cada premio incluye adicionalmente lo siguiente",
-                    content: "01 (UN) pasaje aéreo ida y vuelta (Lima - San José - Lima) + hospedaje para una persona x 2 noches en hotel en San José + traslados aeropuerto/hotel/aeropuerto en San José, Costa Rica para 1 (UNA) persona + seguro de asistencia de viaje para 1 (UNA) persona + impuesto aeroportuario para 1 (UNA) persona (en caso aplique) + traslado ida y vuelta hotel/concierto/hotel.",
+                    title: "2. Beneficio adicional para ganadores de provincia",
+                    content: "Si el ganador reside en provincia (fuera de la ciudad de Lima), el premio incluirá adicionalmente: 01 (UN) pasaje (terrestre o aéreo, según lo determine la organización) ida y vuelta desde su ciudad de origen hacia Lima + hospedaje para una persona x 1 noche en hotel en Lima + traslados según itinerario definido por la organización + seguro de asistencia de viaje (en caso aplique).",
                   },
                   {
                     value: "p3",
                     title: "3. No incluye",
-                    content: "Ningún tipo de alimentación, consumo de bebidas, room service, servicio de lavandería, consumos de habitación y/o minibar, propinas, ni ningún otro gasto distinto del hospedaje por 2 (DOS) noches en el hotel de la ciudad donde se desarrollará el concierto.",
+                    content: "Ningún tipo de alimentación, consumo de bebidas, room service, servicio de lavandería, consumos de habitación y/o minibar, propinas, ni ningún otro gasto distinto del hospedaje por 1 (UNA) noche en el hotel de la ciudad de Lima. Para los ganadores de Lima Metropolitana, el premio consiste únicamente en la entrada al concierto, sin incluir pasajes ni hospedaje.",
                   },
                   {
                     value: "p4",
                     title: "4. Tampoco incluye",
-                    content: "Ningún otro tipo de traslados dentro o fuera de la ciudad, ni viáticos, ni trámites documentarios, ni gastos por trámite de pasaporte o visas, ni ninguna tasa o impuesto existente o que pueda ser creado con relación a los viajes al exterior, trámites documentarios del ganador, ni ningún otro gasto que no se encuentre expresamente indicado en los puntos 1 y 2 de esta numeración.",
+                    content: "Ningún otro tipo de traslados dentro o fuera de la ciudad, ni viáticos, ni trámites documentarios, ni gastos por trámite de pasaporte o visas, ni ninguna tasa o impuesto existente o que pueda ser creado, trámites documentarios del ganador, ni ningún otro gasto que no se encuentre expresamente indicado en los puntos 1 y 2 de esta numeración.",
                   },
                 ].map(({ value, title, content }) => (
                   <AccordionItem key={value} value={value} className="border-0 px-6">
@@ -227,8 +227,8 @@ export function TerminosCondicionesPage() {
                 </p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {[
-                    { label: "1er Sorteo", date: "20 de marzo del 2026", prizes: "2 (DOS) premios" },
-                    { label: "2do Sorteo", date: "07 de mayo del 2026", prizes: "3 (TRES) premios" },
+                    { label: "1er Sorteo", date: "03 de agosto del 2026", prizes: "1 (UN) premio" },
+                    { label: "2do Sorteo", date: "12 de noviembre del 2026", prizes: "2 (DOS) premios" },
                   ].map((s) => (
                     <div
                       key={s.label}
@@ -339,21 +339,21 @@ export function TerminosCondicionesPage() {
               <div>
                 <p className="text-sm font-semibold text-gray-800 mb-3">3.4 Condiciones y Restricciones Generales</p>
                 <BulletList items={[
-                  "La promoción del concierto en Costa Rica estará vigente desde 02 de enero de 2026 al 06 de mayo de 2026 hasta las 12 del mediodía, fecha en la cual se realizará el corte de inscripciones para la segunda fecha del sorteo. El sorteo de la segunda fecha se realizará el 07 de mayo del 2026.",
-                  "El corte de inscripciones para la primera fecha del sorteo (20 de marzo de 2026) se realizará el día 19 de marzo de 2026 a las 12:00 del mediodía.",
+                  "La promoción del concierto en Lima, Perú estará vigente desde 19 de mayo de 2026 al 12 de noviembre de 2026 hasta las 12 del mediodía, fecha en la cual se realizará el corte de inscripciones para la segunda fecha del sorteo. El sorteo de la segunda fecha se realizará el 12 de noviembre del 2026.",
+                  "El corte de inscripciones para la primera fecha del sorteo (03 de agosto de 2026) se realizará el día 02 de agosto de 2026 a las 12:00 del mediodía.",
                   "Se establece un límite de 01 premio por ganador. En ese sentido, quien resulte ganador en el primer sorteo no podrá participar ni ser considerado en el segundo sorteo, independientemente de las veces que haya sido seleccionado.",
                   "Los sorteos se realizarán bajo la presencia de un Notario Público y la lista de ganadores será publicada en las redes institucionales de PETMEDICA al día siguiente de realizado cada sorteo. Sin perjuicio de ello, se tomará contacto con cada uno de los ganadores mediante el correo electrónico y/o teléfono consignado.",
                   "Al validar el comprobante de pago, se consideran los valores exactos: cada S/ 1,000.00 (UN MIL con 00/100 SOLES) de compra en productos participantes equivaldrá a 1 (UNA) opción de sorteo. No se efectuarán redondeos a favor del participante.",
                   "No podrán participar distribuidores, ni ningún otro cliente que no califique como médico veterinario, clínica/consultorio veterinario o pet shop. Tampoco podrán participar trabajadores y/o parientes de trabajadores de AGROVET MARKET hasta cuarto grado de consanguinidad o segundo de afinidad, ni convivientes.",
-                  "Se aceptarán y serán válidas para la acumulación de opciones todas aquellas facturas y/o comprobantes de pago emitidos a partir del 02 de enero de 2026 , siempre que cumplan con los montos mínimos y las categorías de productos participantes detalladas en la cláusula anterior.",
+                  "Se aceptarán y serán válidas para la acumulación de opciones todas aquellas facturas y/o comprobantes de pago emitidos a partir del 19 de mayo de 2026, siempre que cumplan con los montos mínimos y las categorías de productos participantes detalladas en la cláusula anterior.",
                   "La presente promoción es válida exclusivamente dentro del territorio de la República del Perú (Nivel Nacional). No podrán participar personas naturales o jurídicas domiciliadas en el extranjero, ni compras realizadas fuera del territorio peruano.",
                   "Los datos personales serán recopilados mediante WhatsApp (903069021) o en la página web https://atrevia.vet/promo-concierto/. El tratamiento de estos datos se realizará en estricto respeto de la Ley N° 29733.",
                   "Los datos recepcionados serán verificados por el equipo de AGROVET MARKET, quienes consignarán los mismos en una base de datos especificando el número exacto de opciones generadas por cada registro.",
                   "Posteriormente a la inscripción, y en un lapso máximo de 2 días hábiles, el participante recibirá una notificación indicando las opciones acumuladas.",
                   "Cada opción validada representa 1 ticket con los datos del participante que será ingresado al ánfora para el sorteo.",
-                  "El premio es intransferible, no puede ser sustituido por dinero en efectivo y se entregará únicamente a los ganadores, quienes aceptan el uso de su imagen (fotos/videos) para fines promocionales del evento y la experiencia en Costa Rica.",
+                  "El premio es intransferible, no puede ser sustituido por dinero en efectivo y se entregará únicamente a los ganadores, quienes aceptan el uso de su imagen (fotos/videos) para fines promocionales del evento y la experiencia en Lima.",
                   "La elección de aerolínea, escalas, hotel y logística del viaje será gestionada exclusivamente por PETMEDICA. La empresa no asume responsabilidad por demoras, cancelaciones de vuelos o cambios en el evento ajenos a su control.",
-                  "Es responsabilidad del ganador tener vigente su pasaporte y cualquier documento migratorio requerido. Si no se logra contactar al ganador en 3 días hábiles, el premio quedará vacante.",
+                  "Es responsabilidad del ganador tener vigente su documento de identidad (DNI) y cualquier documento requerido para el viaje dentro del territorio nacional. Si no se logra contactar al ganador en 3 días hábiles, el premio quedará vacante.",
                   "Una vez recibido el premio, los ganadores deberán firmar una Declaración Jurada de recepción y la autorización de uso de imagen correspondiente.",
                 ]} />
               </div>
