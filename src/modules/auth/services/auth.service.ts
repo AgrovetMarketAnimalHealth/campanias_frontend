@@ -13,6 +13,8 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export class AuthService {
   static async register(payload: TypeRegisterSchema): Promise<TypeAPIRegister> {
+    const slug = window.location.pathname.split('/').filter(Boolean)[0];
+    
     const formData = new FormData();
 
     Object.entries(payload).forEach(([key, value]) => {
@@ -25,7 +27,7 @@ export class AuthService {
       }
     });
 
-    const response = await fetch(`${API_URL}/api/auth/portal/register`, {
+    const response = await fetch(`${API_URL}/api/auth/portal/register/${slug}`, {
       method: "POST",
       headers: { Accept: "application/json" },
       body: formData,
