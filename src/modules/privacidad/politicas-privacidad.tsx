@@ -158,7 +158,7 @@ export function PoliticasPrivacidadPage() {
                     <BulletList items={[
                       "Promoción comercial y venta de productos o servicios a clientes, información a titulares de Datos Personales sobre convocatorias y procesos de selección de personal.",
                       "Ejecución de contratos de la empresa con clientes y/o proveedores y/o prestadores de servicios.",
-                      "Acreditación del cumplimiento de la entrega de los premios de la campaña \"ATREVIA, DESTINO CHAYANNE\".",
+                      "Acreditación del cumplimiento de la entrega de los premios de la campaña \"ATREVIA, DESTINO CHAYANNE\" (1 entrada al concierto + 1 meet and greet con Chayanne).",
                       "Fines publicitarios respecto de la campaña \"ATREVIA, DESTINO CHAYANNE\".",
                     ]} />
                     <p>Asimismo, los datos personales sólo serán utilizados con propósitos limitados, esto es como los expuestos precedentemente.</p>
@@ -170,7 +170,7 @@ export function PoliticasPrivacidadPage() {
                     3. Transferencias y Destinatarios
                   </AccordionTrigger>
                   <AccordionContent className="text-sm text-gray-700 leading-relaxed pb-5 space-y-3">
-                    <p>Los Datos Personales podrán ser transferidos por AGROVET MARKET S.A. a nivel local e internacional a sus vinculadas para fines de la ejecución de los premios de la campaña "ATREVIA, DESTINO CHAYANNE", así como a las aerolíneas, compañías de taxi o movilidad, hotel y a los organizadores del evento denominado "Concierto de Chayanne en San José, Costa Rica", así como a las demás entidades privadas o públicas y autoridades con las cuales sea menester contactar para el cumplimiento de los premios.</p>
+                    <p>Los Datos Personales podrán ser transferidos por AGROVET MARKET S.A. a nivel local e internacional a sus vinculadas para fines de la ejecución de los premios de la campaña "ATREVIA, DESTINO CHAYANNE", así como a las aerolíneas, compañías de taxi o movilidad, hotel y a los organizadores del evento denominado "Concierto de Chayanne en Lima, Perú", así como a las demás entidades privadas o públicas y autoridades con las cuales sea menester contactar para el cumplimiento de los premios.</p>
                     <p>AGROVET MARKET S.A. podrá transferir los datos personales a las autoridades policiales, fiscales, tributarias, laborales, aduaneras, judiciales, congresales, comisiones investigadoras y demás entidades públicas legalmente facultadas conforme a ley, sea en cumplimiento de la normatividad vigente y/o por requerimiento de éstas.</p>
                   </AccordionContent>
                 </AccordionItem>

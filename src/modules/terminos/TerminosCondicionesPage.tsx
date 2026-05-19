@@ -61,33 +61,33 @@ export function TerminosCondicionesPage() {
 
       {/* Sticky navbar - sin bordes, fondo blanco al hacer scroll */}
       <div
-            className="sticky top-0 z-50 flex items-center justify-between px-6 py-3 bg-white transition-all duration-300"
-            style={{
-              boxShadow: scrolled ? "0 2px 16px rgba(152,104,216,0.08)" : "none",
-            }}
-          >
-            <Link to="/" className="flex items-center gap-2 font-medium">
-              <img
-                src={logoAtrevia}
-                alt="Atrevia logo"
-                className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
-              />
-            </Link>
+        className="sticky top-0 z-50 flex items-center justify-between px-6 py-3 bg-white transition-all duration-300"
+        style={{
+          boxShadow: scrolled ? "0 2px 16px rgba(152,104,216,0.08)" : "none",
+        }}
+      >
+        <Link to="/" className="flex items-center gap-2 font-medium">
+          <img
+            src={logoAtrevia}
+            alt="Atrevia logo"
+            className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
+          />
+        </Link>
 
-            <div
-              className="absolute left-1/2 -translate-x-1/2 transition-all duration-300"
-              style={{ opacity: headerVisible ? 0 : 1, pointerEvents: "none" }}
-            >
-              <span className="text-sm font-semibold text-gray-700">Términos y Condiciones</span>
-            </div>
+        <div
+          className="absolute left-1/2 -translate-x-1/2 transition-all duration-300"
+          style={{ opacity: headerVisible ? 0 : 1, pointerEvents: "none" }}
+        >
+          <span className="text-sm font-semibold text-gray-700">Términos y Condiciones</span>
+        </div>
 
-            <Badge
-              className="text-white text-[10px] font-semibold px-2 py-0.5"
-              style={{ backgroundColor: BRAND_HEX }}
-            >
-              Campaña 2026
-            </Badge>
-          </div>
+        <Badge
+          className="text-white text-[10px] font-semibold px-2 py-0.5"
+          style={{ backgroundColor: BRAND_HEX }}
+        >
+          Campaña 2026
+        </Badge>
+      </div>
 
       {/* Contenido scrollable */}
       <div
@@ -128,7 +128,7 @@ export function TerminosCondicionesPage() {
                 "Artista: Chayanne",
                 "2 de diciembre 2026",
                 "Lima, Perú",
-                "Vigencia: 19 may – 12 nov 2026",
+                "Vigencia: 19 may – 11 nov 2026",
               ].map((item) => (
                 <span
                   key={item}
@@ -154,7 +154,7 @@ export function TerminosCondicionesPage() {
                 <div><span className="font-semibold text-gray-900">Nombre:</span> "Atrevia, Destino Chayanne"</div>
                 <div><span className="font-semibold text-gray-900">Ámbito:</span> A nivel nacional (Perú)</div>
                 <div><span className="font-semibold text-gray-900">Concierto:</span> 2 de diciembre 2026 — Lima, Perú</div>
-                <div><span className="font-semibold text-gray-900">Vigencia:</span> 19 de mayo al 12 de noviembre de 2026</div>
+                <div><span className="font-semibold text-gray-900">Vigencia:</span> 19 de mayo al 11 de noviembre de 2026</div>
               </div>
             </AlertDescription>
           </Alert>
@@ -167,7 +167,7 @@ export function TerminosCondicionesPage() {
             >
               <SectionTitle>a) Detalle de los Premios de la Campaña</SectionTitle>
               <p className="text-sm text-gray-700 leading-relaxed">
-                Se sortearán 3 (TRES) premios, consistentes cada uno en 1 (UNA) entrada individual al concierto del cantante Chayanne en Lima, Perú. El concierto se realizará el día 2 de diciembre del 2026. Cada premio incluirá adicionalmente, para los ganadores que residan en provincia, 1 (UN) pasaje terrestre o aéreo (según corresponda) hacia la ciudad de Lima y hospedaje por 1 (UNA) noche, conforme se detalla a continuación.
+                Se sortearán 3 (TRES) premios, consistentes cada uno en 1 (UNA) entrada individual al concierto del cantante Chayanne en Lima, Perú, más 1 (UN) meet and greet con el artista. El concierto se realizará el día 2 de diciembre del 2026. Cada premio incluirá adicionalmente, para los ganadores que residan en provincia, 1 (UN) pasaje terrestre o aéreo (según corresponda) hacia la ciudad de Lima y hospedaje por 1 (UNA) noche, conforme se detalla a continuación.
               </p>
             </div>
             <CardContent className="p-0">
@@ -175,18 +175,18 @@ export function TerminosCondicionesPage() {
                 {[
                   {
                     value: "p1",
-                    title: "1. Entrada al concierto",
-                    content: "Cada premio consiste en 01 (una) entrada individual al concierto del cantante Chayanne, concierto a realizarse el día 2 de diciembre del 2026 en la ciudad de Lima, República del Perú.",
+                    title: "1. Entrada al concierto + Meet & Greet",
+                    content: "Cada premio consiste en 01 (una) entrada individual al concierto del cantante Chayanne, concierto a realizarse el día 2 de diciembre del 2026 en la ciudad de Lima, República del Perú, más 01 (un) meet and greet con el artista.",
                   },
                   {
                     value: "p2",
                     title: "2. Beneficio adicional para ganadores de provincia",
-                    content: "Si el ganador reside en provincia (fuera de la ciudad de Lima), el premio incluirá adicionalmente: 01 (UN) pasaje (terrestre o aéreo, según lo determine la organización) ida y vuelta desde su ciudad de origen hacia Lima + hospedaje para una persona x 1 noche en hotel en Lima + traslados según itinerario definido por la organización + seguro de asistencia de viaje (en caso aplique).",
+                    content: "Si el ganador reside en provincia (fuera de la ciudad de Lima), el premio incluirá adicionalmente: 01 (UN) pasaje (terrestre o aéreo, según lo determine la organización) ida y vuelta desde su ciudad de origen hacia Lima + hospedaje para una persona x 1 noche en hotel en Lima.",
                   },
                   {
                     value: "p3",
                     title: "3. No incluye",
-                    content: "Ningún tipo de alimentación, consumo de bebidas, room service, servicio de lavandería, consumos de habitación y/o minibar, propinas, ni ningún otro gasto distinto del hospedaje por 1 (UNA) noche en el hotel de la ciudad de Lima. Para los ganadores de Lima Metropolitana, el premio consiste únicamente en la entrada al concierto, sin incluir pasajes ni hospedaje.",
+                    content: "Ningún tipo de alimentación, consumo de bebidas, room service, servicio de lavandería, consumos de habitación y/o minibar, propinas, ni ningún otro gasto distinto del hospedaje por 1 (UNA) noche en el hotel de la ciudad de Lima. Para los ganadores de Lima Metropolitana, el premio consiste únicamente en la entrada al concierto y el meet and greet, sin incluir pasajes ni hospedaje.",
                   },
                   {
                     value: "p4",
@@ -339,7 +339,7 @@ export function TerminosCondicionesPage() {
               <div>
                 <p className="text-sm font-semibold text-gray-800 mb-3">3.4 Condiciones y Restricciones Generales</p>
                 <BulletList items={[
-                  "La promoción del concierto en Lima, Perú estará vigente desde 19 de mayo de 2026 al 12 de noviembre de 2026 hasta las 12 del mediodía, fecha en la cual se realizará el corte de inscripciones para la segunda fecha del sorteo. El sorteo de la segunda fecha se realizará el 12 de noviembre del 2026.",
+                  "La promoción del concierto en Lima, Perú estará vigente desde 19 de mayo de 2026 al 11 de noviembre de 2026 hasta las 12 del mediodía, fecha en la cual se realizará el corte de inscripciones para la segunda fecha del sorteo. El sorteo de la segunda fecha se realizará el 12 de noviembre del 2026.",
                   "El corte de inscripciones para la primera fecha del sorteo (03 de setiembre de 2026) se realizará el día 02 de setiembre de 2026 a las 12:00 del mediodía.",
                   "Se establece un límite de 01 premio por ganador. En ese sentido, quien resulte ganador en el primer sorteo no podrá participar ni ser considerado en el segundo sorteo, independientemente de las veces que haya sido seleccionado.",
                   "No podrán participar los ganadores de cualquier sorteo organizado por AGROVET MARKET S.A. durante el año 2026, independientemente del producto o marca promocionada.",
