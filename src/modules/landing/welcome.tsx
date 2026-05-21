@@ -1,14 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import landingDesktop  from "@/assets/illustrations/1-Landing Page_Campaña Chayanne_Banner principal_Perú.webp";
-import landingMobile   from "@/assets/mobile/1-Landing Page_Campaña Chayanne-Perú_Mobile.webp";
+import landingDesktop  from "@/assets/illustrations/1-1-Landing Page_Campaña Chayanne_Banner principal_Perú.webp";
+import landingMobile   from "@/assets/mobile/1-1-1-Landing Page_Campaña Chayanne-Perú_Mobile.webp";
 import premiosMobile   from "@/assets/mobile/2-Participa_sin Fondo.webp";
 import productosMobile from "@/assets/mobile/3-Landing_Productos.webp";
 import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
 import preparaMaleta   from "@/assets/mobile/5-Landing Page_prepara tu maleta.webp";
 import fotoChayanne    from "@/assets/mobile/2-Landing Page_participa.webp";
-import pasosImg        from "@/assets/illustrations/4-Pasos.webp";
-import pasosMobile     from "@/assets/mobile/4-Pasos-mobile.webp";
+import pasosImg        from "@/assets/illustrations/4-4-Pasos.webp";
+import pasosMobile     from "@/assets/mobile/44-4--Pasos.webp";
 import { useAuthDestino } from "@/modules/perfil/hooks/useAuthDestino";
 
 const styles = `
