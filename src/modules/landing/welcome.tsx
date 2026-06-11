@@ -1,430 +1,229 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import landingDesktop  from "@/assets/illustrations/1-1-Landing Page_Campaña Chayanne_Banner principal_Perú.webp";
-import landingMobile   from "@/assets/mobile/1-1-1-Landing Page_Campaña Chayanne-Perú_Mobile.webp";
-import premiosMobile   from "@/assets/mobile/2-Participa_sinFondo.webp";
-import productosMobile from "@/assets/mobile/3-Landing_Productos.webp";
-import packProductos   from "@/assets/mobile/3-Landing_Productos.webp";
-import preparaMaleta   from "@/assets/mobile/5-Landing Page_prepara tu maleta.webp";
-import fotoChayanne    from "@/assets/mobile/2-Participa.webp";
-import pasosImg        from "@/assets/illustrations/4-4-Pasos.webp";
-import pasosMobile     from "@/assets/mobile/44-4--Pasos.webp";
 import { useAuthDestino } from "@/modules/perfil/hooks/useAuthDestino";
 
-const styles = `
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body { background: #ffffff; }
-
-  :root {
-    --sky:      #5CC8F0;
-    --purple-d: #7B3FA0;
-    --purple-m: #9B59C5;
-    --yellow:   #F5D800;
-    --white:    #FFFFFF;
-    --dark:     #1A1A1A;
-  }
-
-  .wp-root {
-    font-family: 'Nunito', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    background: #ffffff;
-    overflow-x: hidden;
-  }
-
-  /* ══ SCROLL REVEAL ══
-     Las clases reveal solo ocultan cuando el root tiene .js-ready
-     De esta forma, antes de que el JS monte, todo es visible (sin flash de contenido invisible)
-  ══ */
-  .wp-root.js-ready .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .wp-root.js-ready .reveal-left {
-    opacity: 0;
-    transform: translateX(-48px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .wp-root.js-ready .reveal-right {
-    opacity: 0;
-    transform: translateX(48px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .wp-root.js-ready .reveal-scale {
-    opacity: 0;
-    transform: scale(0.92);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  /* Una vez visible, siempre visible — con o sin js-ready */
-  .reveal.visible,
-  .wp-root.js-ready .reveal.visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-  }
-  .reveal-left.visible,
-  .wp-root.js-ready .reveal-left.visible {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-  }
-  .reveal-right.visible,
-  .wp-root.js-ready .reveal-right.visible {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-  }
-  .reveal-scale.visible,
-  .wp-root.js-ready .reveal-scale.visible {
-    opacity: 1 !important;
-    transform: scale(1) !important;
-  }
-
-  .delay-1 { transition-delay: 0.1s; }
-  .delay-2 { transition-delay: 0.22s; }
-  .delay-3 { transition-delay: 0.34s; }
-  .delay-4 { transition-delay: 0.46s; }
-
-  /* ══ S1 — HERO ══ */
-  .s1 { width: 100%; overflow: hidden; margin-bottom: 12px; }
-  .s1-inner { position: relative; }
-
-  .s1-img-desktop img,
-  .s1-img-mobile img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    animation: heroSlideDown 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-  @keyframes heroSlideDown {
-    from { opacity: 0; transform: translateY(-32px) scale(1.04); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  /* ══ IMAGE HOVER EFFECTS ══ */
-  .img-hover { overflow: hidden; display: block; }
-  .img-hover img {
-    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s ease;
-    will-change: transform;
-  }
-  .img-hover:hover img { transform: scale(1.035); filter: brightness(1.05); }
-
-  /* ══ S2 — PREMIOS ══ */
-  .s2 {
-    width: 100%;
-    background: linear-gradient(135deg, rgb(88,63,160) 0%, rgb(108,80,181) 50%, rgb(138,105,212) 100%);
-    overflow: hidden;
-  }
-  .s2-img-mobile { display: block; }
-  .s2-img-mobile img { display: block; max-width: 100%; height: auto; }
-  .s2-inner { display: none; }
-
-  /* ══ S3 — PRODUCTOS ══ */
-  .s3 { width: 100%; background: #ffffff; }
-  .s3-img { display: flex; justify-content: center; }
-  .s3-img img { display: block; max-width: 100%; height: auto; }
-  .s3-img-mobile        { display: block; }
-  .s3-img-desktop-block { display: none; }
-  .s3-inner { padding: 8px 24px 20px; }
-  .s3-disclaimer { font-size: 13px; color: #555; line-height: 1.6; text-align: left; font-weight: 700; }
-  .s3-link { color: #7B3FA0; font-weight: 700; text-decoration: underline; }
-
-  /* ══ S4B — PASOS ══ */
-  .s4b {
-    width: 100%;
-    background: linear-gradient(135deg, #a2cff0 0%, #c8e8f8 100%);
-    overflow: hidden;
-  }
-  .s4b-img-mobile { display: flex; justify-content: center; }
-  .s4b-img-mobile img { display: block; max-width: 100%; height: auto; }
-  .s4b-img-desktop { display: none; }
-
-  /* ══ S4 — BRAND CIERRE ══ */
-  .s4 {
-    width: 100%;
-    background: linear-gradient(135deg, rgb(97,62,165) 0%, rgb(151,105,216) 100%);
-    overflow: hidden;
-  }
-  .s4-img-mobile { display: flex; justify-content: center; }
-  .s4-img-mobile img { display: block; max-width: 100%; height: auto; }
-  .s4-img-desktop { display: none; }
-
-  /* ══ S5 — CTA ══ */
-  .s5 {
-    width: 100%;
-    background: #ffffff;
-    padding: 20px 24px 36px;
-    display: flex;
-    justify-content: center;
-  }
-  .s5-btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    background: #6B6B6B; color: var(--white);
-    font-family: 'Nunito', sans-serif; font-weight: 900;
-    font-size: 12px; letter-spacing: 1.8px; text-transform: uppercase;
-    padding: 13px 0; border-radius: 999px; text-decoration: none;
-    width: 100%; max-width: 240px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
-    transition: background 0.22s, transform 0.15s, box-shadow 0.22s, opacity 0.3s;
-    animation: btnPulse 2.8s ease-in-out infinite;
-  }
-  @keyframes btnPulse {
-    0%, 100% { box-shadow: 0 4px 18px rgba(0,0,0,0.15); }
-    50%       { box-shadow: 0 6px 28px rgba(123,63,160,0.45); }
-  }
-  .s5-btn:hover {
-    background: var(--purple-d);
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 10px 32px rgba(123,63,160,0.45);
-    animation: none;
-  }
-  .s5-btn:active { transform: scale(0.97); }
-  .s5-btn--loading {
-    pointer-events: none;
-    opacity: 0.6;
-    animation: none;
-  }
-
-  /* ══════════════════════════
-     DESKTOP ≥ 768px
-  ══════════════════════════ */
-  @media (min-width: 768px) {
-    .s2-img-mobile { display: none !important; }
-    .s2-inner {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .s2-top { flex: 0 0 auto; display: flex; align-items: center; }
-    .s2-top img { height: auto; max-height: 340px; width: auto; object-fit: contain; }
-    .s2-body-col { flex: 1; display: flex; justify-content: center; align-items: center; }
-    .s2-body-col img { width: 100%; height: auto; }
-
-    .s3-img-mobile        { display: none !important; }
-    .s3-img-desktop-block {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 48px 64px 0;
-    }
-    .s3-img-desktop-block img { width: 100%; max-width: 1100px; height: auto; }
-    .s3-inner { max-width: 1100px; margin: 0 auto; padding: 8px 64px 24px; }
-    .s3-disclaimer { font-size: 14px; }
-
-    /* s4b desktop */
-    .s4b-img-mobile  { display: none !important; }
-    .s4b-img-desktop {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 64px;
-    }
-    .s4b-img-desktop .s4b-img-wrap {
-      display: flex; justify-content: center; align-items: center;
-      max-width: 1000px; width: 100%;
-    }
-    .s4b-img-desktop img {
-      display: block; width: 100%; max-width: 900px; height: auto; object-fit: contain;
-    }
-
-    /* s4 desktop */
-    .s4 { background: linear-gradient(135deg, rgb(97,62,165) 0%, rgb(151,105,216) 100%); }
-    .s4-img-mobile  { display: none !important; }
-    .s4-img-desktop {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 64px;
-    }
-    .s4-img-desktop .s4-img-wrap {
-      display: flex; justify-content: center; align-items: center;
-      max-width: 1000px; width: 100%;
-    }
-    .s4-img-desktop img {
-      display: block; width: 100%; max-width: 900px; height: auto; object-fit: contain;
-    }
-
-    .s5 { padding: 40px 64px 60px; }
-    .s5-btn { font-size: 17px; letter-spacing: 2.5px; max-width: 420px; padding: 20px 0; }
-  }
-`;
+import desk1 from "@/assets/destokp/1-Seccion.webp";
+import mob1 from "@/assets/mobile/1-Seccion.webp";
+import desk2 from "@/assets/destokp/2-Seccion.webp";
+import mob2 from "@/assets/mobile/2-Seccion.webp";
+import desk3 from "@/assets/destokp/3-Seccion.webp";
+import mob3 from "@/assets/mobile/3-Seccion.webp";
+import desk4 from "@/assets/destokp/4-Seccion.webp";
+import mob4 from "@/assets/mobile/4-Seccion.webp";
+import desk5 from "@/assets/destokp/5-Seccion.webp";
+import mob5 from "@/assets/mobile/5-Seccion.webp";
+import desk6 from "@/assets/destokp/6-Seccion.webp";
+import mob6 from "@/assets/mobile/6-Seccion.webp";
 
 function useScrollReveal(rootRef: React.RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
-
-    // 1️⃣ Marcar el root como listo → activa los estilos reveal
     root.classList.add("js-ready");
-
-    // 2️⃣ Marcar como visible todo lo que ya está en el viewport inicial
-    //    (sin esperar al scroll) para evitar contenido invisible arriba del fold
     const markVisible = (el: Element) => el.classList.add("visible");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             markVisible(entry.target);
-            observer.unobserve(entry.target); // deja de observar una vez visible
+            observer.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
     );
-
-    const targets = root.querySelectorAll(
-      ".reveal, .reveal-left, .reveal-right, .reveal-scale"
-    );
-
+    const targets = root.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale");
     targets.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      // Si ya está visible al cargar → mostrar inmediatamente sin animación
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        markVisible(el);
-      } else {
-        observer.observe(el);
-      }
+      if (rect.top < window.innerHeight && rect.bottom > 0) markVisible(el);
+      else observer.observe(el);
     });
-
     return () => observer.disconnect();
   }, [rootRef]);
 }
 
-// ── Botón CTA con redirección inteligente ──
-function CtaBtn() {
+function CtaBtnAmarillo() {
   const { estado, destino } = useAuthDestino();
   const cargando = estado === "cargando";
-
   return (
     <Link
       to={destino}
-      className={`s5-btn${cargando ? " s5-btn--loading" : ""}`}
       aria-busy={cargando}
       tabIndex={cargando ? -1 : 0}
+      className="inline-flex items-center justify-center w-full max-w-[180px] md:max-w-[280px] px-0 py-[13px] md:py-5 rounded-full font-black uppercase text-[14px] md:text-[20px] transition-all duration-200 hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]"
+      style={{
+        letterSpacing: "0.05em",
+        backgroundColor: cargando ? "rgb(200,200,200)" : "rgb(254,238,0)",
+        color: "rgb(32,26,21)",
+        boxShadow: "2px 2px 10px rgba(0,0,0,0.18)",
+      }}
     >
       {cargando ? "Cargando..." : "Inscríbete aquí"}
     </Link>
   );
 }
 
+function CtaBtnBlanco() {
+  const { estado, destino } = useAuthDestino();
+  const cargando = estado === "cargando";
+
+  return (
+    <Link
+      to={destino}
+      aria-busy={cargando}
+      tabIndex={cargando ? -1 : 0}
+      className="inline-flex items-center justify-center w-auto max-w-[280px] md:max-w-[460px] px-5 py-[10px] md:py-5 rounded-full font-black uppercase text-[11px] md:text-[20px] transition-all duration-200 hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]"
+      style={{
+        letterSpacing: "0.05em",
+        backgroundColor: "#fff",
+        color: "rgb(141, 99, 207)",
+        boxShadow: "2px 2px 12px rgba(0,0,0,0.25)",
+      }}
+    >
+      ¡Quiero conocer a Chayanne!
+    </Link>
+  );
+}
+
 export function WelcomePage() {
   const revealRef = useRef<HTMLDivElement | null>(null);
-
-  // Detección de desktop estable (solo lectura inicial, no necesita re-render)
-  const isDesktop =
-    typeof window !== "undefined" &&
-    window.matchMedia("(min-width: 768px)").matches;
-
-  // Hook centralizado de scroll reveal (incluye fix de elementos en viewport)
   useScrollReveal(revealRef);
 
   return (
-    <>
-      <style>{styles}</style>
+    <div
+      ref={revealRef}
+      className="font-nunito flex flex-col items-center w-full bg-white overflow-x-hidden"
+    >
+      {/* ── 1. HERO ── */}
+      <section className="reveal w-full bg-white animate-hero-slide-down">
+        <div
+          className="relative hidden md:block w-full overflow-hidden"
+          style={{ paddingBottom: "41.67%" }}
+        >
+          <img src={desk1} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+        <div
+          className="relative block md:hidden w-full overflow-hidden"
+          style={{ paddingBottom: "73.80%" }}
+        >
+          <img src={mob1} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+      </section>
 
-      <div className="wp-root" ref={revealRef}>
+      {/* ── 2. PREMIOS ── */}
+      <section className="reveal w-full bg-[rgb(137,208,242)]">
+        <div className="relative hidden md:block w-full">
+          <img src={desk2} alt="" className="w-full h-auto block" />
+          <div className="absolute inset-0 flex justify-center items-center">
+            <CtaBtnBlanco />
+          </div>
+        </div>
+        <div className="relative block md:hidden w-full">
+          <img src={mob2} alt="" className="w-full h-auto block" />
+          <div className="absolute inset-0 flex justify-center items-center">
+            <CtaBtnBlanco />
+          </div>
+        </div>
+      </section>
 
-        {/* ── 1. HERO ── */}
-        <section className="s1">
-          <div className="s1-inner">
-            {isDesktop ? (
-              <div className="s1-img-desktop img-hover">
-                <img
-                  src={landingDesktop}
-                  alt="Destino Chayanne desktop"
-                  fetchPriority="high"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
-            ) : (
-              <div className="s1-img-mobile img-hover">
-                <img
-                  src={landingMobile}
-                  alt="Destino Chayanne mobile"
-                  fetchPriority="high"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
-            )}
+      {/* ── 3. PRODUCTOS ── */}
+      <section className="w-full bg-[linear-gradient(135deg,rgb(88,63,160)_0%,rgb(128,95,199)_50%,rgb(88,63,160)_100%)]">
+        <div className="reveal-scale w-full">
+          <div
+            className="relative hidden md:block w-full overflow-hidden"
+            style={{ paddingBottom: "28%" }}
+          >
+            <img src={desk3} alt="" className="absolute inset-0 w-full h-full object-contain" />
           </div>
-        </section>
+          <div
+            className="relative block md:hidden w-full overflow-hidden"
+            style={{ paddingBottom: "48%" }}
+          >
+            <img src={mob3} alt="" className="absolute inset-0 w-full h-full object-contain" />
+          </div>
+        </div>
+      </section>
 
-        {/* ── 2. PREMIOS ── */}
-        <section className="s2">
-          <div className="s2-img-mobile reveal img-hover">
-            <img src={premiosMobile} alt="Premios mobile" loading="lazy" decoding="async" />
+      {/* ── 4. PASOS ── */}
+      <section className="w-full bg-white py-8 md:py-12">
+        <div className="reveal w-full">
+          <div
+            className="relative hidden md:block w-full overflow-hidden mb-16"
+            style={{ paddingBottom: "27%" }}
+          >
+            <img src={desk4} alt="" className="absolute inset-0 w-full h-full object-contain" />
           </div>
-          <div className="s2-inner">
-            <div className="s2-top reveal-left img-hover">
-              <img src={fotoChayanne} alt="Chayanne participa" loading="lazy" decoding="async" />
-            </div>
+          <div
+            className="relative block md:hidden w-full overflow-hidden mb-6"
+            style={{ paddingBottom: "45%" }}
+          >
+            <img
+              src={mob4}
+              alt=""
+              className="absolute inset-0 w-full h-full object-contain translate-y-4"
+            />
           </div>
-        </section>
+        </div>
+        <div className="reveal delay-[0.22s] px-6 pt-2 pb-5 md:max-w-[1100px] md:mx-auto md:px-16 md:pb-6">
+          <p className="text-[13px] md:text-[14px] text-[#555] leading-relaxed text-left">
+            *No incluye IGV. Ver{" "}
+            <Link to="/portal/terminos-condiciones" className="text-violet-500 font-bold underline">Términos y Condiciones</Link>.
+            Las entradas se sortearán en 2 fechas: Primer sorteo (2 Ganadores) el 8 de setiembre
+            y segundo sorteo (3 Ganadores) el 12 de noviembre de 2026.
+          </p>
+        </div>
+      </section>
 
-        {/* ── 3. PRODUCTOS ── */}
-        <section className="s3">
-          <div className="s3-img s3-img-mobile reveal-scale img-hover">
-            <img src={productosMobile} alt="Productos Atrevia mobile" loading="lazy" decoding="async" />
+      {/* ── 5. INTERMEDIO ── */}
+      <section className="w-full bg-[rgb(236,238,240)] py-8 md:py-12">
+        <div className="reveal w-full">
+          <div
+            className="relative hidden md:block w-full overflow-hidden"
+            style={{ paddingBottom: "14%" }}
+          >
+            <img src={desk5} alt="" className="absolute inset-0 w-full h-full object-contain" />
           </div>
-          <div className="s3-img s3-img-desktop-block reveal-scale img-hover">
-            <img src={packProductos} alt="Productos Atrevia desktop" loading="lazy" decoding="async" />
+          <div
+            className="relative block md:hidden w-full overflow-hidden"
+            style={{ paddingBottom: "25%" }}
+          >
+            <img src={mob5} alt="" className="absolute inset-0 w-full h-full object-contain" />
           </div>
-          <div className="s3-inner reveal delay-2">
-            <p className="s3-disclaimer">
-              *No incluye IGV. Ver{" "}
-              <Link to="/portal/terminos-condiciones" className="s3-link">
-                Términos y Condiciones
-              </Link>
-              .
-              <br />
-              Las entradas se sortearán en 2 fechas: Primer sorteo (2 Ganadores) el 8 de setiembre y segundo sorteo (3 Ganadores) el 12 de noviembre de 2026.
-            </p>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ── 4B. PASOS ── */}
-        <section className="s4b">
-          <div className="s4b-img-mobile reveal img-hover">
-            <img src={pasosMobile} alt="Pasos para participar" loading="lazy" decoding="async" />
+      {/* ── 6. BRAND CIERRE ── */}
+      <section className="w-full bg-[linear-gradient(135deg,rgb(88,63,160)_0%,rgb(125,94,198)_50%,rgb(138,105,212)_100%)]">
+        <div className="reveal w-full">
+          <div
+            className="relative hidden md:block w-full overflow-hidden"
+            style={{ paddingBottom: "12%" }}
+          >
+            <img
+              src={desk6}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover scale-75"
+            />
           </div>
-          <div className="s4b-img-desktop reveal-scale">
-            <div className="s4b-img-wrap img-hover">
-              <img src={pasosImg} alt="Pasos para participar" loading="lazy" decoding="async" />
-            </div>
+          <div
+            className="relative block md:hidden w-full overflow-hidden"
+            style={{ paddingBottom: "25%" }}
+          >
+            <img src={mob6} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ── 4. BRAND CIERRE ── */}
-        <section className="s4">
-          <div className="s4-img-mobile reveal img-hover">
-            <img src={preparaMaleta} alt="Prepara tu maleta" loading="lazy" decoding="async" />
-          </div>
-          <div className="s4-img-desktop reveal-scale">
-            <div className="s4-img-wrap img-hover">
-              <img src={preparaMaleta} alt="Prepara tu maleta" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        </section>
-
-        {/* ── 5. CTA ── */}
-        <section className="s5">
-          <CtaBtn />
-        </section>
-
-      </div>
-    </>
+      {/* ── 7. CTA FINAL ── */}
+      <section className="w-full bg-white">
+        <div className="reveal flex flex-col items-center gap-3 px-6 py-8 md:py-12">
+          <p className="font-black text-[22px] md:text-[32px] text-center uppercase">
+            ¡Quiero conocer a{" "}
+            <span className="font-black text-[rgb(138,105,212)]">Chayanne!</span>
+          </p>
+          <CtaBtnAmarillo />
+        </div>
+      </section>
+    </div>
   );
 }

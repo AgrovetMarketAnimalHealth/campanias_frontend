@@ -49,7 +49,7 @@ export function RecoverPasswordForm({
           <div className="flex flex-col items-center gap-2 text-center">
             <Link to="/" className="flex items-center gap-2 font-medium">
             <img
-              src="/promo-concierto/assets/illustrations/logo-atrevia.webp"
+              src="/promo-chayanne/veterinarios/assets/illustrations/logo-atrevia.webp"
               alt="Atrevia logo"
               className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
             />

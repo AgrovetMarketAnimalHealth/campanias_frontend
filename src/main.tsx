@@ -10,7 +10,7 @@ import './index.css'
 
 const router = createRouter({
   routeTree,
-  basepath: '/promo-concierto',
+  basepath: '/promo-chayanne/veterinarios',
   scrollRestoration: true,
 })
 

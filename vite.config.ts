@@ -7,7 +7,7 @@ import { tanstackRouter } from "@tanstack/router-plugin/vite"
 import tsconfigPaths from "vite-tsconfig-paths"
 
 export default defineConfig({
-  base: "/promo-concierto/",
+  base: "/promo-chayanne/veterinarios/",
   plugins: [
     tanstackRouter({
       target: "react",
