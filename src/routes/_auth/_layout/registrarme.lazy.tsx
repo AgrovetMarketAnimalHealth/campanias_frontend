@@ -4,7 +4,7 @@ import { NaturalSignupForm } from '@/modules/auth/components/natural-signup-form
 import { LegalSignupForm } from '@/modules/auth/components/legal-signup-form'
 import { Link } from "@tanstack/react-router"
 import logoAtrevia from '@/assets/illustrations/logo-atrevia.webp'
-import registroImg from '@/assets/illustrations/Registro_1200x1200px copia (1).webp'
+import registroImg from '@/assets/illustrations/Registro_1200x1200.webp'
 
 type Tab = 'natural' | 'juridica'
 
