@@ -12,31 +12,37 @@ import type {
 const API_URL = import.meta.env.VITE_API_URL;
 
 export class AuthService {
+  // auth.service.ts
   static async register(payload: TypeRegisterSchema): Promise<TypeAPIRegister> {
-    const slug = window.location.pathname.split('/').filter(Boolean)[0];
-    
-    const formData = new FormData();
+      // BASE_URL = "/promo-chayanne/veterinarios/"
+      const base = import.meta.env.BASE_URL; 
+      const [campanaSlug, tipoSlug] = base.split('/').filter(Boolean);
+      // campanaSlug = "promo-chayanne"
+      // tipoSlug    = "veterinarios"
 
-    Object.entries(payload).forEach(([key, value]) => {
-      if (value instanceof File) {
-        formData.append(key, value);
-      } else if (typeof value === "boolean") {
-        formData.append(key, value ? "1" : "0");
-      } else if (value !== undefined && value !== null) {
-        formData.append(key, String(value));
-      }
-    });
+      const formData = new FormData();
+      Object.entries(payload).forEach(([key, value]) => {
+        if (value instanceof File) {
+          formData.append(key, value);
+        } else if (typeof value === "boolean") {
+          formData.append(key, value ? "1" : "0");
+        } else if (value !== undefined && value !== null) {
+          formData.append(key, String(value));
+        }
+      });
 
-    const response = await fetch(`${API_URL}/api/auth/portal/register/${slug}`, {
-      method: "POST",
-      headers: { Accept: "application/json" },
-      body: formData,
-    });
+      const response = await fetch(
+        `${API_URL}/api/auth/portal/register/${campanaSlug}/${tipoSlug}`,
+        {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: formData,
+        }
+      );
 
-    const json = await response.json();
-    return Object.assign(json, { status: response.status });
+      const json = await response.json();
+      return Object.assign(json, { status: response.status });
   }
-
   static async login(payload: TypeLoginSchema): Promise<TypeAPIAuth> {
     const response = await fetch(`${API_URL}/api/auth/portal/login`, {
       method: 'POST',
