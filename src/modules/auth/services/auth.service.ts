@@ -8,8 +8,7 @@ import type {
   TypeAPIRegister,
   TypeAPIReenviarVerificacion,
 } from "../types/auth.types";
-import { getStoredUTMs } from "../hooks/useUTMTracker"; // 👈 único import nuevo
-
+import { getStoredUTMs } from "../../../hooks/useUTMTracker";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export class AuthService {
