@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router"
+import { UTMLink as Link } from "@/components/UTMLink"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link } from "@tanstack/react-router";
+import { UTMLink as Link } from "@/components/UTMLink"
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";

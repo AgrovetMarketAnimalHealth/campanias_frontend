@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { UTMLink as Link } from "@/components/UTMLink"
 import { useEffect, useRef } from "react";
 import { useAuthDestino } from "@/modules/perfil/hooks/useAuthDestino";
 
@@ -47,15 +47,15 @@ function CtaBtnAmarillo() {
   const cargando = estado === "cargando";
   return (
     <Link
-      to={destino}
+      to={destino as string}  // Cambiado: as AppRoute -> as string
       aria-busy={cargando}
-      tabIndex={cargando ? -1 : 0}
       className="inline-flex items-center justify-center w-full max-w-[180px] md:max-w-[280px] px-0 py-[13px] md:py-5 rounded-full font-black uppercase text-[14px] md:text-[20px] transition-all duration-200 hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]"
       style={{
         letterSpacing: "0.05em",
         backgroundColor: cargando ? "rgb(200,200,200)" : "rgb(254,238,0)",
         color: "rgb(32,26,21)",
         boxShadow: "2px 2px 10px rgba(0,0,0,0.18)",
+        pointerEvents: cargando ? "none" : undefined,
       }}
     >
       {cargando ? "Cargando..." : "Inscríbete aquí"}
@@ -69,15 +69,15 @@ function CtaBtnBlanco() {
 
   return (
     <Link
-      to={destino}
+      to={destino as string}  // Cambiado: as AppRoute -> as string
       aria-busy={cargando}
-      tabIndex={cargando ? -1 : 0}
       className="inline-flex items-center justify-center w-auto max-w-[280px] md:max-w-[460px] px-5 py-[10px] md:py-5 rounded-full font-black uppercase text-[11px] md:text-[20px] transition-all duration-200 hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]"
       style={{
         letterSpacing: "0.05em",
         backgroundColor: "#fff",
         color: "rgb(141, 99, 207)",
         boxShadow: "2px 2px 12px rgba(0,0,0,0.25)",
+        pointerEvents: cargando ? "none" : undefined,
       }}
     >
       ¡Quiero conocer a Chayanne!

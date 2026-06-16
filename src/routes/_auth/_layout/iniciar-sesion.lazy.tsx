@@ -1,5 +1,5 @@
 import { SigninForm } from '@/modules/auth/components/signin-form'
-import { Link } from "@tanstack/react-router"
+import { UTMLink as Link } from "@/components/UTMLink"
 import logoAtrevia from '@/assets/illustrations/logo-atrevia.webp'
 import registroImg from '@/assets/illustrations/Registro_1200x1200.webp'
 

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link } from "@tanstack/react-router";
+import { UTMLink as Link } from "@/components/UTMLink"
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -343,7 +343,7 @@ export function TerminosCondicionesPage() {
                     "La promoción del concierto en Lima, Perú estará vigente desde el 19 de mayo de 2026 hasta el 11 de noviembre de 2026 a las 12:00 del mediodía (cierre de inscripciones). El sorteo de la segunda fecha se realizará el 12 de noviembre de 2026.",
                     "El corte de inscripciones para la primera fecha del sorteo (08 de setiembre de 2026) se realizará el día 07 de setiembre de 2026 a las 12:00 del mediodía.",
                     "Se establece un límite de 01 premio por ganador. En ese sentido, quien resulte ganador en el primer sorteo no podrá participar ni ser considerado en el segundo sorteo, independientemente de las veces que haya sido seleccionado.",
-                    "No podrán participar los ganadores de cualquier sorteo organizado por AGROVET MARKET S.A. durante el año 2026, independientemente del producto o marca promocionada.",
+                    "No podrán participar los ganadores de cualquier otro sorteo organizado por AGROVET MARKET S.A. durante el año 2026, independientemente del producto o marca promocionada.",
                     "Los sorteos se realizarán bajo la presencia de un Notario Público y la lista de ganadores será publicada en las redes institucionales de PETMEDICA al día siguiente de realizado cada sorteo. Sin perjuicio de ello, se tomará contacto con cada uno de los ganadores mediante el correo electrónico y/o teléfono consignado.",
                     "Al validar el comprobante de pago, se consideran los valores exactos: cada S/ 1,000.00 (UN MIL con 00/100 SOLES) de compra en productos participantes equivaldrá a 1 (UNA) opción de sorteo. No se efectuarán redondeos a favor del participante.",
                     "No podrán participar distribuidores, ni ningún otro cliente que no califique como médico veterinario, clínica/consultorio veterinario o pet shop. Tampoco podrán participar trabajadores y/o parientes de trabajadores de AGROVET MARKET hasta cuarto grado de consanguinidad o segundo de afinidad, ni convivientes.",
@@ -356,7 +356,8 @@ export function TerminosCondicionesPage() {
                     "Posteriormente a la inscripción, y en un lapso máximo de 2 días hábiles, el participante recibirá una notificación indicando las opciones acumuladas.",
                     "Cada opción validada representa 1 ticket con los datos del participante que será ingresado al ánfora para el sorteo.",
                     "El premio es intransferible, no puede ser sustituido por dinero en efectivo y se entregará únicamente a los ganadores, quienes aceptan el uso de su imagen (fotos/videos) para fines promocionales del evento y la experiencia en Lima.",
-                    "La elección de aerolínea, escalas, hotel y logística del viaje será gestionada exclusivamente por PETMEDICA. La empresa no asume responsabilidad por demoras, cancelaciones de vuelos o cambios en el evento ajenos a su control.",
+                    "En caso de ganadores que vivan fuera de Lima, la elección del transporte, escala, hotel y/o logística del viaje será gestionada exclusivamente por PETMEDICA. La empresa no asume responsabilidad por demoras, cancelaciones de vuelos o cambios en el evento ajenos a su control.",
+                    "Si no se logra contactar al ganador en 3 días hábiles, el premio quedará vacante.",
                     "Es responsabilidad del ganador tener vigente su documento de identidad (DNI) y cualquier documento requerido para el viaje dentro del territorio nacional. Si no se logra contactar al ganador en 3 días hábiles, el premio quedará vacante.",
                     "Una vez recibido el premio, los ganadores deberán firmar una Declaración Jurada de recepción y la autorización de uso de imagen correspondiente.",
                   ]} />

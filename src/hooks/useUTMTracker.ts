@@ -1,45 +1,89 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { useRouter } from '@tanstack/react-router'
 
-const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const
+const UTM_KEYS = [
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_content',
+  'utm_term',
+] as const
+
 type UTMKey = (typeof UTM_KEYS)[number]
+
 export type UTMData = Partial<Record<UTMKey, string>>
 
 const STORAGE_KEY = 'utm_data'
+const INTERNAL_NAV_KEY = 'utm_internal_nav'
 
 export function useUTMTracker() {
+  const router = useRouter()
+  const restored = useRef(false)
+
   useEffect(() => {
+    if (restored.current) return
+    restored.current = true
+
     const params = new URLSearchParams(window.location.search)
     const utms: UTMData = {}
     let hasUTM = false
 
     for (const key of UTM_KEYS) {
       const value = params.get(key)
+
       if (value) {
         utms[key] = value
         hasUTM = true
       }
     }
 
-    if (!hasUTM) return
+    const isInternalNav =
+      sessionStorage.getItem(INTERNAL_NAV_KEY) === '1'
 
-    // 1. Persistir en localStorage
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(utms))
+    if (hasUTM) {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(utms))
+      sessionStorage.removeItem(INTERNAL_NAV_KEY)
 
-    // 2. Enviar a GA4
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'utm_captured', {
-        ...utms,
-        page_location: window.location.href,
-      })
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'utm_captured', {
+          ...utms,
+          page_location: window.location.href,
+        })
+      }
+
+      console.log('[UTM] Capturados:', utms)
+    } else if (isInternalNav) {
+      const stored = getStoredUTMs()
+
+      if (Object.keys(stored).length > 0) {
+        router.navigate({
+          to: router.state.location.pathname,
+          search: {
+            ...(router.state.location.search as Record<string, string>),
+            ...stored,
+          },
+          replace: true,
+        })
+
+        console.log('[UTM] Restaurados (nav interna):', stored)
+      }
+    } else {
+      sessionStorage.removeItem(STORAGE_KEY)
+      sessionStorage.removeItem(INTERNAL_NAV_KEY)
+
+      console.log('[UTM] Sesión limpia')
     }
+  }, [router])
+}
 
-    console.log('[UTM] Capturados:', utms)
-  }, [])
+export function markInternalNav() {
+  sessionStorage.setItem(INTERNAL_NAV_KEY, '1')
 }
 
 export function getStoredUTMs(): UTMData {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    const raw = sessionStorage.getItem(STORAGE_KEY)
+
     return raw ? JSON.parse(raw) : {}
   } catch {
     return {}

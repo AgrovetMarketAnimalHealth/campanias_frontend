@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router'
+import { AppLink as Link } from '@/components/AppLink'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
