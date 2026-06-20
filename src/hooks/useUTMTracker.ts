@@ -1,3 +1,4 @@
+// useUTMTracker.ts
 import { useEffect, useRef } from 'react'
 import { useRouter } from '@tanstack/react-router'
 
@@ -10,7 +11,6 @@ const UTM_KEYS = [
 ] as const
 
 type UTMKey = (typeof UTM_KEYS)[number]
-
 export type UTMData = Partial<Record<UTMKey, string>>
 
 const STORAGE_KEY = 'utm_data'
@@ -30,15 +30,13 @@ export function useUTMTracker() {
 
     for (const key of UTM_KEYS) {
       const value = params.get(key)
-
       if (value) {
         utms[key] = value
         hasUTM = true
       }
     }
 
-    const isInternalNav =
-      sessionStorage.getItem(INTERNAL_NAV_KEY) === '1'
+    const isInternalNav = sessionStorage.getItem(INTERNAL_NAV_KEY) === '1'
 
     if (hasUTM) {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(utms))
@@ -54,7 +52,6 @@ export function useUTMTracker() {
       console.log('[UTM] Capturados:', utms)
     } else if (isInternalNav) {
       const stored = getStoredUTMs()
-
       if (Object.keys(stored).length > 0) {
         router.navigate({
           to: router.state.location.pathname,
@@ -64,13 +61,11 @@ export function useUTMTracker() {
           },
           replace: true,
         })
-
         console.log('[UTM] Restaurados (nav interna):', stored)
       }
     } else {
       sessionStorage.removeItem(STORAGE_KEY)
       sessionStorage.removeItem(INTERNAL_NAV_KEY)
-
       console.log('[UTM] Sesión limpia')
     }
   }, [router])
@@ -83,7 +78,6 @@ export function markInternalNav() {
 export function getStoredUTMs(): UTMData {
   try {
     const raw = sessionStorage.getItem(STORAGE_KEY)
-
     return raw ? JSON.parse(raw) : {}
   } catch {
     return {}
