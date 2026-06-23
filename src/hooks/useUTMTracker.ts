@@ -1,6 +1,6 @@
-// useUTMTracker.ts
 import { useEffect, useRef } from 'react'
 import { useRouter } from '@tanstack/react-router'
+import ReactGA from 'react-ga4'
 
 const UTM_KEYS = [
   'utm_source',
@@ -25,6 +25,7 @@ export function useUTMTracker() {
     restored.current = true
 
     const params = new URLSearchParams(window.location.search)
+
     const utms: UTMData = {}
     let hasUTM = false
 
@@ -42,16 +43,19 @@ export function useUTMTracker() {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(utms))
       sessionStorage.removeItem(INTERNAL_NAV_KEY)
 
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'utm_captured', {
-          ...utms,
-          page_location: window.location.href,
-        })
-      }
+      // ✅ GA4 correcto
+      ReactGA.event('utm_captured', {
+        ...utms,
+        page_location: window.location.href,
+      })
 
       console.log('[UTM] Capturados:', utms)
-    } else if (isInternalNav) {
+      return
+    }
+
+    if (isInternalNav) {
       const stored = getStoredUTMs()
+
       if (Object.keys(stored).length > 0) {
         router.navigate({
           to: router.state.location.pathname,
@@ -61,13 +65,16 @@ export function useUTMTracker() {
           },
           replace: true,
         })
-        console.log('[UTM] Restaurados (nav interna):', stored)
+
+        console.log('[UTM] Restaurados:', stored)
       }
-    } else {
-      sessionStorage.removeItem(STORAGE_KEY)
-      sessionStorage.removeItem(INTERNAL_NAV_KEY)
-      console.log('[UTM] Sesión limpia')
+
+      return
     }
+
+    sessionStorage.removeItem(STORAGE_KEY)
+    sessionStorage.removeItem(INTERNAL_NAV_KEY)
+    console.log('[UTM] Sesión limpia')
   }, [router])
 }
 
@@ -77,8 +84,7 @@ export function markInternalNav() {
 
 export function getStoredUTMs(): UTMData {
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : {}
+    return JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '{}')
   } catch {
     return {}
   }
