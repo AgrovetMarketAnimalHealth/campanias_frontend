@@ -85,12 +85,12 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
 
         <div className="grid grid-cols-2 gap-4">
           <Field>
-            <FieldLabel htmlFor="nombres">Nombres</FieldLabel>
+            <FieldLabel htmlFor="nombres">Nombres <span className="text-red-500">*</span></FieldLabel>
             <Input id="nombres" type="text" placeholder="Juan" {...register('nombre')} />
             {errors.nombre && <p className="text-destructive text-xs">{errors.nombre.message}</p>}
           </Field>
           <Field>
-            <FieldLabel htmlFor="apellidos">Apellidos</FieldLabel>
+            <FieldLabel htmlFor="apellidos">Apellidos <span className="text-red-500">*</span></FieldLabel>
             <Input id="apellidos" type="text" placeholder="Pérez" {...register('apellidos')} />
             {errors.apellidos && (
               <p className="text-destructive text-xs">
@@ -102,7 +102,7 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
 
         <div className="grid grid-cols-2 gap-4">
           <Field>
-            <FieldLabel htmlFor="dni">DNI</FieldLabel>
+            <FieldLabel htmlFor="dni">DNI <span className="text-red-500">*</span></FieldLabel>
             <Input id="dni" type="text" placeholder="12345678" maxLength={8} {...register('dni')} />
             {errors.dni && (
               <p className="text-destructive text-xs">
@@ -111,14 +111,14 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
             )}
           </Field>
           <Field>
-            <FieldLabel htmlFor="celular">Celular</FieldLabel>
+            <FieldLabel htmlFor="celular">Celular <span className="text-red-500">*</span></FieldLabel>
             <Input id="celular" type="tel" placeholder="987 654 321" {...register('telefono')} />
             {errors.telefono && <p className="text-destructive text-xs">{errors.telefono.message}</p>}
           </Field>
         </div>
 
         <Field>
-          <FieldLabel>Departamento</FieldLabel>
+          <FieldLabel>Departamento <span className="text-red-500">*</span></FieldLabel>
           <select
             onChange={(e) => setValue('departamento', e.target.value)}
             className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
@@ -135,32 +135,9 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
         </Field>
 
         <Field>
-          <FieldLabel htmlFor="email">Correo electrónico</FieldLabel>
+          <FieldLabel htmlFor="email">Correo electrónico <span className="text-red-500">*</span></FieldLabel>
           <Input id="email" type="email" placeholder="m@ejemplo.com" {...register('email')} />
           {errors.email && <p className="text-destructive text-xs">{errors.email.message}</p>}
-        </Field>
-
-        <Field>
-          <FieldLabel>Comprobante de pago</FieldLabel>
-          <label
-            htmlFor="comprobante"
-            className="border-input bg-background hover:bg-muted flex cursor-pointer flex-col items-center justify-center rounded-md border border-dashed px-4 py-6 text-sm transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="text-muted-foreground mb-2 size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-            </svg>
-            {!comprobante ? (
-              <span className="text-muted-foreground">Haz clic para subir o arrastra tu archivo aquí</span>
-            ) : (
-              <span className="text-primary font-medium">{(comprobante as File).name}</span>
-            )}
-            <input ref={inputRef} id="comprobante" type="file" accept="image/*,.pdf" className="hidden" onChange={onFileChange} />
-          </label>
-          <FieldDescription>Formatos aceptados: JPG, PNG o PDF. Máximo 5 MB.</FieldDescription>
-          {errors.archivo_comprobante && (
-            <p className="text-destructive text-xs">{errors.archivo_comprobante.message as string}</p>
-          )}
         </Field>
 
         <Field>

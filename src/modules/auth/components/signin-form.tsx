@@ -71,7 +71,7 @@ export function SigninForm({ className, ...props }: React.ComponentProps<'form'>
 
         <FieldDescription className="text-center">
           ¿No tienes una cuenta?{' '}
-          <Link to="/registrarme" className="underline underline-offset-4 hover:text-primary">
+          <Link to="/" className="underline underline-offset-4 hover:text-primary">
             Regístrate
           </Link>
         </FieldDescription>

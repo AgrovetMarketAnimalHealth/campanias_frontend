@@ -1,7 +1,7 @@
 import { UTMLink as Link } from "@/components/UTMLink"
 import { useEffect, useRef } from "react";
 import { useAuthDestino } from "@/modules/perfil/hooks/useAuthDestino";
-
+import { SignupTabs } from "@/modules/auth/components/signup-tabs";
 import desk1 from "@/assets/destokp/1-Seccion.webp";
 import mob1 from "@/assets/mobile/1-Seccion.webp";
 import desk2 from "@/assets/destokp/2-Seccion.webp";
@@ -110,7 +110,11 @@ export function WelcomePage() {
         </div>
       </section>
 
-      {/* ── 2. PREMIOS ── */}
+      {/* ── 2. FORMULARIO DE REGISTRO ── */}
+      <section className="reveal w-full">
+          <SignupTabs />
+      </section>
+      {/* ── 3. PREMIOS ── */}
       <section className="reveal w-full bg-[rgb(137,208,242)]">
         <div className="relative hidden md:block w-full">
           <img src={desk2} alt="" className="w-full h-auto block" />
@@ -126,7 +130,7 @@ export function WelcomePage() {
         </div>
       </section>
 
-      {/* ── 3. PRODUCTOS ── */}
+      {/* ── 4. PRODUCTOS ── */}
       <section className="w-full bg-[linear-gradient(135deg,rgb(88,63,160)_0%,rgb(128,95,199)_50%,rgb(88,63,160)_100%)]">
         <div className="reveal-scale w-full">
           <div
@@ -144,7 +148,7 @@ export function WelcomePage() {
         </div>
       </section>
 
-      {/* ── 4. PASOS ── */}
+      {/* ── 5. PASOS ── */}
       <section className="w-full bg-white py-8 md:py-12">
         <div className="reveal w-full">
           <div
@@ -174,7 +178,7 @@ export function WelcomePage() {
         </div>
       </section>
 
-      {/* ── 5. INTERMEDIO ── */}
+      {/* ── 6. INTERMEDIO ── */}
       <section className="w-full bg-[rgb(236,238,240)] py-8 md:py-12">
         <div className="reveal w-full">
           <div
@@ -192,7 +196,7 @@ export function WelcomePage() {
         </div>
       </section>
 
-      {/* ── 6. BRAND CIERRE ── */}
+      {/* ── 7. BRAND CIERRE ── */}
       <section className="w-full bg-[linear-gradient(135deg,rgb(88,63,160)_0%,rgb(125,94,198)_50%,rgb(138,105,212)_100%)]">
         <div className="reveal w-full">
           <div
@@ -214,7 +218,7 @@ export function WelcomePage() {
         </div>
       </section>
 
-      {/* ── 7. CTA FINAL ── */}
+      {/* ── 8. CTA FINAL ── */}
       <section className="w-full bg-white">
         <div className="reveal flex flex-col items-center gap-3 px-6 py-8 md:py-12">
           <p className="font-black text-[22px] md:text-[32px] text-center uppercase">
@@ -224,6 +228,7 @@ export function WelcomePage() {
           <CtaBtnAmarillo />
         </div>
       </section>
+
     </div>
   );
 }
