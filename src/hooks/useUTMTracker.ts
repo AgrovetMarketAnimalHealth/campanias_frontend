@@ -74,7 +74,6 @@ export function useUTMTracker() {
 
     sessionStorage.removeItem(STORAGE_KEY)
     sessionStorage.removeItem(INTERNAL_NAV_KEY)
-    console.log('[UTM] Sesión limpia')
   }, [router])
 }
 

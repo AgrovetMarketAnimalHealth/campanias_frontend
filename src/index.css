@@ -38,6 +38,20 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: "ClanPro";
+  src: url("/fonts/clanpro/FFClanProUltra.TTF") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ClanPro";
+  src: url("/fonts/clanpro/FFClanProUltra.TTF") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 @theme {
     --font-sans:
         'ClanPro',

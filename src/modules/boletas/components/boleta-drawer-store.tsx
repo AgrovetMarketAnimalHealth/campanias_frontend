@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useIsMobile } from "@/hooks/use-mobile"
 import {
   Drawer,
@@ -12,9 +12,13 @@ import {
 import { Button } from "@/components/ui/button"
 import { IconPlus, IconUpload, IconFile, IconX, IconFileTypePdf, IconPhoto } from "@tabler/icons-react"
 import { BoletaService } from "../services/boleta.service"
+import { driver } from "driver.js"
+import "driver.js/dist/driver.css"
 
 interface BoletaDrawerStoreProps {
   onSuccess: () => void
+  /** Si es true (y aún no se vio la guía), resalta el botón de subir al montar el componente */
+  mostrarGuia?: boolean
 }
 
 function FileIcon({ tipo }: { tipo: string }) {
@@ -22,7 +26,9 @@ function FileIcon({ tipo }: { tipo: string }) {
   return <IconPhoto className="size-8 text-blue-500" />
 }
 
-export function BoletaDrawerStore({ onSuccess }: BoletaDrawerStoreProps) {
+const GUIA_VISTA_KEY = "guia_subir_comprobante_vista"
+
+export function BoletaDrawerStore({ onSuccess, mostrarGuia = true }: BoletaDrawerStoreProps) {
   const isMobile = useIsMobile()
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -30,6 +36,47 @@ export function BoletaDrawerStore({ onSuccess }: BoletaDrawerStoreProps) {
   const [archivo, setArchivo] = useState<File | null>(null)
   const [dragging, setDragging] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+
+  // ── Guía/onboarding apuntando al botón de subir ──
+  useEffect(() => {
+    if (!mostrarGuia) return
+    if (typeof window === "undefined") return
+    if (localStorage.getItem(GUIA_VISTA_KEY)) return
+
+    // pequeño delay para asegurarnos que el botón ya está montado en el DOM
+    const timer = setTimeout(() => {
+      if (!triggerRef.current) return
+
+      const guia = driver({
+        showProgress: false,
+        allowClose: true,
+        overlayColor: "rgba(0,0,0,0.65)",
+        doneBtnText: "Entendido",
+        prevBtnText: "Anterior",
+        nextBtnText: "Siguiente",
+        onDestroyed: () => {
+          localStorage.setItem(GUIA_VISTA_KEY, "1")
+        },
+        steps: [
+          {
+            element: triggerRef.current,
+            popover: {
+              title: "Sube tu comprobante aquí",
+              description:
+                "Haz clic en este botón para subir tu boleta o factura y participar en el sorteo.",
+              side: "bottom",
+              align: "center",
+            },
+          },
+        ],
+      })
+
+      guia.drive()
+    }, 600)
+
+    return () => clearTimeout(timer)
+  }, [mostrarGuia])
 
   const handleFile = (file: File) => {
     setError(null)
@@ -80,7 +127,7 @@ export function BoletaDrawerStore({ onSuccess }: BoletaDrawerStoreProps) {
   return (
     <Drawer direction={isMobile ? "bottom" : "right"} open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button size="sm">
+        <Button ref={triggerRef} size="sm">
           <IconPlus className="size-4" />
           <span className="hidden lg:inline">Subir comprobante</span>
         </Button>

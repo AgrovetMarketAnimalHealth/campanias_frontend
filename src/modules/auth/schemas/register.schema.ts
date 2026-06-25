@@ -6,7 +6,6 @@ const baseSchema = z.object({
   departamento: z.string().min(1, "El departamento es obligatorio"),
   email: z.string().email("Ingresa un correo válido"),
   telefono: z.string().min(1, "El teléfono es obligatorio").max(20),
-  archivo_comprobante: z.instanceof(File, { message: "Debes subir un comprobante" }),
   acepta_politicas: z.boolean().refine((value) => value === true, {
     message: "Debes aceptar las políticas de privacidad",
   }),

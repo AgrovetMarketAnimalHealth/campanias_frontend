@@ -75,11 +75,13 @@ function ResendEmailPage() {
       <div className="w-full max-w-md">
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl">Verifica tu correo electrónico</CardTitle>
+            <CardTitle className="text-2xl font-normal">
+              Verifica tu correo electrónico
+            </CardTitle>
             <CardDescription>
               Enviamos un enlace de verificación a{' '}
               {email
-                ? <span className="font-semibold text-foreground">{email}</span>
+                ? <span className="font-medium text-foreground">{email}</span>
                 : 'tu correo'
               }
               . Revisa también tu carpeta de spam.

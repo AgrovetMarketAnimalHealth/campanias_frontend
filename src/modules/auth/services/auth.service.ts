@@ -12,33 +12,23 @@ import { getStoredUTMs } from "../../../hooks/useUTMTracker";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export class AuthService {
+  
   static async register(payload: TypeRegisterSchema): Promise<TypeAPIRegister> {
     const base = import.meta.env.BASE_URL;
     const [campanaSlug, tipoSlug] = base.split('/').filter(Boolean);
 
-    const formData = new FormData();
-    Object.entries(payload).forEach(([key, value]) => {
-      if (value instanceof File) {
-        formData.append(key, value);
-      } else if (typeof value === "boolean") {
-        formData.append(key, value ? "1" : "0");
-      } else if (value !== undefined && value !== null) {
-        formData.append(key, String(value));
-      }
-    });
-
-    // 👇 Adjunta UTMs si existen (si llegó por pauta, si no, no se envía nada)
     const utms = getStoredUTMs();
-    Object.entries(utms).forEach(([key, value]) => {
-      if (value) formData.append(key, value);
-    });
+    const body = { ...payload, ...Object.fromEntries(Object.entries(utms).filter(([, v]) => v)) };
 
     const response = await fetch(
       `${API_URL}/api/auth/portal/register/${campanaSlug}/${tipoSlug}`,
       {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(body),
       }
     );
 

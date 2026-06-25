@@ -2,6 +2,7 @@ import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import ReactGA from 'react-ga4'
 import { GA4_CONFIG } from '@/config/ga4'
+import { META_PIXEL_CONFIG } from '@/config/metaPixel'
 import { z } from 'zod'
 import { useUTMTracker } from '@/hooks/useUTMTracker'
 
@@ -20,20 +21,53 @@ export const Route = createRootRoute({
   component: Root,
 })
 
+declare global {
+  interface Window {
+    fbq: any
+  }
+}
+
 function Root() {
   useUTMTracker()
 
   useEffect(() => {
+    // Google Analytics
     if (import.meta.env.PROD && GA4_CONFIG.isEnabled) {
       ReactGA.initialize(GA4_CONFIG.measurementId)
+    }
 
-      console.log('✅ GA4 inicializado:', GA4_CONFIG.measurementId)
-    } else {
-      console.log(
-        '🔧 GA4 no se inicializa en desarrollo (ID:',
-        GA4_CONFIG.measurementId || 'no configurado',
-        ')'
-      )
+    // Meta Pixel
+    if (import.meta.env.PROD && META_PIXEL_CONFIG.isEnabled) {
+      // Load Facebook Pixel script
+      ;(function (f: any, b: Document, e: string) {
+        if (f.fbq) return
+
+        f.fbq = function () {
+          f.fbq.callMethod
+            ? f.fbq.callMethod.apply(f.fbq, arguments)
+            : f.fbq.queue.push(arguments)
+        }
+
+        if (!f._fbq) f._fbq = f.fbq
+
+        f.fbq.push = f.fbq
+        f.fbq.loaded = true
+        f.fbq.version = '2.0'
+        f.fbq.queue = []
+
+        const t = b.createElement(e) as HTMLScriptElement
+        t.async = true
+        t.src = 'https://connect.facebook.net/en_US/fbevents.js'
+
+        const s = b.getElementsByTagName(e)[0]
+        s?.parentNode?.insertBefore(t, s)
+      })(window, document, 'script')
+
+      // Initialize and track
+      window.fbq('init', META_PIXEL_CONFIG.pixelId)
+      window.fbq('track', 'PageView')
+
+      console.log('✅ Meta Pixel inicializado:', META_PIXEL_CONFIG.pixelId)
     }
   }, [])
 
