@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { cn } from '@/lib/utils'
@@ -15,7 +14,6 @@ import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/components/ui
 
 export function NaturalSignupForm({ className, ...props }: React.ComponentProps<'form'>) {
   const navigate = useNavigate()
-  const inputRef = useRef<HTMLInputElement>(null)
 
   const {
     register,
@@ -40,12 +38,6 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
   })
 
   const aceptaTerminos = watch('acepta_terminos')
-  const comprobante = watch('archivo_comprobante')
-
-  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) setValue('archivo_comprobante', file)
-  }
 
   async function onSubmit(values: TypeRegisterSchema) {
     const { success, message, errors: apiErrors, accion } = await AuthService.register(values)
@@ -171,9 +163,9 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
           {isSubmitting ? 'Registrando...' : 'Crear cuenta'}
         </Button>
 
-        <FieldDescription className="text-center">
+        <FieldDescription className="text-center text-sm">
           ¿Ya tienes una cuenta?{' '}
-          <Link to="/iniciar-sesion" className="underline underline-offset-4 hover:text-primary">
+          <Link to="/iniciar-sesion" className="font-semibold text-primary underline underline-offset-4 hover:opacity-80">
             Inicia sesión
           </Link>
         </FieldDescription>

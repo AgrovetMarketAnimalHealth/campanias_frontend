@@ -12,7 +12,6 @@ export interface Cliente {
   telefono: string
   acepta_politicas: boolean
   acepta_terminos: boolean
-  archivo_comprobante?: string
   estado: boolean
   email_verified_at?: string
   created_at?: string

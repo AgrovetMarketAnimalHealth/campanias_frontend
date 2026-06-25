@@ -12,6 +12,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RegistroFallidoRouteImport } from './routes/registro-fallido'
+import { Route as RegistroExitosoRouteImport } from './routes/registro-exitoso'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
@@ -47,6 +49,16 @@ const _emailEmailVerifyTokenLazyRouteImport = createFileRoute(
   '/__email/email/verify/$token',
 )()
 
+const RegistroFallidoRoute = RegistroFallidoRouteImport.update({
+  id: '/registro-fallido',
+  path: '/registro-fallido',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistroExitosoRoute = RegistroExitosoRouteImport.update({
+  id: '/registro-exitoso',
+  path: '/registro-exitoso',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
@@ -171,6 +183,8 @@ const AuthenticatedLayoutPortalDashboardIndexRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/registro-exitoso': typeof RegistroExitosoRoute
+  '/registro-fallido': typeof RegistroFallidoRoute
   '/portal/politicas-de-privacidad': typeof PortalPoliticasDePrivacidadRoute
   '/portal/terminos-condiciones': typeof PortalTerminosCondicionesRoute
   '/email/resend': typeof _emailEmailResendLazyRoute
@@ -187,6 +201,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/registro-exitoso': typeof RegistroExitosoRoute
+  '/registro-fallido': typeof RegistroFallidoRoute
   '/portal/politicas-de-privacidad': typeof PortalPoliticasDePrivacidadRoute
   '/portal/terminos-condiciones': typeof PortalTerminosCondicionesRoute
   '/email/resend': typeof _emailEmailResendLazyRoute
@@ -205,6 +221,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
   '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/registro-exitoso': typeof RegistroExitosoRoute
+  '/registro-fallido': typeof RegistroFallidoRoute
   '/_authenticated/_layout': typeof AuthenticatedLayoutRouteWithChildren
   '/portal/politicas-de-privacidad': typeof PortalPoliticasDePrivacidadRoute
   '/portal/terminos-condiciones': typeof PortalTerminosCondicionesRoute
@@ -225,6 +243,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/registro-exitoso'
+    | '/registro-fallido'
     | '/portal/politicas-de-privacidad'
     | '/portal/terminos-condiciones'
     | '/email/resend'
@@ -241,6 +261,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/registro-exitoso'
+    | '/registro-fallido'
     | '/portal/politicas-de-privacidad'
     | '/portal/terminos-condiciones'
     | '/email/resend'
@@ -258,6 +280,8 @@ export interface FileRouteTypes {
     | '/'
     | '/_auth'
     | '/_authenticated'
+    | '/registro-exitoso'
+    | '/registro-fallido'
     | '/_authenticated/_layout'
     | '/portal/politicas-de-privacidad'
     | '/portal/terminos-condiciones'
@@ -279,6 +303,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  RegistroExitosoRoute: typeof RegistroExitosoRoute
+  RegistroFallidoRoute: typeof RegistroFallidoRoute
   PortalPoliticasDePrivacidadRoute: typeof PortalPoliticasDePrivacidadRoute
   PortalTerminosCondicionesRoute: typeof PortalTerminosCondicionesRoute
   _emailEmailResendLazyRoute: typeof _emailEmailResendLazyRoute
@@ -287,6 +313,20 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/registro-fallido': {
+      id: '/registro-fallido'
+      path: '/registro-fallido'
+      fullPath: '/registro-fallido'
+      preLoaderRoute: typeof RegistroFallidoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registro-exitoso': {
+      id: '/registro-exitoso'
+      path: '/registro-exitoso'
+      fullPath: '/registro-exitoso'
+      preLoaderRoute: typeof RegistroExitosoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -441,6 +481,24 @@ declare module './routes/_authenticated' {
     FileRoutesByPath['/_authenticated']['id'],
     FileRoutesByPath['/_authenticated']['path'],
     FileRoutesByPath['/_authenticated']['fullPath']
+  >
+}
+declare module './routes/registro-exitoso' {
+  const createFileRoute: CreateFileRoute<
+    '/registro-exitoso',
+    FileRoutesByPath['/registro-exitoso']['parentRoute'],
+    FileRoutesByPath['/registro-exitoso']['id'],
+    FileRoutesByPath['/registro-exitoso']['path'],
+    FileRoutesByPath['/registro-exitoso']['fullPath']
+  >
+}
+declare module './routes/registro-fallido' {
+  const createFileRoute: CreateFileRoute<
+    '/registro-fallido',
+    FileRoutesByPath['/registro-fallido']['parentRoute'],
+    FileRoutesByPath['/registro-fallido']['id'],
+    FileRoutesByPath['/registro-fallido']['path'],
+    FileRoutesByPath['/registro-fallido']['fullPath']
   >
 }
 declare module './routes/_authenticated/_layout' {
@@ -623,6 +681,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  RegistroExitosoRoute: RegistroExitosoRoute,
+  RegistroFallidoRoute: RegistroFallidoRoute,
   PortalPoliticasDePrivacidadRoute: PortalPoliticasDePrivacidadRoute,
   PortalTerminosCondicionesRoute: PortalTerminosCondicionesRoute,
   _emailEmailResendLazyRoute: _emailEmailResendLazyRoute,

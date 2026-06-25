@@ -4,7 +4,6 @@ import { NaturalSignupForm } from '@/modules/auth/components/natural-signup-form
 import { LegalSignupForm } from '@/modules/auth/components/legal-signup-form'
 import { UTMLink as Link } from "@/components/UTMLink"
 import logoAtrevia from '@/assets/illustrations/logo-atrevia.webp'
-import registroImg from '@/assets/illustrations/Registro_1200x1200.webp'
 
 type Tab = 'natural' | 'juridica'
 
@@ -15,14 +14,20 @@ export function SignupTabs() {
     <div className="grid min-h-svh">
       {/* Left side */}
       <div className="flex flex-col gap-4 p-6 md:p-10">
-        {/* Logo */}
-        <div className="flex justify-center gap-2 md:justify-start">
+        {/* Logo + Iniciar sesión */}
+        <div className="flex items-center justify-between gap-2">
           <Link to="/" className="flex items-center gap-2 font-medium">
             <img
               src={logoAtrevia}
               alt="Atrevia logo"
               className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
             />
+          </Link>
+          <Link
+            to="/iniciar-sesion"
+            className="text-sm font-semibold text-primary underline underline-offset-4 hover:opacity-80"
+          >
+            Iniciar sesión
           </Link>
         </div>
 
