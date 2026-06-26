@@ -43,8 +43,8 @@ function useScrollReveal(rootRef: React.RefObject<HTMLDivElement | null>) {
   }, [rootRef]);
 }
 
-function scrollToRegistro() {
-  document.getElementById("registro")?.scrollIntoView({ behavior: "smooth", block: "start" });
+function scrollToSeccion1() {
+  document.getElementById("seccion1")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function EstilosCtaLlamativo() {
@@ -104,9 +104,56 @@ function CtaBtnAmarillo() {
   }
 
   return (
-    <button type="button" onClick={scrollToRegistro} className={baseClass} style={baseStyle}>
+    <button type="button" onClick={scrollToSeccion1} className={baseClass} style={baseStyle}>
       Inscríbete aquí
     </button>
+  );
+}
+
+function InstagramEmbedChayanne() {
+  useEffect(() => {
+    const processEmbed = () => {
+      // @ts-ignore
+      if (window.instgrm) window.instgrm.Embeds.process();
+    };
+
+    const existing = document.getElementById("instagram-embed-script");
+    if (existing) {
+      processEmbed();
+    } else {
+      const script = document.createElement("script");
+      script.id = "instagram-embed-script";
+      script.src = "https://www.instagram.com/embed.js";
+      script.async = true;
+      script.onload = processEmbed;
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  return (
+    <div className="w-full flex justify-center px-4">
+      <blockquote
+        className="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/p/DZsfaphP1Qj/"
+        data-instgrm-version="14"
+        style={{
+          background: "#FFF",
+          border: 0,
+          borderRadius: "12px",
+          margin: 0,
+          maxWidth: "400px",
+          minWidth: "280px",
+          width: "100%",
+          padding: 0,
+        }}
+      >
+        <a
+          href="https://www.instagram.com/p/DZsfaphP1Qj/"
+          target="_blank"
+          rel="noreferrer"
+        />
+      </blockquote>
+    </div>
   );
 }
 
@@ -124,45 +171,40 @@ export function WelcomePage() {
     >
       <EstilosCtaLlamativo />
       {/* ── 1. HERO con formulario flotante ── */}
-      <section className="reveal w-full bg-white animate-hero-slide-down">
-        {/* Desktop: imagen con su proporción real + form flotando encima */}
-        <div
-          className="relative hidden md:block w-full overflow-hidden"
-          style={{ paddingBottom: "41.67%" }}
-        >
-          <img src={desk1} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      <section id="seccion1" className="reveal w-full bg-white animate-hero-slide-down">
+  {/* Desktop: imagen con su proporción real + form flotando encima */}
+  <div className="relative hidden md:block w-full overflow-hidden md:min-h-[560px] lg:min-h-[620px] xl:min-h-0">
+    <div className="w-full" style={{ paddingBottom: "41.67%" }} />
+    <img src={desk1} alt="" className="absolute inset-0 w-full h-full object-cover" />
 
-          {!cargando && !autenticado ? (
-            <div className="absolute inset-0 flex items-center justify-end pr-10 lg:pr-20">
-              <div className="w-[90%] max-w-sm lg:max-w-md">
-                <SignupTabs />
-              </div>
-            </div>
-          ) : (
-            autenticado && (
-              <div className="absolute inset-0 flex items-center justify-end pr-10 lg:pr-20">
-                <div className="text-center bg-white rounded-2xl shadow-2xl p-6">
-                  <h2 className="text-xl font-bold text-gray-800 mb-3">¡Bienvenido de nuevo!</h2>
-                  <Link
-                    to={RUTA_SUBIR_FACTURAS}
-                    className="inline-block bg-violet-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-violet-700 transition"
-                  >
-                    Ir al dashboard
-                  </Link>
-                </div>
-              </div>
-            )
-          )}
+    {!cargando && !autenticado ? (
+  <div className="absolute inset-0 flex items-center justify-end pr-6 lg:pr-20">
+    <div className="w-[88%] max-w-[280px] lg:max-w-[340px]">
+      <SignupTabs />
+    </div>
+  </div>
+) : (
+      autenticado && (
+        <div className="absolute inset-0 flex items-center justify-end pr-10 lg:pr-20">
+          <div className="text-center bg-white rounded-2xl shadow-2xl p-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-3">¡Bienvenido de nuevo!</h2>
+            <Link
+              to={RUTA_SUBIR_FACTURAS}
+              className="inline-block bg-violet-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-violet-700 transition"
+            >
+              Ir al dashboard
+            </Link>
+          </div>
         </div>
+      )
+    )}
+  </div>
 
-        {/* Mobile: solo la imagen, igual que antes */}
-        <div
-          className="relative block md:hidden w-full overflow-hidden"
-          style={{ paddingBottom: "73.80%" }}
-        >
-          <img src={mob1} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        </div>
-      </section>
+  {/* Mobile: solo la imagen, igual que antes */}
+  <div className="relative block md:hidden w-full overflow-hidden" style={{ paddingBottom: "73.80%" }}>
+    <img src={mob1} alt="" className="absolute inset-0 w-full h-full object-cover" />
+  </div>
+</section>
 
       {/* ── 2. FORMULARIO (mobile, separado debajo del hero — como en tu versión que funcionaba) ── */}
       {!cargando && !autenticado && (
@@ -271,9 +313,12 @@ export function WelcomePage() {
             {autenticado ? (
               <>¡No olvides <span className="font-black text-[rgb(138,105,212)]">subir tus facturas</span>!</>
             ) : (
-              <>¡Quiero conocer a{" "}<span className="font-black text-[rgb(138,105,212)]">Chayanne!</span></>
+              <>¡El proximo podrias{" "}<span className="font-black text-[rgb(138,105,212)]">ser tu!</span></>
             )}
           </p>
+
+          <InstagramEmbedChayanne />
+
           <CtaBtnAmarillo />
         </div>
       </section>
