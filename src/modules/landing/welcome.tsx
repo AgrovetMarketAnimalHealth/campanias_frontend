@@ -173,13 +173,13 @@ export function WelcomePage() {
       {/* ── 1. HERO con formulario flotante ── */}
       <section id="seccion1" className="reveal w-full bg-white animate-hero-slide-down">
   {/* Desktop: imagen con su proporción real + form flotando encima */}
-  <div className="relative hidden md:block w-full overflow-hidden md:min-h-[560px] lg:min-h-[620px] xl:min-h-0">
+  <div className="relative hidden md:block w-full overflow-hidden">
     <div className="w-full" style={{ paddingBottom: "41.67%" }} />
     <img src={desk1} alt="" className="absolute inset-0 w-full h-full object-cover" />
 
     {!cargando && !autenticado ? (
-  <div className="absolute inset-0 flex items-center justify-end pr-6 lg:pr-20">
-    <div className="w-[88%] max-w-[280px] lg:max-w-[340px]">
+  <div className="absolute inset-0 flex items-center justify-end pr-2 lg:pr-6">
+  <div className="w-[90%] max-w-[310px] lg:max-w-[355px]">
       <SignupTabs />
     </div>
   </div>
@@ -201,10 +201,10 @@ export function WelcomePage() {
   </div>
 
   {/* Mobile: solo la imagen, igual que antes */}
-  <div className="relative block md:hidden w-full overflow-hidden" style={{ paddingBottom: "73.80%" }}>
-    <img src={mob1} alt="" className="absolute inset-0 w-full h-full object-cover" />
-  </div>
-</section>
+      <div className="relative block md:hidden w-full overflow-hidden" style={{ paddingBottom: "73.80%" }}>
+        <img src={mob1} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      </div>
+    </section>
 
       {/* ── 2. FORMULARIO (mobile, separado debajo del hero — como en tu versión que funcionaba) ── */}
       {!cargando && !autenticado && (
@@ -308,20 +308,32 @@ export function WelcomePage() {
 
       {/* SECCIÓN FINAL - CTA */}
       <section className="w-full bg-white">
-        <div className="reveal flex flex-col items-center gap-3 px-6 py-8 md:py-12">
-          <p className="font-black text-[22px] md:text-[32px] text-center uppercase">
-            {autenticado ? (
-              <>¡No olvides <span className="font-black text-[rgb(138,105,212)]">subir tus facturas</span>!</>
-            ) : (
-              <>¡El proximo podrias{" "}<span className="font-black text-[rgb(138,105,212)]">ser tu!</span></>
-            )}
-          </p>
+  <div className="reveal flex flex-col items-center gap-3 px-6 py-8 md:py-12">
+    <p className="text-center text-[22px] font-black uppercase md:text-[32px]">
+      {autenticado ? (
+        <>
+          ¡No olvides{" "}
+          <span className="text-[rgb(138,105,212)]">
+            subir tus facturas
+          </span>{" "}
+          para seguir acumulando oportunidades de ganar!
+        </>
+      ) : (
+        <>
+          ¡Así celebraron nuestros últimos{" "}
+          <span className="text-[rgb(138,105,212)]">
+            ganadores!
+          </span>{" "}
+          Participa y el próximo podrías ser tú.
+        </>
+      )}
+    </p>
 
-          <InstagramEmbedChayanne />
+    <InstagramEmbedChayanne />
 
-          <CtaBtnAmarillo />
-        </div>
-      </section>
+    <CtaBtnAmarillo />
+  </div>
+</section>
     </div>
   );
 }
