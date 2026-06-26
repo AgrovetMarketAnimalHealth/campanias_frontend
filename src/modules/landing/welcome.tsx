@@ -1,11 +1,10 @@
+// welcome.tsx
 import { UTMLink as Link } from "@/components/UTMLink"
 import { useEffect, useRef } from "react";
 import { useAuthDestino } from "@/modules/perfil/hooks/useAuthDestino";
 import { SignupTabs } from "@/modules/auth/components/signup-tabs";
 import desk1 from "@/assets/destokp/1-Seccion.webp";
 import mob1 from "@/assets/mobile/1-Seccion.webp";
-import desk2 from "@/assets/destokp/2-Seccion.webp";
-import mob2 from "@/assets/mobile/2-Seccion.webp";
 import desk3 from "@/assets/destokp/3-Seccion.webp";
 import mob3 from "@/assets/mobile/3-Seccion.webp";
 import desk4 from "@/assets/destokp/4-Seccion.webp";
@@ -15,7 +14,6 @@ import mob5 from "@/assets/mobile/5-Seccion.webp";
 import desk6 from "@/assets/destokp/6-Seccion.webp";
 import mob6 from "@/assets/mobile/6-Seccion.webp";
 
-// TODO: ajusta esto a la ruta real donde el cliente sube sus facturas
 const RUTA_SUBIR_FACTURAS = "/portal/dashboard";
 
 function useScrollReveal(rootRef: React.RefObject<HTMLDivElement | null>) {
@@ -49,7 +47,6 @@ function scrollToRegistro() {
   document.getElementById("registro")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-// Animaciones "llamativas" para los CTA cuando el cliente ya está autenticado
 function EstilosCtaLlamativo() {
   return (
     <style>{`
@@ -63,6 +60,14 @@ function EstilosCtaLlamativo() {
       }
       .cta-llamativo-amarillo { animation: ctaPulseAmarillo 1.8s ease-in-out infinite; }
       .cta-llamativo-violeta { animation: ctaPulseVioleta 1.8s ease-in-out infinite; }
+      
+      @media (max-width: 1023px) {
+        .formulario-integrado {
+          background: transparent !important;
+          box-shadow: none !important;
+          padding: 0 !important;
+        }
+      }
     `}</style>
   );
 }
@@ -90,65 +95,17 @@ function CtaBtnAmarillo() {
     );
   }
 
-  // Autenticado: ya no tiene sentido invitarlo a inscribirse, lo mandamos a subir facturas
   if (autenticado) {
     return (
-      <Link
-        to={RUTA_SUBIR_FACTURAS}
-        className={`${baseClass} cta-llamativo-amarillo`}
-        style={baseStyle}
-      >
+      <Link to={RUTA_SUBIR_FACTURAS} className={`${baseClass} cta-llamativo-amarillo`} style={baseStyle}>
         Sube tus facturas
       </Link>
     );
   }
 
-  // No autenticado: hace scroll a la sección 2 (formulario de registro)
   return (
     <button type="button" onClick={scrollToRegistro} className={baseClass} style={baseStyle}>
       Inscríbete aquí
-    </button>
-  );
-}
-
-function CtaBtnBlanco() {
-  const { estado, cliente } = useAuthDestino();
-  const cargando = estado === "cargando";
-  const autenticado = !!cliente;
-
-  const baseClass =
-    "inline-flex items-center justify-center w-auto max-w-[280px] md:max-w-[460px] px-5 py-[10px] md:py-5 rounded-full font-black uppercase text-[11px] md:text-[20px] transition-all duration-200 hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]";
-
-  const baseStyle: React.CSSProperties = {
-    letterSpacing: "0.05em",
-    backgroundColor: "#fff",
-    color: "rgb(141, 99, 207)",
-    boxShadow: "2px 2px 12px rgba(0,0,0,0.25)",
-  };
-
-  if (cargando) {
-    return (
-      <button type="button" disabled className={baseClass} style={{ ...baseStyle, pointerEvents: "none" }}>
-        Cargando...
-      </button>
-    );
-  }
-
-  if (autenticado) {
-    return (
-      <Link
-        to={RUTA_SUBIR_FACTURAS}
-        className={`${baseClass} cta-llamativo-violeta`}
-        style={baseStyle}
-      >
-        ¡Sube tus facturas aquí!
-      </Link>
-    );
-  }
-
-  return (
-    <button type="button" onClick={scrollToRegistro} className={baseClass} style={baseStyle}>
-      ¡Quiero conocer a Chayanne!
     </button>
   );
 }
@@ -166,15 +123,39 @@ export function WelcomePage() {
       className="font-nunito flex flex-col items-center w-full bg-white overflow-x-hidden"
     >
       <EstilosCtaLlamativo />
-
-      {/* ── 1. HERO ── */}
+      {/* ── 1. HERO con formulario flotante ── */}
       <section className="reveal w-full bg-white animate-hero-slide-down">
+        {/* Desktop: imagen con su proporción real + form flotando encima */}
         <div
           className="relative hidden md:block w-full overflow-hidden"
           style={{ paddingBottom: "41.67%" }}
         >
           <img src={desk1} alt="" className="absolute inset-0 w-full h-full object-cover" />
+
+          {!cargando && !autenticado ? (
+            <div className="absolute inset-0 flex items-center justify-end pr-10 lg:pr-20">
+              <div className="w-[90%] max-w-sm lg:max-w-md">
+                <SignupTabs />
+              </div>
+            </div>
+          ) : (
+            autenticado && (
+              <div className="absolute inset-0 flex items-center justify-end pr-10 lg:pr-20">
+                <div className="text-center bg-white rounded-2xl shadow-2xl p-6">
+                  <h2 className="text-xl font-bold text-gray-800 mb-3">¡Bienvenido de nuevo!</h2>
+                  <Link
+                    to={RUTA_SUBIR_FACTURAS}
+                    className="inline-block bg-violet-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-violet-700 transition"
+                  >
+                    Ir al dashboard
+                  </Link>
+                </div>
+              </div>
+            )
+          )}
         </div>
+
+        {/* Mobile: solo la imagen, igual que antes */}
         <div
           className="relative block md:hidden w-full overflow-hidden"
           style={{ paddingBottom: "73.80%" }}
@@ -183,30 +164,17 @@ export function WelcomePage() {
         </div>
       </section>
 
-      {/* ── 2. FORMULARIO DE REGISTRO (oculto si ya está autenticado o mientras carga) ── */}
+      {/* ── 2. FORMULARIO (mobile, separado debajo del hero — como en tu versión que funcionaba) ── */}
       {!cargando && !autenticado && (
-        <section id="registro" className="reveal w-full">
+        <section id="registro" className="reveal w-full block md:hidden">
           <SignupTabs />
         </section>
       )}
 
-      {/* ── 3. PREMIOS ── */}
-      <section className="reveal w-full bg-[rgb(137,208,242)]">
-        <div className="relative hidden md:block w-full">
-          <img src={desk2} alt="" className="w-full h-auto block" />
-          <div className="absolute inset-0 flex justify-center items-center">
-            <CtaBtnBlanco />
-          </div>
-        </div>
-        <div className="relative block md:hidden w-full">
-          <img src={mob2} alt="" className="w-full h-auto block" />
-          <div className="absolute inset-0 flex justify-center items-center">
-            <CtaBtnBlanco />
-          </div>
-        </div>
-      </section>
+      {/* ── ESPACIO BLANCO (antes era la sección PREMIOS con imagen y botón) ── */}
+      <section className="w-full bg-white h-1 md:h-2" />
 
-      {/* ── 4. PRODUCTOS ── */}
+      {/* SECCIÓN 3 - FONDO MORADO */}
       <section className="w-full bg-[linear-gradient(135deg,rgb(88,63,160)_0%,rgb(128,95,199)_50%,rgb(88,63,160)_100%)]">
         <div className="reveal-scale w-full">
           <div
@@ -224,7 +192,7 @@ export function WelcomePage() {
         </div>
       </section>
 
-      {/* ── 5. PASOS ── */}
+      {/* SECCIÓN 4 - IMAGEN CON TÉRMINOS */}
       <section className="w-full bg-white py-8 md:py-12">
         <div className="reveal w-full">
           <div
@@ -247,14 +215,16 @@ export function WelcomePage() {
         <div className="reveal delay-[0.22s] px-6 pt-2 pb-5 md:max-w-[1100px] md:mx-auto md:px-16 md:pb-6">
           <p className="text-[13px] md:text-[14px] text-[#555] leading-relaxed text-left">
             *No incluye IGV. Ver{" "}
-            <Link to="/portal/terminos-condiciones" className="text-violet-500 font-bold underline">Términos y Condiciones</Link>.
+            <Link to="/portal/terminos-condiciones" className="text-violet-500 font-bold underline">
+              Términos y Condiciones
+            </Link>.
             Las entradas se sortearán en 2 fechas: Primer sorteo (2 Ganadores) el 8 de setiembre
             y segundo sorteo (3 Ganadores) el 12 de noviembre de 2026.
           </p>
         </div>
       </section>
 
-      {/* ── 6. INTERMEDIO ── */}
+      {/* SECCIÓN 5 - FONDO GRIS */}
       <section className="w-full bg-[rgb(236,238,240)] py-8 md:py-12">
         <div className="reveal w-full">
           <div
@@ -265,14 +235,14 @@ export function WelcomePage() {
           </div>
           <div
             className="relative block md:hidden w-full overflow-hidden"
-            style={{ paddingBottom: "25%" }}
+            style={{ paddingBottom: "23%" }}
           >
             <img src={mob5} alt="" className="absolute inset-0 w-full h-full object-contain" />
           </div>
         </div>
       </section>
 
-      {/* ── 7. BRAND CIERRE ── */}
+      {/* SECCIÓN 6 - FONDO MORADO OSCURO */}
       <section className="w-full bg-[linear-gradient(135deg,rgb(88,63,160)_0%,rgb(125,94,198)_50%,rgb(138,105,212)_100%)]">
         <div className="reveal w-full">
           <div
@@ -287,14 +257,14 @@ export function WelcomePage() {
           </div>
           <div
             className="relative block md:hidden w-full overflow-hidden"
-            style={{ paddingBottom: "25%" }}
+            style={{ paddingBottom: "23%" }}
           >
             <img src={mob6} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
       </section>
 
-      {/* ── 8. CTA FINAL ── */}
+      {/* SECCIÓN FINAL - CTA */}
       <section className="w-full bg-white">
         <div className="reveal flex flex-col items-center gap-3 px-6 py-8 md:py-12">
           <p className="font-black text-[22px] md:text-[32px] text-center uppercase">
@@ -307,7 +277,6 @@ export function WelcomePage() {
           <CtaBtnAmarillo />
         </div>
       </section>
-
     </div>
   );
 }
