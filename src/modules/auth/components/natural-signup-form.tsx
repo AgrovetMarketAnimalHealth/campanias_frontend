@@ -1,3 +1,4 @@
+// natural-signup-form.tsx
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { cn } from '@/lib/utils'
@@ -77,13 +78,17 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
 
         <div className="grid grid-cols-2 gap-4">
           <Field>
-            <FieldLabel htmlFor="nombres">Nombres <span className="text-red-500">*</span></FieldLabel>
-            <Input id="nombres" type="text" placeholder="Juan" {...register('nombre')} />
+            <FieldLabel htmlFor="nombres" className="md:hidden">
+              Nombres <span className="text-red-500">*</span>
+            </FieldLabel>
+            <Input id="nombres" type="text" placeholder="Nombres *" {...register('nombre')} />
             {errors.nombre && <p className="text-destructive text-xs">{errors.nombre.message}</p>}
           </Field>
           <Field>
-            <FieldLabel htmlFor="apellidos">Apellidos <span className="text-red-500">*</span></FieldLabel>
-            <Input id="apellidos" type="text" placeholder="Pérez" {...register('apellidos')} />
+            <FieldLabel htmlFor="apellidos" className="md:hidden">
+              Apellidos <span className="text-red-500">*</span>
+            </FieldLabel>
+            <Input id="apellidos" type="text" placeholder="Apellidos *" {...register('apellidos')} />
             {errors.apellidos && (
               <p className="text-destructive text-xs">
                 {'apellidos' in errors ? errors.apellidos?.message : ''}
@@ -94,8 +99,10 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
 
         <div className="grid grid-cols-2 gap-4">
           <Field>
-            <FieldLabel htmlFor="dni">DNI <span className="text-red-500">*</span></FieldLabel>
-            <Input id="dni" type="text" placeholder="12345678" maxLength={8} {...register('dni')} />
+            <FieldLabel htmlFor="dni" className="md:hidden">
+              DNI <span className="text-red-500">*</span>
+            </FieldLabel>
+            <Input id="dni" type="text" placeholder="DNI *" maxLength={8} {...register('dni')} />
             {errors.dni && (
               <p className="text-destructive text-xs">
                 {'dni' in errors ? errors.dni?.message : ''}
@@ -103,20 +110,24 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
             )}
           </Field>
           <Field>
-            <FieldLabel htmlFor="celular">Celular <span className="text-red-500">*</span></FieldLabel>
-            <Input id="celular" type="tel" placeholder="987 654 321" {...register('telefono')} />
+            <FieldLabel htmlFor="celular" className="md:hidden">
+              Celular <span className="text-red-500">*</span>
+            </FieldLabel>
+            <Input id="celular" type="tel" placeholder="Celular *" {...register('telefono')} />
             {errors.telefono && <p className="text-destructive text-xs">{errors.telefono.message}</p>}
           </Field>
         </div>
 
         <Field>
-          <FieldLabel>Departamento <span className="text-red-500">*</span></FieldLabel>
+          <FieldLabel className="md:hidden">
+            Departamento <span className="text-red-500">*</span>
+          </FieldLabel>
           <select
             onChange={(e) => setValue('departamento', e.target.value)}
             className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             defaultValue=""
           >
-            <option value="" disabled>Selecciona tu departamento</option>
+            <option value="" disabled>Departamento *</option>
             {DEPARTAMENTOS.map(({ label, value }) => (
               <option key={value} value={value}>{label}</option>
             ))}
@@ -127,8 +138,10 @@ export function NaturalSignupForm({ className, ...props }: React.ComponentProps<
         </Field>
 
         <Field>
-          <FieldLabel htmlFor="email">Correo electrónico <span className="text-red-500">*</span></FieldLabel>
-          <Input id="email" type="email" placeholder="m@ejemplo.com" {...register('email')} />
+          <FieldLabel htmlFor="email" className="md:hidden">
+            Correo electrónico <span className="text-red-500">*</span>
+          </FieldLabel>
+          <Input id="email" type="email" placeholder="Correo electrónico *" {...register('email')} />
           {errors.email && <p className="text-destructive text-xs">{errors.email.message}</p>}
         </Field>
 
