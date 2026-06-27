@@ -159,6 +159,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'form'>
               className="h-8 px-2"
               type="tel"
               placeholder="Celular"
+              maxLength={9} 
               {...register('telefono')}
             />
             {errors.telefono && <p className="text-destructive text-[10px]">{errors.telefono.message}</p>}
@@ -197,14 +198,14 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'form'>
         <Field>
           <div className="flex items-start gap-1.5">
             <Checkbox
-              id="terminos"
-              checked={aceptaTerminos as boolean}
-              onCheckedChange={(checked) => {
-                setValue('acepta_terminos', checked === true)
-                setValue('acepta_politicas', checked === true)
-              }}
-              className="mt-0.5 h-3 w-3"
-            />
+  id="terminos"
+  checked={aceptaTerminos as boolean}
+  onCheckedChange={(checked) => {
+    setValue('acepta_terminos', checked === true, { shouldValidate: true })
+    setValue('acepta_politicas', checked === true)
+  }}
+  className="mt-0.5 h-3 w-3"
+/>
             <label htmlFor="terminos" className="text-[9px] leading-tight cursor-pointer text-muted-foreground">
               Acepto los{' '}
               <Link to="/portal/terminos-condiciones" className="underline underline-offset-2 hover:text-primary text-foreground">
