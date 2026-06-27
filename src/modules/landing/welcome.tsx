@@ -151,7 +151,9 @@ function InstagramEmbedChayanne() {
           href="https://www.instagram.com/p/DZsfaphP1Qj/"
           target="_blank"
           rel="noreferrer"
-        />
+        >
+          Ver publicación en Instagram
+        </a>
       </blockquote>
     </div>
   );
@@ -172,39 +174,39 @@ export function WelcomePage() {
       <EstilosCtaLlamativo />
       {/* ── 1. HERO con formulario flotante ── */}
       <section id="seccion1" className="reveal w-full bg-white animate-hero-slide-down">
-  {/* Desktop: imagen con su proporción real + form flotando encima */}
-  <div className="relative hidden md:block w-full overflow-hidden">
-    <div className="w-full" style={{ paddingBottom: "41.67%" }} />
-    <img src={desk1} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        {/* Desktop: imagen con su proporción real + form flotando encima */}
+        <div className="relative hidden md:block w-full overflow-hidden">
+          <div className="w-full" style={{ paddingBottom: "41.67%" }} />
+          <img src={desk1} alt="" className="absolute inset-0 w-full h-full object-cover" />
 
-    {!cargando && !autenticado ? (
-  <div className="absolute inset-0 flex items-center justify-end pr-2 lg:pr-6">
-  <div className="w-[90%] max-w-[310px] lg:max-w-[355px]">
-      <SignupTabs />
-    </div>
-  </div>
-) : (
-      autenticado && (
-        <div className="absolute inset-0 flex items-center justify-end pr-10 lg:pr-20">
-          <div className="text-center bg-white rounded-2xl shadow-2xl p-6">
-            <h2 className="text-xl font-bold text-gray-800 mb-3">¡Bienvenido de nuevo!</h2>
-            <Link
-              to={RUTA_SUBIR_FACTURAS}
-              className="inline-block bg-violet-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-violet-700 transition"
-            >
-              Ir al dashboard
-            </Link>
-          </div>
+          {!cargando && !autenticado ? (
+            <div className="absolute inset-0 flex items-center justify-end pr-2 lg:pr-6">
+              <div className="w-[90%] max-w-[310px] lg:max-w-[355px]">
+                <SignupTabs />
+              </div>
+            </div>
+          ) : (
+            autenticado && (
+              <div className="absolute inset-0 flex items-center justify-end pr-10 lg:pr-20">
+                <div className="text-center bg-white rounded-2xl shadow-2xl p-6">
+                  <h2 className="text-xl font-bold text-gray-800 mb-3">¡Bienvenido de nuevo!</h2>
+                  <Link
+                    to={RUTA_SUBIR_FACTURAS}
+                    className="inline-block bg-violet-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-violet-700 transition"
+                  >
+                    Ir al dashboard
+                  </Link>
+                </div>
+              </div>
+            )
+          )}
         </div>
-      )
-    )}
-  </div>
 
-  {/* Mobile: solo la imagen, igual que antes */}
-      <div className="relative block md:hidden w-full overflow-hidden" style={{ paddingBottom: "73.80%" }}>
-        <img src={mob1} alt="" className="absolute inset-0 w-full h-full object-cover" />
-      </div>
-    </section>
+        {/* Mobile: solo la imagen, igual que antes */}
+        <div className="relative block md:hidden w-full overflow-hidden" style={{ paddingBottom: "73.80%" }}>
+          <img src={mob1} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+      </section>
 
       {/* ── 2. FORMULARIO (mobile, separado debajo del hero — como en tu versión que funcionaba) ── */}
       {!cargando && !autenticado && (
@@ -213,7 +215,7 @@ export function WelcomePage() {
         </section>
       )}
 
-      {/* ── ESPACIO BLANCO (antes era la sección PREMIOS con imagen y botón) ── */}
+      {/* ── ESPACIO BLANCO ── */}
       <section className="w-full bg-white h-1 md:h-2" />
 
       {/* SECCIÓN 3 - FONDO MORADO */}
@@ -233,28 +235,30 @@ export function WelcomePage() {
           </div>
         </div>
       </section>
-
+      
       {/* SECCIÓN 4 - IMAGEN CON TÉRMINOS */}
-      <section className="w-full bg-white py-8 md:py-12">
+      <section className="w-full bg-white pt-4 pb-2 md:pt-6 md:pb-3">
         <div className="reveal w-full">
+          {/* Desktop */}
           <div
-            className="relative hidden md:block w-full overflow-hidden mb-16"
+            className="relative hidden md:block w-full overflow-hidden mb-4"
             style={{ paddingBottom: "27%" }}
           >
             <img src={desk4} alt="" className="absolute inset-0 w-full h-full object-contain" />
           </div>
+          {/* Mobile */}
           <div
-            className="relative block md:hidden w-full overflow-hidden mb-6"
+            className="relative block md:hidden w-full overflow-hidden mb-2"
             style={{ paddingBottom: "45%" }}
           >
             <img
               src={mob4}
               alt=""
-              className="absolute inset-0 w-full h-full object-contain translate-y-4"
+              className="absolute inset-0 w-full h-full object-contain"
             />
           </div>
         </div>
-        <div className="reveal delay-[0.22s] px-6 pt-2 pb-5 md:max-w-[1100px] md:mx-auto md:px-16 md:pb-6">
+        <div className="reveal delay-[0.22s] px-6 pt-1 pb-3 md:max-w-[1100px] md:mx-auto md:px-16 md:pb-4">
           <p className="text-[13px] md:text-[14px] text-[#555] leading-relaxed text-left">
             *No incluye IGV. Ver{" "}
             <Link to="/portal/terminos-condiciones" className="text-violet-500 font-bold underline">
@@ -267,7 +271,7 @@ export function WelcomePage() {
       </section>
 
       {/* SECCIÓN 5 - FONDO GRIS */}
-      <section className="w-full bg-[rgb(236,238,240)] py-8 md:py-12">
+      <section className="w-full bg-[rgb(236,238,240)] pt-4 pb-2 md:pt-6 md:pb-3">
         <div className="reveal w-full">
           <div
             className="relative hidden md:block w-full overflow-hidden"
@@ -308,32 +312,18 @@ export function WelcomePage() {
 
       {/* SECCIÓN FINAL - CTA */}
       <section className="w-full bg-white">
-  <div className="reveal flex flex-col items-center gap-3 px-6 py-8 md:py-12">
-    <p className="text-center text-[22px] font-black uppercase md:text-[32px]">
-      {autenticado ? (
-        <>
-          ¡No olvides{" "}
-          <span className="text-[rgb(138,105,212)]">
-            subir tus facturas
-          </span>{" "}
-          para seguir acumulando oportunidades de ganar!
-        </>
-      ) : (
-        <>
-          ¡Así celebraron nuestros últimos{" "}
-          <span className="text-[rgb(138,105,212)]">
-            ganadores!
-          </span>{" "}
-          Participa y el próximo podrías ser tú.
-        </>
-      )}
-    </p>
-
-    <InstagramEmbedChayanne />
-
-    <CtaBtnAmarillo />
-  </div>
-</section>
+        <div className="reveal flex flex-col items-center gap-3 px-6 py-8 md:py-12">
+          <p className="text-center text-[22px] font-black uppercase md:text-[32px]">
+            ¡Así celebraron nuestros últimos{" "}
+            <span className="text-[rgb(138,105,212)]">ganadores!</span>
+          </p>
+          <p className="text-center text-[22px] font-black uppercase md:text-[32px]">
+            Participa y el próximo podrías ser tú.
+          </p>
+          <InstagramEmbedChayanne />
+          <CtaBtnAmarillo />
+        </div>
+      </section>
     </div>
   );
 }
