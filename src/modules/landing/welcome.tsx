@@ -159,6 +159,22 @@ function InstagramEmbedChayanne() {
   );
 }
 
+function BienvenidaAutenticado({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className="text-center bg-white p-8 rounded">
+      <h2 className={`font-bold text-gray-800 mb-3 ${compact ? "text-lg" : "text-xl"}`}>
+        ¡Bienvenido de nuevo!
+      </h2>
+      <Link
+        to={RUTA_SUBIR_FACTURAS}
+        className="inline-block bg-violet-600 text-white px-5 md:px-6 py-3 rounded-lg font-bold hover:bg-violet-700 transition"
+      >
+        Ir al dashboard
+      </Link>
+    </div>
+  );
+}
+
 export function WelcomePage() {
   const revealRef = useRef<HTMLDivElement | null>(null);
   useScrollReveal(revealRef);
@@ -188,30 +204,28 @@ export function WelcomePage() {
           ) : (
             autenticado && (
               <div className="absolute inset-0 flex items-center justify-end pr-10 lg:pr-20">
-                <div className="text-center bg-white rounded-2xl shadow-2xl p-6">
-                  <h2 className="text-xl font-bold text-gray-800 mb-3">¡Bienvenido de nuevo!</h2>
-                  <Link
-                    to={RUTA_SUBIR_FACTURAS}
-                    className="inline-block bg-violet-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-violet-700 transition"
-                  >
-                    Ir al dashboard
-                  </Link>
-                </div>
+                <BienvenidaAutenticado />
               </div>
             )
           )}
         </div>
 
-        {/* Mobile: solo la imagen, igual que antes */}
+        {/* Mobile: solo la imagen, sin nada encima */}
         <div className="relative block md:hidden w-full overflow-hidden" style={{ paddingBottom: "73.80%" }}>
           <img src={mob1} alt="" className="absolute inset-0 w-full h-full object-cover" />
         </div>
       </section>
 
-      {/* ── 2. FORMULARIO (mobile, separado debajo del hero — como en tu versión que funcionaba) ── */}
-      {!cargando && !autenticado && (
+      {/* ── 2. FORMULARIO o BIENVENIDA (mobile, debajo del hero) ── */}
+      {!cargando && (
         <section id="registro" className="reveal w-full block md:hidden">
-          <SignupTabs />
+          {autenticado ? (
+            <div className="flex justify-center px-6 py-6">
+              <BienvenidaAutenticado compact />
+            </div>
+          ) : (
+            <SignupTabs />
+          )}
         </section>
       )}
 

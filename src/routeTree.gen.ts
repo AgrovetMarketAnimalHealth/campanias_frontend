@@ -45,9 +45,6 @@ const AuthLayoutRecuperarContrasenaIndexLazyRouteImport = createFileRoute(
 )()
 const AuthLayoutRecuperarContrasenaNuevaContrasenaLazyRouteImport =
   createFileRoute('/_auth/_layout/recuperar-contrasena/nueva-contrasena')()
-const _emailEmailVerifyTokenLazyRouteImport = createFileRoute(
-  '/__email/email/verify/$token',
-)()
 
 const RegistroFallidoRoute = RegistroFallidoRouteImport.update({
   id: '/registro-fallido',
@@ -159,15 +156,6 @@ const AuthLayoutRecuperarContrasenaNuevaContrasenaLazyRoute =
       (d) => d.Route,
     ),
   )
-const _emailEmailVerifyTokenLazyRoute = _emailEmailVerifyTokenLazyRouteImport
-  .update({
-    id: '/__email/email/verify/$token',
-    path: '/email/verify/$token',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-  .lazy(() =>
-    import('./routes/__email/email.verify.$token.lazy').then((d) => d.Route),
-  )
 const AuthenticatedLayoutPortalNotificacionesIndexRoute =
   AuthenticatedLayoutPortalNotificacionesIndexRouteImport.update({
     id: '/portal/notificaciones/',
@@ -192,7 +180,6 @@ export interface FileRoutesByFullPath {
   '/recuperar-contrasena': typeof AuthLayoutRecuperarContrasenaLazyRouteWithChildren
   '/registrarme': typeof AuthLayoutRegistrarmeLazyRoute
   '/verify-email': typeof AuthLayoutVerifyEmailLazyRoute
-  '/email/verify/$token': typeof _emailEmailVerifyTokenLazyRoute
   '/recuperar-contrasena/nueva-contrasena': typeof AuthLayoutRecuperarContrasenaNuevaContrasenaLazyRoute
   '/mis-datos/': typeof AuthenticatedLayoutMisDatosIndexRoute
   '/recuperar-contrasena/': typeof AuthLayoutRecuperarContrasenaIndexLazyRoute
@@ -209,7 +196,6 @@ export interface FileRoutesByTo {
   '/iniciar-sesion': typeof AuthLayoutIniciarSesionLazyRoute
   '/registrarme': typeof AuthLayoutRegistrarmeLazyRoute
   '/verify-email': typeof AuthLayoutVerifyEmailLazyRoute
-  '/email/verify/$token': typeof _emailEmailVerifyTokenLazyRoute
   '/recuperar-contrasena/nueva-contrasena': typeof AuthLayoutRecuperarContrasenaNuevaContrasenaLazyRoute
   '/mis-datos': typeof AuthenticatedLayoutMisDatosIndexRoute
   '/recuperar-contrasena': typeof AuthLayoutRecuperarContrasenaIndexLazyRoute
@@ -232,7 +218,6 @@ export interface FileRoutesById {
   '/_auth/_layout/recuperar-contrasena': typeof AuthLayoutRecuperarContrasenaLazyRouteWithChildren
   '/_auth/_layout/registrarme': typeof AuthLayoutRegistrarmeLazyRoute
   '/_auth/_layout/verify-email': typeof AuthLayoutVerifyEmailLazyRoute
-  '/__email/email/verify/$token': typeof _emailEmailVerifyTokenLazyRoute
   '/_auth/_layout/recuperar-contrasena/nueva-contrasena': typeof AuthLayoutRecuperarContrasenaNuevaContrasenaLazyRoute
   '/_authenticated/_layout/mis-datos/': typeof AuthenticatedLayoutMisDatosIndexRoute
   '/_auth/_layout/recuperar-contrasena/': typeof AuthLayoutRecuperarContrasenaIndexLazyRoute
@@ -252,7 +237,6 @@ export interface FileRouteTypes {
     | '/recuperar-contrasena'
     | '/registrarme'
     | '/verify-email'
-    | '/email/verify/$token'
     | '/recuperar-contrasena/nueva-contrasena'
     | '/mis-datos/'
     | '/recuperar-contrasena/'
@@ -269,7 +253,6 @@ export interface FileRouteTypes {
     | '/iniciar-sesion'
     | '/registrarme'
     | '/verify-email'
-    | '/email/verify/$token'
     | '/recuperar-contrasena/nueva-contrasena'
     | '/mis-datos'
     | '/recuperar-contrasena'
@@ -291,7 +274,6 @@ export interface FileRouteTypes {
     | '/_auth/_layout/recuperar-contrasena'
     | '/_auth/_layout/registrarme'
     | '/_auth/_layout/verify-email'
-    | '/__email/email/verify/$token'
     | '/_auth/_layout/recuperar-contrasena/nueva-contrasena'
     | '/_authenticated/_layout/mis-datos/'
     | '/_auth/_layout/recuperar-contrasena/'
@@ -308,7 +290,6 @@ export interface RootRouteChildren {
   PortalPoliticasDePrivacidadRoute: typeof PortalPoliticasDePrivacidadRoute
   PortalTerminosCondicionesRoute: typeof PortalTerminosCondicionesRoute
   _emailEmailResendLazyRoute: typeof _emailEmailResendLazyRoute
-  _emailEmailVerifyTokenLazyRoute: typeof _emailEmailVerifyTokenLazyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -432,13 +413,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLayoutRecuperarContrasenaNuevaContrasenaLazyRouteImport
       parentRoute: typeof AuthLayoutRecuperarContrasenaLazyRoute
     }
-    '/__email/email/verify/$token': {
-      id: '/__email/email/verify/$token'
-      path: '/email/verify/$token'
-      fullPath: '/email/verify/$token'
-      preLoaderRoute: typeof _emailEmailVerifyTokenLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_authenticated/_layout/portal/notificaciones/': {
       id: '/_authenticated/_layout/portal/notificaciones/'
       path: '/portal/notificaciones'
@@ -556,11 +530,6 @@ declare module './routes/_auth/_layout/registrarme.lazy' {
 declare module './routes/_auth/_layout/verify-email.lazy' {
   const createLazyFileRoute: CreateLazyFileRoute<
     FileRoutesByPath['/_auth/_layout/verify-email']['preLoaderRoute']
-  >
-}
-declare module './routes/__email/email.verify.$token.lazy' {
-  const createLazyFileRoute: CreateLazyFileRoute<
-    FileRoutesByPath['/__email/email/verify/$token']['preLoaderRoute']
   >
 }
 declare module './routes/_auth/_layout/recuperar-contrasena/nueva-contrasena.lazy' {
@@ -686,7 +655,6 @@ const rootRouteChildren: RootRouteChildren = {
   PortalPoliticasDePrivacidadRoute: PortalPoliticasDePrivacidadRoute,
   PortalTerminosCondicionesRoute: PortalTerminosCondicionesRoute,
   _emailEmailResendLazyRoute: _emailEmailResendLazyRoute,
-  _emailEmailVerifyTokenLazyRoute: _emailEmailVerifyTokenLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
