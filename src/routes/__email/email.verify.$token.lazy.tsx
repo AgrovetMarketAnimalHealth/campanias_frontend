@@ -3,6 +3,10 @@ import { useEffect, useRef } from 'react'
 import { AuthService } from '@/modules/auth/services/auth.service'
 import { markInternalNav, getStoredUTMs } from '@/hooks/useUTMTracker'
 
+export const Route = createLazyFileRoute({
+  component: VerifyEmailPage,
+})
+
 function VerifyEmailPage() {
   const navigate = useNavigate()
   const { token } = Route.useParams()
@@ -14,8 +18,8 @@ function VerifyEmailPage() {
 
     AuthService.verificarEmail(token)
       .then((res) => {
-        const utms = getStoredUTMs() // 👈 leer antes de navegar
-        markInternalNav()            // 👈 marcar como nav interna
+        const utms = getStoredUTMs()
+        markInternalNav()
 
         if (res.success) {
           navigate({
@@ -42,5 +46,10 @@ function VerifyEmailPage() {
         })
       })
   }, [token])
-  // ...
+
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <p>Verificando tu correo...</p>
+    </div>
+  )
 }

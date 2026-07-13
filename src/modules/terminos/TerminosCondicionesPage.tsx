@@ -267,7 +267,7 @@ export function TerminosCondicionesPage() {
               <div>
                 <p className="text-base font-semibold text-gray-800 mb-3">3. La mecánica del sorteo es la siguiente:</p>
                 <p className="text-base text-gray-700 leading-relaxed">
-                  Por cada S/ 1,000.00 (UN MIL con 00/100 SOLES) que se adquiera en productos ATREVIA® participantes, el adquiriente acumulará 1 (una) opción para el sorteo. No participan productos distintos de ATREVIA®.
+                  Por cada S/ 1,000.00 (UN MIL con 00/100 SOLES), monto sin incluir IGV, que se adquiera en productos ATREVIA® participantes, el adquiriente acumulará 1 (una) opción para el sorteo. No participan productos distintos de ATREVIA®.
                 </p>
 
                 <div className="mt-6 space-y-6">
@@ -309,7 +309,7 @@ export function TerminosCondicionesPage() {
                   <div>
                     <p className="text-base font-semibold text-gray-800 mb-3">3.2 Reglas sobre la validación de compras</p>
                     <BulletList items={[
-                      "Sumatoria de Productos: Se permite la sumatoria de cualquier combinación de los productos participantes mencionados en el punto 3.1, siempre que se realicen en 1 (UNA) sola compra (un solo comprobante) para alcanzar el monto mínimo de S/ 1,000.00 (UN MIL con 00/100 Soles).",
+                      "Sumatoria de Productos: Se permite la sumatoria de cualquier combinación de los productos participantes mencionados en el punto 3.1, siempre que se realicen en 1 (UNA) sola compra (un solo comprobante) para alcanzar el monto mínimo de S/ 1,000.00 (UN MIL con 00/100 Soles), monto sin incluir IGV.",
                       "Monto Mínimo por Registro: El registro de opciones se realiza únicamente si en 1 (UNA) compra se alcanza el monto mínimo de S/ 1,000.00. Por lo tanto, no se aceptará la sumatoria de comprobantes de pago distintos que individualmente sean inferiores a S/ 1,000.00.",
                       "Prohibición de Redondeo: La asignación de opciones se realizará estrictamente sobre la base de múltiplos de S/ 1,000.00 (UN MIL con 00/100 Soles). No se efectuará redondeo a favor de los participantes en caso de montos excedentes que no lleguen a alcanzar un nuevo múltiplo de S/ 1,000.00 (Ejemplo: una compra de S/ 1,800.00 genera solo 1 opción).",
                     ]} />
