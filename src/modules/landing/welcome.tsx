@@ -15,7 +15,7 @@ import { UTMLink as Link } from "@/components/UTMLink";
 // ── WhatsApp CTA ──
 const WHATSAPP_NUMERO = "51903069021";
 const WHATSAPP_MENSAJE =
-  'Mensaje predeterminado:  ¡Hola! Deseo registrar mis facturas de Atrevia para participar en el sorteo "Vive la experiencia Chayanne".';
+  '¡Hola! Deseo registrar mis facturas de Atrevia para participar en el sorteo "Vive la experiencia Chayanne".';
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(
   WHATSAPP_MENSAJE
 )}`;
