@@ -128,7 +128,7 @@ export function TerminosCondicionesPage() {
                 "Artista: Chayanne",
                 "2 de diciembre 2026",
                 "Lima, Perú",
-                "Vigencia: 19 may – 12 nov 2026",
+                "Vigencia: 19 may – 18 nov 2026",
               ].map((item) => (
                 <span
                   key={item}
