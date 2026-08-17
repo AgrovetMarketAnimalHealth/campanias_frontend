@@ -154,7 +154,7 @@ export function TerminosCondicionesPage() {
                 <div><span className="font-semibold text-gray-900">Nombre:</span> Viva la experiencia Chayanne</div>
                 <div><span className="font-semibold text-gray-900">Ámbito:</span> A nivel nacional (Perú)</div>
                 <div><span className="font-semibold text-gray-900">Concierto:</span> 2 de diciembre 2026 — Lima, Perú</div>
-                <div><span className="font-semibold text-gray-900">Vigencia:</span> 19 de mayo al 12 de noviembre de 2026</div>
+                <div><span className="font-semibold text-gray-900">Vigencia:</span> 19 de mayo al 18 de noviembre de 2026</div>
               </div>
             </AlertDescription>
           </Alert>
@@ -340,8 +340,8 @@ export function TerminosCondicionesPage() {
                 <p className="text-base font-semibold text-gray-800 mb-4">3.4 Condiciones y Restricciones Generales</p>
                 <div className="grid md:grid-cols-2 gap-x-6 gap-y-3">
                   <BulletList items={[
-                    "La promoción del concierto en Lima, Perú estará vigente desde el 19 de mayo de 2026 hasta el 11 de noviembre de 2026 a las 12:00 del mediodía (cierre de inscripciones). El sorteo de la segunda fecha se realizará el 19 de noviembre de 2026.",
-                    "El corte de inscripciones para la primera fecha del sorteo (13 de octubre de 2026) se realizará el día 12 de octubre de 2026 a las 12:00 del mediodía.",
+                    "La promoción del concierto en Lima, Perú estará vigente desde el 19 de mayo de 2026 hasta el 18 de noviembre de 2026. El sorteo de la primera fecha se realizará el 13 de octubre de 2026 y el sorteo de la segunda fecha se realizará el 19 de noviembre de 2026.",
+                    "El corte de inscripciones para el primer sorteo (13 de octubre de 2026) se realizará el 12 de octubre de 2026 a las 12:00 del mediodía. Para el segundo sorteo (19 de noviembre de 2026), el corte de inscripciones será el 18 de noviembre de 2026 a las 12:00 del mediodía.",
                     "Se establece un límite de 01 premio por ganador. En ese sentido, quien resulte ganador en el primer sorteo no podrá participar ni ser considerado en el segundo sorteo, independientemente de las veces que haya sido seleccionado.",
                     "No podrán participar los ganadores de cualquier otro sorteo organizado por AGROVET MARKET S.A. durante el año 2026, independientemente del producto o marca promocionada.",
                     "Los sorteos se realizarán bajo la presencia de un Notario Público y la lista de ganadores será publicada en las redes institucionales de PETMEDICA al día siguiente de realizado cada sorteo. Sin perjuicio de ello, se tomará contacto con cada uno de los ganadores mediante el correo electrónico y/o teléfono consignado.",
