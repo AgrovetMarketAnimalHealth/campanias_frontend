@@ -236,8 +236,7 @@ export function WelcomePage() {
             <Link to="/portal/terminos-condiciones" className="text-violet-500 font-bold underline">
               Términos y Condiciones
             </Link>
-            . Las entradas se sortearán en 2 fechas: Primer sorteo (2 Ganadores) el 8 de setiembre
-            y segundo sorteo (3 Ganadores) el 12 de noviembre de 2026.
+            . Las entradas se sortearán en 2 fechas: Primer sorteo (2 Ganadores) el 13 de octubre y segundo sorteo (3 Ganadores) el 19 de noviembre de 2026
           </p>
         </div>
       </section>
