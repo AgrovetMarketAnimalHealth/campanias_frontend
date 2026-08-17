@@ -3,7 +3,12 @@ import { UTMLink as Link } from "@/components/UTMLink"
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import logoAtrevia from "@/assets/illustrations/logo-atrevia.webp";
 
 const BRAND_HEX = "#9868D8";
@@ -80,7 +85,7 @@ export function TerminosCondicionesPage() {
           className="text-white text-xs font-semibold px-2 py-0.5"
           style={{ backgroundColor: BRAND_HEX }}
         >
-          Sorteo 2026
+          Campaña 2026
         </Badge>
       </div>
 
@@ -110,22 +115,20 @@ export function TerminosCondicionesPage() {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 py-14 md:py-20 text-white">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-70 mb-3">
-              Lima, 24 de julio 2026
+              Lima, 19 de mayo 2026
             </p>
             <p className="text-base font-semibold uppercase tracking-widest opacity-80 mb-1">
-              Sorteo
+              Campaña
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-6">
-              Atrevia te lleva a conocer a Chayanne
+              Viva la experiencia Chayanne
             </h1>
             <div className="flex flex-wrap gap-3">
               {[
                 "Artista: Chayanne",
                 "2 de diciembre 2026",
                 "Lima, Perú",
-                "Vigencia: 24 jul – 15 oct 2026",
-                "Primer sorteo: 13 de octubre",
-                "Segundo sorteo: 19 de noviembre",
+                "Vigencia: 19 may – 12 nov 2026",
               ].map((item) => (
                 <span
                   key={item}
@@ -148,333 +151,263 @@ export function TerminosCondicionesPage() {
           <Alert style={{ backgroundColor: "white" }} className="border-0 shadow-md rounded-xl">
             <AlertDescription>
               <div className="grid sm:grid-cols-2 gap-4 text-base text-gray-700">
-                <div><span className="font-semibold text-gray-900">Nombre:</span> Atrevia te lleva a conocer a Chayanne</div>
-                <div><span className="font-semibold text-gray-900">Ámbito:</span> Perú</div>
+                <div><span className="font-semibold text-gray-900">Nombre:</span> Viva la experiencia Chayanne</div>
+                <div><span className="font-semibold text-gray-900">Ámbito:</span> A nivel nacional (Perú)</div>
                 <div><span className="font-semibold text-gray-900">Concierto:</span> 2 de diciembre 2026 — Lima, Perú</div>
-                <div><span className="font-semibold text-gray-900">Vigencia:</span> 24 de julio al 15 de octubre de 2026</div>
-
-                <div><span className="font-semibold text-gray-900">Primer sorteo:</span> 13 de octubre</div>
-                <div><span className="font-semibold text-gray-900">Segundo sorteo:</span> 19 de noviembre</div>
+                <div><span className="font-semibold text-gray-900">Vigencia:</span> 19 de mayo al 12 de noviembre de 2026</div>
               </div>
             </AlertDescription>
           </Alert>
 
-          {/* INTRODUCCIÓN */}
+          {/* a) Premios */}
           <Card className="shadow-md overflow-hidden border-0 rounded-xl">
             <div
               className="px-6 md:px-8 py-5"
               style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
             >
+              <SectionTitle>a) Detalle de los Premios de la Campaña</SectionTitle>
               <p className="text-base text-gray-700 leading-relaxed">
-                Constan en el presente documento, los Términos y Condiciones que establecen la regulación aplicable al presente sorteo denominado "Atrevia te lleva a conocer a Chayanne" (en adelante, los "Términos y Condiciones"). La empresa anunciante y organizadora de esta actividad es AGROVET MARKET S. A. (en adelante, Agrovet) a través de su marca Atrevia®. El domicilio de Agrovet es Av. Canadá 3792, Villa Jardín, San Luis. Se deja expresa constancia de que en los presentes Términos y condiciones toda referencia a posterior a "Atrevia®" se entenderá como referida a la empresa AGROVET MARKET S. A.
-              </p>
-              <p className="text-base text-gray-700 leading-relaxed mt-3">
-                La persona que desee participar (en adelante, Participante) en el sorteo "Atrevia te lleva a conocer a Chayanne" reconoce y acepta que el desarrollo y realización de este concurso se sujetará única y exclusivamente a los Términos y Condiciones que aquí se detallan y que su participación presupone el conocimiento, comprensión y aceptación plena e irrestricta de todos estos.
+                Se sortearán 5 (CINCO) premios, consistentes cada uno en 1 (UNA) entrada individual al concierto del cantante Chayanne en Lima, Perú, más 1 (UN) meet and greet con el artista. El concierto se realizará el día 2 de diciembre del 2026. Cada premio incluirá adicionalmente, para los ganadores que residan en provincia, 1 (UN) pasaje terrestre o aéreo (según corresponda) hacia la ciudad de Lima y hospedaje por 1 (UNA) noche, conforme se detalla a continuación.
               </p>
             </div>
-          </Card>
-
-          {/* PRIMERO: Territorio */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>PRIMERO: Territorio</SectionTitle>
-              <p className="text-base text-gray-700 leading-relaxed">
-                La promoción será válida únicamente dentro del territorio de Perú. En consecuencia, únicamente se permitirá la participación de residentes en Perú conforme a las condiciones, requisitos, restricciones y en general, cualquier estipulación contenida en los presentes Términos y Condiciones.
-              </p>
-            </div>
-          </Card>
-
-          {/* SEGUNDO: Participantes */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>SEGUNDO: Participantes</SectionTitle>
-              <p className="text-base text-gray-700 leading-relaxed">
-                Podrán participar del concurso todas aquellas personas naturales mayores de edad e identificadas con DNI, carné de extranjería o PTP (Permiso Temporal de Permanencia) residentes en Perú. Para participar en la promoción el participante debe haber leído previamente los términos y condiciones de la promoción que aquí se encuentran detallados y a los que el participante deberá acceder desde el enlace que estará disponible en el post del sorteo "Atrevia te lleva a conocer a Chayanne" publicado en la página de Instagram de Atrevia® (
-                <a href="https://www.instagram.com/atreviapets/" style={{ color: BRAND_HEX }} className="underline hover:opacity-80 transition-opacity" target="_blank" rel="noopener noreferrer">
-                  https://www.instagram.com/atreviapets/
-                </a>
-                ) el 24 de julio de 2026.
-              </p>
-              <p className="text-base text-gray-700 leading-relaxed mt-3">
-                Todas las personas que intervienen como participantes o en cualquier otra forma en la presente Promoción, declaran que han entendido y aceptado los presentes Términos y Condiciones de manera previa a su participación o involucramiento. En tal sentido, los participantes del sorteo aseguran que terceros, directa o indirectamente involucrados en la mecánica descrita en los presentes términos y condiciones, han leído comprendido y aceptado plenamente los mismos sin reserva o condición alguna.
-              </p>
-            </div>
-          </Card>
-
-          {/* TERCERO: Licencia de Uso */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>TERCERO: Licencia de Uso</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6 space-y-4 text-base text-gray-700 leading-relaxed">
-              <p>Al participar en la presente promoción, el participante concede una licencia universal, gratuita, no exclusiva y por todo el tiempo que lo permitan las leyes aplicables, a Atrevia® (entiéndase Agrovet) con relación al contenido de las imágenes y videos, incluyendo atributos de la personalidad como su imagen y voz, a fin de que puedan ser compartidos o empleados en los contenidos de la marca en el contexto de la mecánica de la promoción, en los formatos y cualquier otro contenido de carácter publicitario que Atrevia® y Agrovet consideren apropiados.</p>
-              <p>En ese sentido, la participación mediante fotos o vídeos en las que se aprecie su imagen, implica la expresa autorización a favor de Agrovet para el empleo de tales imágenes o vídeos con los propósitos puntuales de la promoción, sin que ello dé lugar a contraprestación, beneficio o compensación de ninguna naturaleza a su favor.</p>
-              <p>Asimismo, mediante la sola participación con fotografías en el sorteo, el participante, en calidad de representante legal de su menor hijo (de ser el caso) asegura que ambos padres del menor brindan pleno consentimiento a Agrovet para hacer empleo del nombre, imagen y voz de su hijo, en los propósitos puntuales de la promoción, sin que ello dé lugar a contraprestación, beneficio o compensación de ninguna naturaleza a su favor, otorgando a Agrovet para tal efecto una licencia universal gratuita no exclusiva y por todo el tiempo que las leyes del Perú lo permitan.</p>
-              <p>El participante brinda su conformidad para que Atrevia® pueda hacer uso de la licencia otorgada a través de todos los medios de comunicación, incluyendo medios de comunicación masiva tales como internet, redes sociales, televisión, radio, prensa, o a nivel de puntos de venta, u otros de índole similar.</p>
-              <p>Del mismo modo, el participante declara tener los permisos, autorizaciones, licencias o sublicencias por parte de terceros que puedan tener derecho o titularidad alguna sobre los contenidos que puedan ser compartidos por el participante, así como respecto de los atributos de la personalidad de dichos terceros que puedan estar involucrados en la participación de la presente promoción.</p>
-              <p>El participante asegura mantener indemne en cualquier escenario a Atrevia® sobre potenciales reclamaciones de terceros y asegura a Atrevia® que cuenta con las autorizaciones correspondientes para conferir a Agrovet una sublicencia con relación a atributos de la personalidad de terceros con los mismos alcances que los establecidos en el primer párrafo de la presente cláusula.</p>
-              <p>El participante comprende que Atrevia® no se hará responsable del uso que podrían darle terceros al material publicado por el participante en el Instagram de la promoción, dado que escapa a su esfera de control.</p>
+            <CardContent className="p-0">
+              <Accordion type="multiple" className="divide-y divide-gray-100">
+                {[
+                  {
+                    value: "p1",
+                    title: "1. Entrada al concierto + Meet & Greet",
+                    content: "Cada premio consiste en 01 (una) entrada individual al concierto del cantante Chayanne, concierto a realizarse el día 2 de diciembre del 2026 en la ciudad de Lima, República del Perú, más 01 (un) meet and greet con el artista.",
+                  },
+                  {
+                    value: "p2",
+                    title: "2. Beneficio adicional para ganadores de provincia",
+                    content: "Si el ganador reside en provincia (fuera de la ciudad de Lima), el premio incluirá adicionalmente: 01 (UN) pasaje (terrestre o aéreo, según lo determine la organización) ida y vuelta desde su ciudad de origen hacia Lima + hospedaje para una persona x 1 noche en hotel en Lima.",
+                  },
+                  {
+                    value: "p3",
+                    title: "3. No incluye",
+                    content: "Ningún tipo de alimentación, consumo de bebidas, room service, servicio de lavandería, consumos de habitación y/o minibar, propinas, ni ningún otro gasto distinto del hospedaje por 1 (UNA) noche en el hotel de la ciudad de Lima. Para los ganadores de Lima Metropolitana, el premio consiste únicamente en la entrada al concierto y el meet and greet, sin incluir pasajes ni hospedaje.",
+                  },
+                  {
+                    value: "p4",
+                    title: "4. Tampoco incluye",
+                    content: "Ningún otro tipo de traslados dentro o fuera de la ciudad, ni viáticos, ni trámites documentarios, ni gastos por trámite de pasaporte o visas, ni ninguna tasa o impuesto existente o que pueda ser creado, trámites documentarios del ganador, ni ningún otro gasto que no se encuentre expresamente indicado en los puntos 1 y 2 de esta numeración.",
+                  },
+                ].map(({ value, title, content }) => (
+                  <AccordionItem key={value} value={value} className="border-0 px-6 md:px-8">
+                    <AccordionTrigger className="text-base font-semibold text-gray-800 hover:no-underline py-4">
+                      {title}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-base text-gray-600 leading-relaxed pb-4">
+                      {content}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </CardContent>
           </Card>
 
-          {/* CUARTO: Vigencia */}
+          {/* b) Sorteo */}
           <Card className="shadow-md overflow-hidden border-0 rounded-xl">
             <div
               className="px-6 md:px-8 py-5"
               style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
             >
-              <SectionTitle>CUARTO: Vigencia</SectionTitle>
+              <SectionTitle>b) Fechas, Mecánica y Condiciones del Sorteo</SectionTitle>
             </div>
-            <CardContent className="px-6 md:px-8 py-6 space-y-4 text-base text-gray-700 leading-relaxed">
-              <p>La promoción se llevará a cabo del 24 de julio de 2026 al 15 de octubre de 2026. El participante declara aceptar y conocer que el perfil de Instagram de Atrevia® (
-                <a href="https://www.instagram.com/atreviapets/" style={{ color: BRAND_HEX }} className="underline hover:opacity-80 transition-opacity" target="_blank" rel="noopener noreferrer">
-                  https://www.instagram.com/atreviapets/
-                </a>
-                ) es el único canal oficial de revelación de información entendiéndose como adecuada y suficientemente informada de cada anuncio que pueda desarrollarse en el mencionado canal.
-              </p>
-              <p>Cualquier tipo de variación en las fechas, de ser el caso, será oportunamente informada por Agrovet S.A. mediante un aviso en nuestra página de Instagram de Atrevia®, entendiéndose, de ser el caso, plenamente conocido tal aviso por los participantes.</p>
-              <p>La modificación de la promoción, dinámica, plazo y/o cualquier otra característica, en caso se produzca una, se realizará en los términos y condiciones que Atrevia® especifique oportunamente, por lo que el participante entiende que los premios ofrecidos y cualesquiera otras condiciones aplicables, de producirse este escenario podrían ser distintas con relación a los términos originalmente previstos.</p>
-              <p>El participante declara aceptar que como consecuencia de su participación en la dinámica ha asumido voluntariamente la carga de tomar conocimiento de cualquier comunicación o aviso difundido en los canales oficiales para la revelación de información previamente mencionados manifestando asimismo que entiende que dicha obligación es razonable, proporcional y que no afecta de modo alguno los intereses o derechos del participante dado el contexto de la dinámica planteada.</p>
-              <p>Agrovet se reserva el derecho de ampliar la vigencia de la promoción en los términos que sean comunicados oportunamente en cuyo caso dicha ampliación de ningún modo podrá ser interpretada como una nueva promoción. En ese caso, el participante declara conocer y entender que los premios ofrecidos por Agrovet durante el periodo extendido podrían ser únicamente los que se indiquen en la publicidad respectiva en la que se de cuenta de tal extensión o ampliación. El participante, en suma, entiende que, en el supuesto de extensión o ampliación, no necesariamente se ofrecerán los premios o beneficios comprendidos durante la vigencia originalmente establecida de la promoción. La ampliación de la promoción en ningún caso significa o importa una reducción del stock mínimo considerado para la promoción en su extensión original.</p>
-            </CardContent>
-          </Card>
+            <CardContent className="px-6 md:px-8 py-6 space-y-8">
 
-          {/* QUINTO: Mecánica */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>QUINTO: Mecánica de la promoción</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6 space-y-4 text-base text-gray-700 leading-relaxed">
-              <p className="font-semibold text-gray-800">Mecánica para Instagram:</p>
-              <p>Durante la vigencia de la promoción, el participante deberá buscar el sorteo publicado en el perfil de Instagram de Atrevia® el 24 de julio de 2026. El participante debe seguir los siguientes pasos:</p>
-              <BulletList items={[
-                "Comprar cualquier producto de Atrevia® (no aplica Atrevia® Versa Gel)",
-                <>
-                  Registrar la compra en la web{" "}
-                  <a href="https://www.atrevia.vet/promo-chayanne/clientes/" style={{ color: BRAND_HEX }} className="underline hover:opacity-80 transition-opacity" target="_blank" rel="noopener noreferrer">
-                    https://www.atrevia.vet/promo-chayanne/clientes/
-                  </a>
-                </>,
-              ]} />
-              <p className="mt-3">Se debe tomar en cuenta que el participante obtendrá más opciones de ganar si registra más boletas.</p>
-              <p>Se verificará que los participantes hayan cumplido una de las opciones anteriormente mencionadas, caso contrario, se invalidará su participación.</p>
-              <p>No se aceptarán frases, palabras, gestos o cualquier expresión que a criterio de Atrevia® tenga un carácter o connotación sexual, obscena, discriminatoria u ofensiva. Por tanto, el participante que incumpla con ello será eliminado, descalificado del concurso y bloqueado de las redes sociales de Atrevia®, así como de todas las redes sociales de las marcas de Agrovet. Esta evaluación será a entera discreción de Agrovet y el participante no podrá reclamarlo bajo ningún concepto, ni exigir ninguna reconsideración.</p>
-            </CardContent>
-          </Card>
-
-          {/* SEXTO: Premios */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>SEXTO: Premios</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6 space-y-4 text-base text-gray-700 leading-relaxed">
-              <p>Se deja constancia que esta promoción consiste en el sorteo de los siguientes premios por ganador:</p>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="border-b-2" style={{ borderColor: BRAND_HEX }}>
-                      <th className="py-3 pr-4 font-semibold text-gray-800">Premio</th>
-                      <th className="py-3 font-semibold text-gray-800">Ganadores de Instagram</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-gray-100">
-                      <td className="py-4 pr-4">01 entrada meet & greet para el concierto de Chayanne el 02 de diciembre en el Estadio Nacional, Lima, Perú.</td>
-                      <td className="py-4 font-bold" style={{ color: BRAND_HEX }}>02</td>
-                    </tr>
-                    <tr>
-                      <td className="py-4 pr-4 font-semibold">Total de ganadores</td>
-                      <td className="py-4 font-bold" style={{ color: BRAND_HEX }}>02</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p className="mt-4">En total habrá 02 ganadores que se llevarán cada uno 01 entrada meet & greet para el concierto de Chayanne, especificado en el cuadro anterior.</p>
-              <p className="font-semibold text-red-600">ATENCIÓN: Atrevia® y Agrovet no se hacen responsables del traslado ni los viáticos si el ganador no reside en Lima.</p>
-              <p>El participante declara conocer que, todos los premios que puedan entregarse tienen condición de liberalidad y, por tanto, no existe relación de consumo respecto de estos con el beneficiario.</p>
-              <p>Agrovet no asume responsabilidad por fallos que sean imputables al fabricante o comercializador de los premios entregados salvo que hayan sido fabricados o comercializados por Agrovet.</p>
-              <p>Los premios que puedan ser entregados no son intercambiables por dinero en efectivo o por algún otro premio que no haya sido determinado por Atrevia®.</p>
-              <p>El participante comprende plenamente que la sola participación en la promoción no asegura la obtención de un premio o beneficio de alguna naturaleza.</p>
-            </CardContent>
-          </Card>
-
-          {/* SÉPTIMO: Ganadores */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>SÉPTIMO: Ganadores</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6 space-y-6 text-base text-gray-700 leading-relaxed">
-              <p>Podrán participar del sorteo para ser ganadores, los participantes que cumplan con realizar la mecánica, de acuerdo con lo descrito en el numeral cuarto y que cumplan con todos los requisitos establecidos por los términos y condiciones.</p>
-
-              <div className="rounded-xl p-6" style={{ backgroundColor: BRAND_LIGHT }}>
-                <p className="font-semibold text-gray-800">Primer ganador:</p>
-                <p className="mt-2">Ingresan las inscripciones realizadas hasta el 07 de agosto. El día <strong>13 de octubre de 2026</strong> se realizará el sorteo ante Notario Público para determinar al primer ganador.</p>
-                <p className="mt-2">El <strong>13 de octubre</strong> se publicará el nombre del participante ganador a través de una historia en el Instagram de Atrevia®.</p>
+              {/* 1. Fechas - TAMAÑO AUMENTADO */}
+              <div>
+                <p className="text-base font-semibold text-gray-800 mb-3">
+                  1. Fechas de los sorteos y cantidad de premios por sorteo
+                </p>
+                <p className="text-base text-gray-700 mb-5">
+                  Los sorteos se llevarán a cabo en las fechas siguientes:
+                </p>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {[
+                    { label: "1ER SORTEO", date: "13 de octubre del 2026", prizes: "2 (DOS) premios" },
+                    { label: "2DO SORTEO", date: "19 de noviembre del 2026", prizes: "3 (TRES) premios" },
+                  ].map((s) => (
+                    <div
+                      key={s.label}
+                      className="rounded-xl p-6 text-center shadow-sm transition-all hover:shadow-md"
+                      style={{ backgroundColor: BRAND_LIGHT }}
+                    >
+                      <p className="text-sm font-black uppercase tracking-widest mb-2" style={{ color: BRAND_HEX }}>
+                        {s.label}
+                      </p>
+                      <p className="font-bold text-gray-800 text-xl md:text-2xl mb-2">{s.date}</p>
+                      <p className="text-base text-gray-500 mt-2">{s.prizes}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="rounded-xl p-6" style={{ backgroundColor: BRAND_LIGHT }}>
-                <p className="font-semibold text-gray-800">Segundo ganador:</p>
-                <p className="mt-2">Ingresan las inscripciones realizadas hasta el 15 de octubre. El día <strong>19 de noviembre de 2026</strong> se realizará el sorteo ante Notario Público para determinar al segundo ganador.</p>
-                <p className="mt-2">El <strong>19 de noviembre</strong> se publicará el nombre del participante ganador a través de una historia en el Instagram de Atrevia®.</p>
+              <hr className="border-gray-100" />
+
+              {/* 2. Quiénes participan */}
+              <div>
+                <p className="text-base font-semibold text-gray-800 mb-3">2. ¿Quiénes pueden participar?</p>
+                <p className="text-base text-gray-700 leading-relaxed">
+                  La campaña Viva la experiencia Chayanne está dirigida únicamente a médicos veterinarios, clínicas o consultorios veterinarios y Pet shops.
+                </p>
+                <p className="text-base text-gray-700 leading-relaxed mt-3">
+                  No pueden participar las personas naturales o jurídicas que se encuentren registradas como distribuidores o clientes directos de PETMEDICA. Tampoco podrán participar los clientes que compren a través del shop Agrovet Market (
+                  <a href="https://shop.agrovetmarket.com/" style={{ color: BRAND_HEX }} className="underline hover:opacity-80 transition-opacity" target="_blank" rel="noopener noreferrer">
+                    https://shop.agrovetmarket.com/
+                  </a>).
+                </p>
               </div>
 
-              <p>Cada participante entiende que, para tomar conocimiento de si resultó ser ganador, deberá revisar el storie o comentario que contenga al ganador para cada fecha de sorteo y que es de su exclusiva responsabilidad tomar conocimiento oportuno de su eventual condición de ganador. Asimismo, el participante declara conocer que la participación no asegura la obtención o probabilidad de obtención de premio alguno.</p>
-              <p>Cada ganador debe comunicarse con Atrevia® a través de un mensaje privado DM por medio de la página de Instagram, deberá indicar los siguientes datos: Nombre y Apellidos, documento de identidad, teléfono, correo y dirección exacta de su domicilio.</p>
-              <p>En caso el ganador no se comunique con Atrevia® de la forma antes indicada dentro de los siguientes (01) días hábiles desde la publicación del ganador, no brinde datos necesarios, se considerará que ha renunciado al premio y Agrovet se reservará el derecho de conservar y/o disponer del premio según considere pertinente, o realizar cualquier otra acción si así lo considerase, sin que ello dé lugar a reclamos.</p>
+              <hr className="border-gray-100" />
+
+              {/* 3. Mecánica */}
+              <div>
+                <p className="text-base font-semibold text-gray-800 mb-3">3. La mecánica del sorteo es la siguiente:</p>
+                <p className="text-base text-gray-700 leading-relaxed">
+                  Por cada S/ 1,000.00 (UN MIL con 00/100 SOLES), monto sin incluir IGV, que se adquiera en productos ATREVIA® participantes, el adquiriente acumulará 1 (una) opción para el sorteo. No participan productos distintos de ATREVIA®.
+                </p>
+
+                <div className="mt-6 space-y-6">
+                  {/* 3.1 */}
+                  <div>
+                    <p className="text-base font-semibold text-gray-800 mb-3">3.1 Productos participantes y asignación de opciones</p>
+                    <p className="text-base text-gray-700 leading-relaxed mb-4">
+                      Para efectos del presente sorteo, participan los productos de la línea ATREVIA® listados a continuación. El cliente acumulará 1 (UNA) opción de sorteo por cada S/ 1,000.00 (UN MIL con 00/100 Soles) de compra, siempre y cuando la compra individual o la sumatoria de estos productos en un mismo comprobante alcance el monto mínimo establecido.
+                    </p>
+                    <p className="text-base font-semibold text-gray-700 mb-3">Los productos participantes son:</p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                      {["Atrevia® 360", "Atrevia® Versa Gel", "Atrevia® 360 Spot On", "Atrevia® One", "Atrevia® XR", "Atrevia® Trio Cats"].map((p) => (
+                        <div
+                          key={p}
+                          className="rounded-lg px-3 py-2.5 text-sm font-medium text-center shadow-sm transition-all hover:scale-[1.02]"
+                          style={{ color: BRAND_HEX, backgroundColor: BRAND_LIGHT }}
+                        >
+                          {p}
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-base text-gray-700 leading-relaxed mt-4">
+                      Estos productos podrán ser adquiridos tanto de forma individual como combinada entre sí en una misma compra hasta alcanzar el monto mínimo.
+                    </p>
+                    <div
+                      className="mt-4 rounded-lg p-5 text-base shadow-sm"
+                      style={{ backgroundColor: BRAND_LIGHT }}
+                    >
+                      <p className="font-semibold mb-2 text-xs uppercase tracking-wider" style={{ color: BRAND_HEX }}>
+                        Ejemplo ilustrativo
+                      </p>
+                      <p className="text-gray-700">
+                        Una sola compra que incluya S/ 400.00 de Atrevia® 360 y S/ 600.00 de Atrevia® One (Total: S/ 1,000.00). Al tratarse de productos participantes que sumados alcanzan el monto mínimo en un solo comprobante, dicha compra generará una (1) opción de participación.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 3.2 */}
+                  <div>
+                    <p className="text-base font-semibold text-gray-800 mb-3">3.2 Reglas sobre la validación de compras</p>
+                    <BulletList items={[
+                      "Sumatoria de Productos: Se permite la sumatoria de cualquier combinación de los productos participantes mencionados en el punto 3.1, siempre que se realicen en 1 (UNA) sola compra (un solo comprobante) para alcanzar el monto mínimo de S/ 1,000.00 (UN MIL con 00/100 Soles), monto sin incluir IGV.",
+                      "Monto Mínimo por Registro: El registro de opciones se realiza únicamente si en 1 (UNA) compra se alcanza el monto mínimo de S/ 1,000.00. Por lo tanto, no se aceptará la sumatoria de comprobantes de pago distintos que individualmente sean inferiores a S/ 1,000.00.",
+                      "Prohibición de Redondeo: La asignación de opciones se realizará estrictamente sobre la base de múltiplos de S/ 1,000.00 (UN MIL con 00/100 Soles). No se efectuará redondeo a favor de los participantes en caso de montos excedentes que no lleguen a alcanzar un nuevo múltiplo de S/ 1,000.00 (Ejemplo: una compra de S/ 1,800.00 genera solo 1 opción).",
+                    ]} />
+                  </div>
+
+                  {/* 3.3 */}
+                  <div>
+                    <p className="text-base font-semibold text-gray-800 mb-3">3.3 Proceso de Registro</p>
+                    <p className="text-base text-gray-700 leading-relaxed">
+                      Los participantes que adquieran los productos ATREVIA® referidos en el punto 3.1 por el monto mínimo indicado, deberán inscribirse registrándose vía WhatsApp al{" "}
+                      <span className="font-semibold text-base" style={{ color: BRAND_HEX }}>903069021</span>{" "}
+                      o en la página web:{" "}
+                      <a href="https://atrevia.vet/promo-chayanne/veterinarios/" style={{ color: BRAND_HEX }} className="underline hover:opacity-80 transition-opacity" target="_blank" rel="noopener noreferrer">
+                        https://atrevia.vet/promo-chayanne/veterinarios/
+                      </a>
+                    </p>
+                    <p className="text-base text-gray-700 leading-relaxed mt-3">
+                      En estos canales se validará la compra realizada y se asignará el número de opciones correspondientes de conformidad con lo señalado en los puntos 3.1 y 3.2.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <hr className="border-gray-100" />
+
+              {/* 3.4 */}
+              <div>
+                <p className="text-base font-semibold text-gray-800 mb-4">3.4 Condiciones y Restricciones Generales</p>
+                <div className="grid md:grid-cols-2 gap-x-6 gap-y-3">
+                  <BulletList items={[
+                    "La promoción del concierto en Lima, Perú estará vigente desde el 19 de mayo de 2026 hasta el 11 de noviembre de 2026 a las 12:00 del mediodía (cierre de inscripciones). El sorteo de la segunda fecha se realizará el 19 de noviembre de 2026.",
+                    "El corte de inscripciones para la primera fecha del sorteo (13 de octubre de 2026) se realizará el día 12 de octubre de 2026 a las 12:00 del mediodía.",
+                    "Se establece un límite de 01 premio por ganador. En ese sentido, quien resulte ganador en el primer sorteo no podrá participar ni ser considerado en el segundo sorteo, independientemente de las veces que haya sido seleccionado.",
+                    "No podrán participar los ganadores de cualquier otro sorteo organizado por AGROVET MARKET S.A. durante el año 2026, independientemente del producto o marca promocionada.",
+                    "Los sorteos se realizarán bajo la presencia de un Notario Público y la lista de ganadores será publicada en las redes institucionales de PETMEDICA al día siguiente de realizado cada sorteo. Sin perjuicio de ello, se tomará contacto con cada uno de los ganadores mediante el correo electrónico y/o teléfono consignado.",
+                    "Al validar el comprobante de pago, se consideran los valores exactos: cada S/ 1,000.00 (UN MIL con 00/100 SOLES) de compra en productos participantes equivaldrá a 1 (UNA) opción de sorteo. No se efectuarán redondeos a favor del participante.",
+                    "No podrán participar distribuidores, ni ningún otro cliente que no califique como médico veterinario, clínica/consultorio veterinario o pet shop. Tampoco podrán participar trabajadores y/o parientes de trabajadores de AGROVET MARKET hasta cuarto grado de consanguinidad o segundo de afinidad, ni convivientes.",
+                    "Se aceptarán y serán válidas para la acumulación de opciones todas aquellas facturas y/o comprobantes de pago emitidos a partir del 19 de mayo de 2026, siempre que cumplan con los montos mínimos y las categorías de productos participantes detalladas en la cláusula anterior.",
+                    "La presente promoción es válida exclusivamente dentro del territorio de la República del Perú (Nivel Nacional). No podrán participar personas naturales o jurídicas domiciliadas en el extranjero, ni compras realizadas fuera del territorio peruano.",
+                  ]} />
+                  <BulletList items={[
+                    "Los datos personales serán recopilados mediante WhatsApp (903069021) o en la página web https://atrevia.vet/promo-chayanne/veterinarios/. El tratamiento de estos datos se realizará en estricto respeto de la Ley N° 29733.",
+                    "Los datos recepcionados serán verificados por el equipo de AGROVET MARKET, quienes consignarán los mismos en una base de datos especificando el número exacto de opciones generadas por cada registro.",
+                    "Posteriormente a la inscripción, y en un lapso máximo de 2 días hábiles, el participante recibirá una notificación indicando las opciones acumuladas.",
+                    "Cada opción validada representa 1 ticket con los datos del participante que será ingresado al ánfora para el sorteo.",
+                    "El premio es intransferible, no puede ser sustituido por dinero en efectivo y se entregará únicamente a los ganadores, quienes aceptan el uso de su imagen (fotos/videos) para fines promocionales del evento y la experiencia en Lima.",
+                    "En caso de ganadores que vivan fuera de Lima, la elección del transporte, escala, hotel y/o logística del viaje será gestionada exclusivamente por PETMEDICA. La empresa no asume responsabilidad por demoras, cancelaciones de vuelos o cambios en el evento ajenos a su control.",
+                    "Si no se logra contactar al ganador en 3 días hábiles, el premio quedará vacante.",
+                    "Es responsabilidad del ganador tener vigente su documento de identidad (DNI) y cualquier documento requerido para el viaje dentro del territorio nacional. Si no se logra contactar al ganador en 3 días hábiles, el premio quedará vacante.",
+                    "Una vez recibido el premio, los ganadores deberán firmar una Declaración Jurada de recepción y la autorización de uso de imagen correspondiente.",
+                  ]} />
+                </div>
+              </div>
+
+              <hr className="border-gray-100" />
+
+              {/* 3.5 */}
+              <div>
+                <p className="text-base font-semibold text-gray-800 mb-3">3.5 Consideraciones</p>
+                <BulletList items={[
+                  "La inscripción en la presente campaña implica el pleno conocimiento y aceptación de estas bases.",
+                  "PETMEDICA se reserva el derecho a modificar, ampliar o cancelar la campaña por razones justificadas, caso fortuito o fuerza mayor.",
+                  <>
+                    Para más información, puede ingresar a la web{" "}
+                    <a href="https://atrevia.vet/promo-chayanne/veterinarios/" style={{ color: BRAND_HEX }} className="underline hover:opacity-80 transition-opacity" target="_blank" rel="noopener noreferrer">
+                      https://atrevia.vet/promo-chayanne/veterinarios/
+                    </a>{" "}
+                    o escribir al WhatsApp <span className="font-semibold" style={{ color: BRAND_HEX }}>903069021</span> de lunes a viernes (9:00 am a 6:00 pm).
+                  </>,
+                ]} />
+              </div>
+
             </CardContent>
           </Card>
 
-          {/* OCTAVO: Entrega de premios */}
+          {/* 4. Datos personales */}
           <Card className="shadow-md overflow-hidden border-0 rounded-xl">
             <div
               className="px-6 md:px-8 py-5"
               style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
             >
-              <SectionTitle>OCTAVO: Entrega de premios</SectionTitle>
+              <SectionTitle>4. Autorización de Uso de Datos Personales</SectionTitle>
             </div>
             <CardContent className="px-6 md:px-8 py-6 space-y-4 text-base text-gray-700 leading-relaxed">
-              <p>Para efectos de coordinar la entrega de los premios respectivos, el ganador deberá comunicarse a través de un DM mensaje privado al Instagram de Atrevia® y deberán validar sus datos, conforme a lo detallado en el anterior numeral.</p>
-              <p>Una vez validados los datos del ganador, Atrevia® contará con un plazo que no excederá los treinta (30) días hábiles luego del día en que se realizó la comunicación con el ganador, para coordinar la entrega de los premios.</p>
-              <p>En el supuesto de que no existan participaciones o existieran participaciones insuficientes a criterio exclusivo de Agrovet, no se entregará el premio indicado al tratarse de un supuesto ajeno a la esfera de control de Atrevia®.</p>
-              <p>Se dejará constancia de la entrega del premio mediante una fotografía y mediante la firma de un cargo emitido por Atrevia®. El participante declara que cualquiera de los medios o constancia previamente indicados, es prueba plena, suficiente y de fecha cierta del cumplimiento de la entrega del premio, conforme a los presentes términos y condiciones.</p>
-              <p>Imprecisiones, inexactitudes o errores en la información de contacto consignada, incluyendo el domicilio, podrían determinar la pérdida del premio a criterio de Atrevia®.</p>
-            </CardContent>
-          </Card>
-
-          {/* NOVENO: Protección de datos */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>NOVENO: Protección de datos personales y recibo de premios</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6 space-y-4 text-base text-gray-700 leading-relaxed">
-              <p>Atrevia® cumple con informar que el responsable del tratamiento de los datos personales es Agrovet S.A. con RUC N° 20250406941 y con domicilio en Av. Canadá 3792, Villa Jardín, San Luis.</p>
-              <p>Asimismo, Atrevia® cumple con informar a los participantes que sus datos personales serán tratados para la preparación, celebración y ejecución de las actividades vinculadas a la presente promoción. Además, para efectos de cumplir con la finalidad señalada en el párrafo anterior, Atrevia® cuenta con el apoyo de otras empresas, terceros proveedores de servicios, que actúan en calidad de encargados de tratamiento; los cuales, tienen acceso a los datos personales; sin perjuicio de las medidas de seguridad establecidas para el efecto.</p>
-              <p>Mediante la participación en la presente promoción, el participante declara conocer y comprender plenamente que Atrevia® tratará sus datos personales proporcionados en el presente concurso únicamente con la finalidad antes indicada pues, caso contrario, Atrevia® no podría realizar las gestiones pertinentes y encaminadas a dar curso a la actividad promocional.</p>
-              <p>El responsable del tratamiento de los datos personales respectivos es Atrevia®, la cual declara que los datos entregados serán tratados de manera reservada y atendiendo a los principios de confidencialidad y seguridad de la información, por tanto, resaltamos que la información suministrada a lo largo del desarrollo de la actividad promocional no será compartida con terceros no autorizados y se tratarán de acuerdo con las finalidades descritas.</p>
-              <p>Es condición esencial para recibir el premio el que el participante ganador otorgue su consentimiento para que su identidad sea divulgada, así como para que las imágenes filmadas y las fotografías tomadas, sean exhibidas por cualquier medio de comunicación, incluyendo medios de comunicación masiva tales como internet, redes sociales, televisión, radio, prensa, o a nivel de puntos de venta, si Atrevia® lo dispusiere, únicamente para efectos de comunicar los resultados de la Promoción. El participante ganador no podrá reclamar exclusividad, ni derechos para exhibición, ni podrá exigir su previa aprobación del material en que va a aparecer su imagen, nombre o voz, en tal sentido, esta difusión no generará ningún derecho de compensación.</p>
-            </CardContent>
-          </Card>
-
-          {/* DÉCIMO: Publicación y modificación */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>DÉCIMO: Publicación, modificación y aceptación de los términos y condiciones</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6 space-y-4 text-base text-gray-700 leading-relaxed">
-              <p>Los términos y condiciones de la promoción se encuentran en la descripción de la página de Instagram de Atrevia® (
-                <a href="https://www.instagram.com/atreviapets/" style={{ color: BRAND_HEX }} className="underline hover:opacity-80 transition-opacity" target="_blank" rel="noopener noreferrer">
-                  https://www.instagram.com/atreviapets/
-                </a>
-                ) a partir del 24 de julio de 2026.
+              <p>Los participantes del presente sorteo, autorizan expresamente a AGROVET MARKET S.A., identificada con RUC Nro. 20250406941, con domicilio en la Avenida Canadá Nro. 3792 Interior Nro. 3798, Urbanización Villa Jardín, Distrito de San Luis, Provincia y Departamento de Lima, para tratar y hacer uso de sus datos personales, con la finalidad de participar en el sorteo.</p>
+              <p>El fin especifico del tratamiento de datos personales en esta campaña es facilitar la realización del sorteo de los premios, y el contacto con los ganadores para la entrega de los bienes, sin perjuicio de las demás coordinaciones correspondientes a la ejecución de los premios.</p>
+              <p>Los datos necesarios para cumplir con la finalidad descrita son los siguientes: nombres y apellidos, número y tipo de documento de identidad, número de celular, y correo electrónico. De no proporcionar dicha información, AGROVET MARKET S.A. no podrá brindar la finalidad anterior.</p>
+              <p>Queda expresamente establecido que la aceptación del consentimiento es condición necesaria e imprescindible para la participación del titular de los datos personales en el sorteo. En tal sentido, se entiende que la sola inscripción para participar de la campaña y de los sorteos implica el otorgamiento de un consentimiento libre, previo expreso e informado sobre el tratamiento de sus datos personales. Asimismo, queda establecido que el presente consentimiento se otorga libremente en virtud de lo establecido en el numeral 3.3 del artículo 3° del Reglamento de la Ley N° 29733, norma que permite otorgar beneficios al titular de los datos personales a cambio de que este otorgue su consentimiento al tratamiento de sus datos personales.</p>
+              <p>Los datos personales que brinde serán almacenados en el banco de datos denominado "Clientes" de titularidad de AGROVET MARKET S.A.</p>
+              <p>AGROVET MARKET podrá utilizar, conservar y tratar la información del Participante hasta que culmine La Promoción y se entreguen los premios, y luego se mantendrán por un plazo de 10 años.</p>
+              <p>En caso algún participante desee ejercer los derechos contemplados en la Ley de Protección de Datos Personales y su Reglamento, éste deberá comunicarse con AGROVET MARKET S.A. utilizando la "Opción de baja" proporcionada en cada una de las comunicaciones comerciales enviadas al correo proporcionado por el participante. Del mismo modo, podrá ejercer sus derechos comunicándose a cualquiera de las siguientes direcciones electrónicas:{" "}
+                <a href="mailto:protecciondedatos@agrovetmarket.com" style={{ color: BRAND_HEX }} className="underline hover:opacity-80 transition-opacity">protecciondedatos@agrovetmarket.com</a>{" "}
+                o{" "}
+                <a href="mailto:marketing@agrovetmarket.com" style={{ color: BRAND_HEX }} className="underline hover:opacity-80 transition-opacity">marketing@agrovetmarket.com</a>;
+                {" "}así como también podrá remitir una comunicación escrita la oficina administrativa de AGROVET MARKET S.A. ubicada en la Avenida Canadá N° 3792, Interior N° 3798, Urbanización Villa Jardín, Distrito de San Luis, Provincia y Departamento de Lima, República del Perú. En cualquier caso será necesario que el participante explique bajo qué circunstancias dio los datos personales en cuestión a la AGROVET MARKET S.A.
               </p>
-              <p>Atrevia® se reserva el derecho de modificar los presentes términos y condiciones, así como dejar sin efecto la presente promoción por cualquier razón que considere discrecionalmente justificada debiendo para tal efecto dar aviso a través de las redes sociales de Agrovet, la misma que el participante declara conocer como el único canal oficial de revelación de información referente a la presente promoción.</p>
             </CardContent>
           </Card>
-
-          {/* DÉCIMO PRIMERO: Exclusiones */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>DÉCIMO PRIMERO: Exclusiones y prohibiciones</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6 space-y-4 text-base text-gray-700 leading-relaxed">
-              <p>Queda expresamente prohibido y por ende no podrán participar en esta Promoción, ni poder solicitar ningún tipo de premio, los trabajadores de Agrovet S.A. La prohibición de participación que afecta a los citados trabajadores se extiende también a aquellos colaboradores, profesionales o técnicos que, no siendo trabajadores, presten servicios en las citadas empresas en los presentes términos y condiciones, a cualquier título. Se hace extensiva esta prohibición a los cónyuges, y parientes de los citados trabajadores, profesionales, técnicos y prestadores de servicios, hasta el segundo grado de consanguinidad o afinidad.</p>
-              <p>De la misma forma, no podrá participar ninguna persona y/o colaborador que haya podido estar relacionado de alguna manera con la organización y logística del sorteo "Atrevia te lleva a conocer a Chayanne".</p>
-              <p>En caso de controversia relacionada con la identidad de un participante, el titular del DNI, Carné de extranjería o PTP utilizado durante el proceso de participación en la Promoción será considerado como el usuario participante. Atrevia® no será responsable por aquellas participaciones que no se reciban a causa de fallas de transmisión, técnicas o cualquier otra situación no imputable a Atrevia®.</p>
-              <p>No podrán participar de la presente promoción los trabajadores de las agencias ejecutoras de la campaña.</p>
-              <p>Atrevia® no puede asegurar la accesibilidad permanente a Internet o a la página web de la promoción dado que situaciones técnicas pueden presentarse o por tratarse de circunstancias ajenas a la esfera de control de Atrevia®. En ese sentido, el participante libera de responsabilidad a Atrevia® por cualquier evento relacionado a la accesibilidad del participante.</p>
-            </CardContent>
-          </Card>
-
-          {/* DÉCIMO SEGUNDO: Fraude */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>DÉCIMO SEGUNDO: Participaciones fraudulentas</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6 space-y-4 text-base text-gray-700 leading-relaxed">
-              <p>Estará prohibido y será anulado cualquier intento o método de participación en este sorteo que se realice por cualquier proceso, técnica o mecánica de participación distinta a la detallada precedentemente. La utilización de técnicas de participación en esta Promoción, que Atrevia® logre identificar, de naturaleza robótica, repetitiva, automática, programada, mecanizada o similar llevará a la anulación de la participación de que se trate.</p>
-              <p>Atrevia®, asimismo, se reserva el derecho a su entera discreción, de descalificar a cualquier participante que considere que está manipulando el proceso o el funcionamiento de la actividad, o que no cumpla con los presentes términos y condiciones o actúe de una forma anticompetitiva o problemática. Cualquier intento de alguna persona por perjudicar el funcionamiento legítimo de esta actividad y/o de la participación de otro participante, podrá constituir una violación de las leyes civiles y penales. En caso de producirse dicho intento, Atrevia® se reserva el derecho de excluirlo de la actividad promocional y de demandar a dicha persona por los daños y perjuicios ocasionados a Atrevia® dentro de los límites de la ley.</p>
-              <p>En caso de detectarse adulteración o manipulación de información, o que la misma sea errada, falsa, Atrevia® se reserva el derecho de eliminar a cualquier participante que defraude, altere o modifique el normal y buen funcionamiento de la dinámica y/o que recurra, mediante esquemas o estrategias no convencionales, a una participación que afecte el normal desenvolvimiento de la actividad y/o que perjudique los intereses de otros participantes, atentando contra el principio en virtud del cual todos los usuarios deben participar en igualdad de condiciones y con estricto cumplimiento del principio de buena fe.</p>
-              <p>Atrevia® retiene la facultad de calificar qué conducta constituye fraude en el contexto de la promoción en tanto desnaturaliza la finalidad promocional o la mecánica de la promoción.</p>
-              <p>En caso se encuentre algún intento de fraude dentro de la promoción, la persona podrá ser retirada automáticamente de la promoción y se le retirará el premio.</p>
-            </CardContent>
-          </Card>
-
-          {/* DÉCIMO TERCERO: Reclamos */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>DÉCIMO TERCERO: Reclamos</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6 space-y-4 text-base text-gray-700 leading-relaxed">
-              <p>Toda inconformidad (queja/reclamo/sugerencia) se deberá realizar durante el tiempo que dure la promoción, es decir; los reclamos realizados después del 15 de octubre de 2026 se entenderán por no formulados.</p>
-              <p>La emisión y difusión de opiniones adversas al producto, la promoción, la marca o Agrovet S.A. podría constituir una acción perjudicial susceptible de ser indemnizada por afectar reputacionalmente a la empresa de manera grave.</p>
-            </CardContent>
-          </Card>
-
-          {/* DÉCIMO CUARTO: Ley aplicable */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>DÉCIMO CUARTO: Ley aplicable</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6">
-              <p className="text-base text-gray-700 leading-relaxed">Los participantes reconocen y aceptan que la ley aplicable para cualquier controversia que surja con relación a la actividad promocional será la de Perú y renuncian a su derecho de iniciar cualquier tipo de reclamación en otra jurisdicción.</p>
-            </CardContent>
-          </Card>
-
-          {/* DÉCIMO QUINTO: Divulgación */}
-          <Card className="shadow-md overflow-hidden border-0 rounded-xl">
-            <div
-              className="px-6 md:px-8 py-5"
-              style={{ background: `linear-gradient(90deg, ${BRAND_LIGHT}, transparent)` }}
-            >
-              <SectionTitle>DÉCIMO QUINTO: Divulgación</SectionTitle>
-            </div>
-            <CardContent className="px-6 md:px-8 py-6">
-              <p className="text-base text-gray-700 leading-relaxed">
-                Los presentes términos y condiciones se encuentran disponibles para su consulta durante toda la vigencia de la actividad, en la descripción de la página de Instagram de Atrevia® (
-                <a href="https://www.instagram.com/atreviapets/" style={{ color: BRAND_HEX }} className="underline hover:opacity-80 transition-opacity" target="_blank" rel="noopener noreferrer">
-                  https://www.instagram.com/atreviapets/
-                </a>
-                ). Cualquier modificación o información relativa a la promoción, será informada a través de dicha página entendiéndose que dicha difusión constituye el único y adecuado mecanismo de revelación de información.
-              </p>
-            </CardContent>
-          </Card>
-
         </div>
       </div>
     </div>
